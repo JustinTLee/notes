@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Proof: AR(q) Partial Autocorrelation</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Proof: AR(q) Partial Autocorrelation</h2>
+            
+            <p><a href = "../03ARMAmodels.html#pacf">(back to 04. Partial Autocorrelation)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        proof-->
+        <div class="section">
+        
+            <p>We begin with the following definition:</p>
+            
+            <p>
+            \begin{equation*}
+            \widehat{x}[t + h] = \sum_{j = 1}^{h - 1} \beta_j x[t + h - j]
+            \end{equation*}
+            </p>
+            
+            <p>If $h > p$, we can expand out our previous summation into two summations:</p>
+
+            <p>
+            \begin{align*}
+            \widehat{x}[t + h] &= \sum_{j = 1}^{h - 1} \beta_j x[t + h - j] \\
+                               &= \sum_{j = 1}^{p} \beta_j x[t + h - j] + \sum_{j = p + 1}^{h - 1} \beta_j x[t + h - j]
+            \end{align*}
+            </p>
+            
+            <p>Given that an $AR(p)$ process can be written as $x[t + h] = \sum_{j = 1}^{p} \phi_{j} x[t + h - m] + w[t + h]$, it can assumed that in order to mimic this form, we can set $\sum_{j = p + 1}^{h - 1} \beta_j x[t + h - j] = 0$:</p>
+            
+            <p>
+            \begin{align*}
+            \widehat{x}[t + h] &= \sum_{j = 1}^{p} \beta_j x[t + h - j] + \sum_{j = p + 1}^{h - 1} \beta_j x[t + h - j] \\
+                               &= \sum_{j = 1}^{p} \beta_j x[t + h - j] + 0 \\
+                               &= \sum_{j = 1}^{p} \beta_j x[t + h - j] \\
+            \end{align*}
+            </p>
+            
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

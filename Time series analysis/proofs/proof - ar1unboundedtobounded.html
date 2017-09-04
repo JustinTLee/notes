@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Proof: Turning an Unbounded AR(1) Model to a Bounded One</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Proof: Turning an Unbounded AR(1) Model to a Bounded One</h2>
+            
+            <p><a href = "../03ARMAmodels.html#armodels">(back to 03. ARMA Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        proof-->
+        <div class="section">
+        
+            <p>We begin with an $AR(1)$ model:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \phi x[t - 1] + w[t]
+            \end{equation*}
+            </p>
+            
+            <p>where $|\phi| > 1$. Since $\phi$ will cause $x[t]$ to increase at each present value, the system is unbounded as time goes on. The value of $x[t]$ will approach infinity.</p>
+            
+            <p>Let's write the future value $x[t + 1]$ as:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t + 1] = \phi x[t] + w[t + 1]
+            \end{equation*}
+            </p>
+            
+            <p>Solving for $x[t]$ gives:</p>
+            
+            <p>
+            \begin{align*}
+            x[t + 1] &= \phi x[t] + w[t + 1] \\
+            \phi x[t] &= x[t + 1]  - w[t + 1]\\
+            x[t] &= \frac{1}{\phi}x[t + 1] - \frac{1}{\phi}w[t + 1] \\
+            \end{align*}
+            </p>
+            
+            <p>We can write the present value $x[t]$ in terms of future values:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \frac{1}{\phi}x[t + 1] - \frac{1}{\phi}w[t + 1]
+            \end{equation*}
+            </p>
+            
+            <p>Iterating forwards once (1st time) gives:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] &= \frac{1}{\phi}x[t + 1] - \frac{1}{\phi}w[t + 1] \\
+                 &= \frac{1}{\phi} \left(\frac{1}{\phi}x[t + 2] - \frac{1}{\phi}w[t + 2] \right) - \frac{1}{\phi}w[t + 1] \\
+                 &= \frac{1}{\phi^2}x[t + 2] - \frac{1}{\phi^2}w[t + 2] - \frac{1}{\phi}w[t + 1] \\
+                 &= \frac{1}{\phi^2}x[t + 2] - \sum_{j = 1}^{2} \frac{1}{\phi^j} w[t + j]
+            \end{align*}
+            </p>
+            
+            
+            <p>Iterating forwards again (2nd time) gives:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] &= \frac{1}{\phi^2}x[t + 2] - \sum_{j = 1}^{2} \frac{1}{\phi^j} w[t + j] \\
+                 &= \frac{1}{\phi^2} \left(\frac{1}{\phi}x[t + 3] - \frac{1}{\phi}w[t + 3] \right) - \sum_{j = 1}^{2} \frac{1}{\phi^j} w[t + j] \\
+                 &= \frac{1}{\phi^3} x[t + 3] - \frac{1}{\phi^3}w[t + 3] - \sum_{j = 1}^{2} \frac{1}{\phi^j} w[t + j] \\
+                 &= \frac{1}{\phi^3} x[t + 3] - \sum_{j = 1}^{3} \frac{1}{\phi^j} w[t + j]
+            \end{align*}
+            </p>
+            
+            <p>Iterating forwards $k$ times gives:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \frac{1}{\phi^{k + 1}} x[t + (k + 1)] - \sum_{j = 1}^{k + 1} \frac{1}{\phi^j} w[t + j]
+            \end{equation*}
+            </p>
+            
+            <p>Since $|\frac{1}{\phi}| < 1$, writing $x[t]$ with future values bounds the time series. Extending this to numerous samples:</p>
+                
+            <p>
+            \begin{align*}
+            x[t] &= \lim_{k \to \infty} \frac{1}{\phi^{k + 1}} x[t + (k + 1)] - \sum_{j = 1}^{k + 1} \frac{1}{\phi^j} w[t + j] \\
+                 &= 0 - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j] \\
+                 &= - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j] \\
+            \end{align*}
+            </p>
+            
+            <p>Thus a working stationary $AR(1)$ model can be created out of white noise future values:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j]
+            \end{equation*}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "../index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

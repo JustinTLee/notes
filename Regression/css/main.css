@@ -1,0 +1,13 @@
+body {
+    padding: 0% 5%;
+}
+
+figure {
+    justify-content: center;
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin: auto;
+}

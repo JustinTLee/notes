@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Time series statistical models</title>
+        <link rel = "stylesheet" type = "text/css" href = "css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+
+<!--        title-->
+        <div class = "title">
+            
+            <h1>Time Series Statistical Models</h1>
+            
+            <p><a href = "index.html">(back to index)</a></p>
+            
+        </div>
+        
+<!--        table of contents-->
+        <div class = "toc">
+            
+            <h2><a class="anchor" id="toc">Table of Contents</a></h2>
+            
+            <ol>
+                <li><a href = "#statsnature">The Statistical Nature of a Time Series</a></li>
+                <li><a href = "#processes">Types of Processes</a></li>
+                <li><a href = "#statmeasures">Descriptive Statistical Measures</a></li>
+                <li><a href = "#correstimation">Estimation of Correlation</a></li>
+            </ol>
+            
+        </div>
+        
+<!--        the statistical nature of a time series-->
+        <div class = "section">
+            
+            <h2><a class="anchor" id="statsnature">The Statistical Nature of a Time Series</a></h2>
+            
+            <p>A time series can be thought of as an array of random variables $\left(X_1, X_2, X_3,...\right)$ that are indexed by time stamps along a fixed interval:</p>
+            
+            <p>
+            \begin{equation}
+                \overrightarrow{X} = [X_1\: X_2\: X_3\, ...]
+            \end{equation}
+            </p>
+            
+            <p>During each sampling time point, a value from an underlying random process is observed and appended to the end this array. This array $\left(\overrightarrow{X}\right)$ is known as a <b>stochastic process</b>. When an observation of the stochastic process occurs, this value is known as a <b>realization</b>. Since observations are made at discrete intervals, we can write an observed value at time $t$ as $x[t]$. A model for the realized process involves multiplicatively joining the distributions of the random variables. The joint distribution for a time series of length $n$ is defined as:</p>
+            
+            <p>
+            \begin{equation}
+                P(x_1, x_2, ..., x_n) = P(X_1 \le x_1, X_2 \le x_2, ..., X_n \le x_n),\quad -\infty < x_1, x_2, ..., x_n < \infty,\quad n = 1, 2, 3,...
+            \end{equation}
+            </p>                                                                                                     
+                                                                                                         
+            <p>$P(x_1,, ..., x_n)$ is the <b>joint cumulative density fuction</b>. It describes what the probability is of seeing values $X_i \le x_i$ for all $i = 1, ..., n$ collectively.</p>
+            
+            <p>We can predict properties of the statistical process that generates a time series as long as those properties don't change over time. If these properties stay constant, then the time series is considered <b>strictly stationary</b>. Strictly stationary time series' joint distributions remain equal even after an arbitrary time shift $h$:</p>
+            
+            <p>
+            \begin{equation}
+            P(x_1 \le c_1, x_2 \le c_2, ..., x_n \le c_n) = P(x_{1 + h} \le c_{1 + h}, x_{2 + h} \le c_{2 + h}, ..., x_{n + h} \le c_{n + h})
+            \end{equation}
+            </p>
+            
+            <p>Given that in real situations, we only can observe a time series once, it is impossible to know whether the joint distribution changes under arbitrary time shifts. To adapt, we define the <b>wide-sense stationary/weakly stationary</b> time series as one whose mean is constant and autocovariance function ($\gamma[t]$) remains the same under any time shift:</p>
+            
+            <p>
+            \begin{align}
+            \mu[t] &= \mu[t + h] = \mu \\
+            \gamma[t] &= \gamma[t + h] \\
+            \end{align}
+            </p>
+            
+            <p>where $h$ can be any value. The autocovariance function ($\gamma[t]$) will be defined on a different section. A time series that cannot fulfill the weakly stationary criteria is called <b>non-stationary</b>.</p>
+            
+            <p>The question now is, how many samples does it take to reasonably estimate the mean and autocovariance of a given time series? Obviously, just given one or two points, we will not be able to model the data well. This is where the concept of <b>ergodicity</b> comes into play. Suppose we have a long stream of data points. Assuming that the mean is constant, the time average of a sample of the time series must be equal to the time series' expectation:</p>
+            
+            <p>
+            \begin{equation}
+            \frac{1}{n} \sum_{t = 1}^{n} X[t] = \mu
+            \end{equation}
+            </p>
+            
+            If this property holds true for $X[n]$, then $X[n]$ is known as <b>mean-ergodic</b>. The time average of the autocovariance function should also equal the time series' autocovariance function:
+            
+            <p>
+            \begin{equation}
+            \frac{1}{n} \sum_{t = 1}^{n} (X[t + h] - \mu)(X[t] - \mu) = \gamma[t]
+            \end{equation}
+            </p>
+            
+            <p>This property is known as <b>autocovariance-ergodic</b>. If a time series satisfies both ergodicity properties, it is <b>ergodic</b>. A weakly stationary ergodic time series is one in which statistical properties remain constant with respect to a time shift (stationarity) and we can accurately estimate those properties given a reasonably large amount of samples (ergodicity).</p>
+            
+        </div>
+        
+<!--        types of processes-->
+        <div class = "section">
+
+            <h2><a class="anchor" id="processes">Types of Processes</a></h2>
+            
+            <p>There are 3 main types of processes that we can exploit to estimate statistical properties of a time series:</p>
+            <ul>
+                <li>white noise</li>
+                <li>moving average</li>
+                <li>autoregression</li>
+            </ul>
+            
+            <p>The <b>white noise process</b> is just a process created by observing Gaussian random variables at different time points. The white noise Gaussian observation is defined as $w[t]$ with its distribution having a mean of $\mu_w = 0$ and a variance of $\sigma_w^2$. Using this distribution, we choose a value from a Gaussian distribution at time $t = 1$ and place it into $w[1]$, another value (can be same or different) from the same Gaussian distribution at time $t = 2$ and place it into $w[2]$ and so on. All of these observed values are <b>identically and independently distributed (IID)</b>, meaning that the value of one observation will not influence the value of another. </p>
+            
+            <p>If our process were a simple white noise process then it would be easy to categorize because the Gaussian distribution was used to create it. However, this case is very rare because we know that often values from previous time points will influence the value of the current one. For example, last month's stock will affect today's. To address this, we need to look at serial correlation between adjacent observed values. The two types of correlation examined in time series analysis are: (1) moving averages and (2) autoregression.</p>
+            
+            <p>A <b>moving average</b> is a process where a time series value is influenced by the white noise values obtained in adjacent past and future time points:</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = \sum_{h = -n}^{n} q_h w[t - h]
+            \end{equation}
+            </p>
+            
+            <p>For example, this is a moving average in which the present value of the time series is influenced by its present white noise value and the white noise observations of the previous and next time points:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \frac{w[t - 1]}{2} + w[t] + \frac{w[t + 1]}{2}
+            \end{equation*}
+            </p>
+            
+            <p>This type of process has the effect of smoothing out a time series and is often known as a filter.</p>
+            
+            <p>An <b>autoregression</b> refers to the case where the present value of the time series is influenced by its past and future values:</p>
+            
+            <p>
+            \begin{equation}
+            y[t] = \sum_{h = -n}^{n} p_h x[t - h] + w[t]
+            \end{equation}
+            </p>
+            
+            <p>Notice here how only the present white noise term $w[t]$ comes to play. An autoregression is named such because past values can be used to predict future values.</p>
+            
+            <p><b>Drift</b> occurs where there there is a linear trend with respect to time and is respresented by a constant added to a moving average or an autoregression:</p>
+            
+            <p>
+            \begin{align}
+            x[t] &= \sum_{h = -n}^{n} q_h w[t - h] + c \\
+            y[t] &= \sum_{h = -n}^{n} p_h x[t - h] + w[t] + c\\    
+            \end{align}
+            </p>
+            
+            <p>An example of how drift plays a role can be found <a href = "./examples/example%20-%20randomwalkwithdrift.html">here</a>.</p>
+            
+            <p>A <b>linear process</b> ($x[t]$) is defined by a linear combination of white noise terms:</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = \mu + \sum_{j = -\infty}^{\infty} \psi_j w[t - j]
+            \end{equation}
+            </p>
+            
+            <p>where:</p>
+            
+            <p>
+            \begin{equation}
+            \sum_{j = -\infty}^{\infty} |\psi_j| < \infty
+            \end{equation}
+            </p>
+            
+            <p>There are also <b>periodic processes</b>. These will be covered in more detail in the spectral analysis pages.</p>
+            
+        </div>
+        
+<!--        descriptive statistical measures-->
+        <div class = "section">
+        
+            <h2><a class = "anchor" id = "statmeasures">Descriptive Statistical Measures</a></h2>
+            
+            <p>The <b>mean function</b> is simply the expectation of a particular time point:</p>
+            
+            <p>
+            \begin{equation}
+            \mu[t] = E\{x[t]\} = \int x p_t(x) dt
+            \end{equation}
+            </p>
+            
+            <p>It is the integral of $x$ across its marginal density for time $t$.</p>
+            
+            <p>The <b>autocovariance function</b> is the second momemt product of two different time points in a time series:</p>
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = Cov\{x[t], x[t + h]\} = E\{\left(x[t] - \mu[t] \right) \left(x[t + h] - \mu[t + h] \right)\}
+            \end{equation}
+            </p>
+            
+            where:
+            
+            <p>
+            \begin{equation*}
+            \gamma[0] = Cov\{x[t], x[t]\} = E\left\{\left(x[t] - \mu[t] \right)^2 \right\} = Var\{x[t]\}
+            \end{equation*}
+            </p>
+            
+            Since white noise samples at different time points are IID, it follows that:
+            
+            <p>
+            \begin{align*}
+            \gamma_w[0] &= Cov\{w[t], w[t]\} = \sigma_w^2 \\
+            \gamma_w[h] &= Cov\{w[t], w[t + h]\} = 0 \quad \text{where } h \ne 0
+            \end{align*}
+            </p>
+            
+            <p>An example of the use of the mean function and autocovariance function on a moving average signal can be found <a href = "./examples/example%20-%20descriptivestatsmovingaverage.html">here</a>.</p>
+            
+            <p>Properties of the autocovariance function are:</p>
+            <ul>
+                <li>$|\gamma[h]| \le \gamma[0]$</li>
+                <li>$\gamma[h] = \gamma[-h]$</li>
+            </ul>
+            
+<!--            may want to write a proof of this-->
+            <p>For a linear process, the autocovariance is:</p>
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = \sigma_w^2 \sum_{j = - \infty}^{\infty} \psi_{j + h} \psi_j
+            \end{equation}
+            </p>
+            
+            <p>The <b>autocorrelation function</b> ($\rho[h]$) is a normalization of the autocovariance function so that $\rho \in [-1, 1]$:</p>
+            
+            <p>
+            \begin{equation}
+            \rho[h] = \frac{\gamma\{t + h, t\}}{\sqrt{\gamma\{t + h, t + h\} \gamma\{t, t\}}} = \frac{\gamma[h]}{\gamma[0]}
+            \end{equation}
+            </p>
+            
+            <p>The covariance measures can be applied to compare two differen time series as well. The <b>cross-covariance function</b> is defined as:</p>
+            
+            <p>
+            \begin{equation}
+            \gamma_xy[h] = Cov\{x[t], y[t + h]\} = E\{\left(x[t] - \mu_x[t] \right) \left(y[t + h] - \mu_y[t + h] \right)\}
+            \end{equation}
+            </p>
+            
+            <p>Similarily, the <b>cross-correlation function</b> becomes:</p>
+            
+            <p>
+            \begin{equation}
+            \rho_{xy}[h] = \frac{\gamma_{xy}\{t + h, t\}}{\sqrt{\gamma_y\{t + h, t + h\} \gamma_x\{t, t\}}} = \frac{\gamma_{xy}[h]}{\sqrt{\gamma_x[0] \gamma_y[0]}}
+            \end{equation}
+            </p>
+        
+        </div>
+        
+<!--        estimation of correlation-->
+        <div class = "section">
+        
+            <h2><a class = "anchor" id = "correstimation">Estimation of Correlation</a></h2>
+            
+            <p>Estimation of the descriptive statistical measures follow standard techniques.</p>
+            
+            <p>The <b>sample mean</b> estimates the mean function:</p>
+            
+            <p>
+            \begin{equation}
+            \overline{x} = \widehat{\mu} = \frac{1}{n} \sum_{t = 1}^{n} x[t]
+            \end{equation}
+            </p>
+            
+            <p>The <b>sample variance</b> can be found by this equation:</p>
+            
+            <p>
+            \begin{equation}
+            Var\{\overline{x}\} = \frac{1}{n} \sum_{h = -n}^{n} \left(1 - \frac{|h|}{n}\right) \gamma_x[h]
+            \end{equation}
+            </p>
+            
+            <p>The <b>sample autocovariance function</b> is found through this equation:</p>
+            
+            <p>
+            \begin{equation}
+            \widehat{\gamma}[h] = \frac{1}{n} \sum_{t = 1}^{n - h} (x[t + h] - \overline{x})(x[t] - \overline[x])
+            \end{equation}
+            </p>
+            
+            <p>The autocovariance properties still hold for the sample function.</p>
+            
+            <p>The <b>sample autocorrelation function</b> is defined as:</p>
+            
+            <p>
+            \begin{equation}
+            \widehat{\rho}[h] = \frac{\widehat{\gamma}[h]}{\widehat{\gamma}[0]}
+            \end{equation}
+            </p>
+            
+            <p>Using the sample autocorrelation function, we can tell whether data at different lags is completely random or significantly correlated. $\widehat{\rho}[h]$ is approximately normally distributed with zero-mean and a standard deviation given by $\sigma_{\widehat{\rho}[h]} = \frac{1}{\sqrt{n}}$. If the signal is not just plain white noise, significant peaks occur outside the $\pm \frac{2}{\sqrt{n}}$ interval. This concept allows us to break down a time series into deterministic and white noise components by examining exactly how our processing can create white noise.</p>
+            
+            <p>The <b>sample cross-covariance function</b> is defined as follows:</p>
+            
+            <p>
+            \begin{equation}
+            \widehat{\gamma}_{xy}[h] = \frac{1}{n} \sum_{t = 1}^{n - h} (x[t + h] - \overline{x})(y[t] - \overline[y])
+            \end{equation}
+            </p>
+            
+            <p>The <b>sample cross-correlation function</b> is defined as:</p>
+            
+            <p>
+            \begin{equation}
+            \widehat{\rho}_{xy}[h] = \frac{\widehat{\gamma}_{xy}[h]}{\sqrt{\widehat{\gamma}_x[0]\widehat{\gamma}_y[0]}}
+            \end{equation}
+            </p>
+            
+        </div>
+        
+<!--        examples-->
+        <div class = "section">
+        
+            <h2><a class = "anchor" id = "examples">Examples</a></h2>
+            
+
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] P. J. Brockwell and R. A. Davis, <i>Introduction to Time Series and Forecasting</i>, 2nd ed. New York, USA: Springer, 2002.</p>
+            
+            <p id = "cite02">[2] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>The Statistical Nature of a Time Series - Example: Descriptive Statistics of a Moving Average Series</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Example: Descriptive Statistics of a Moving Average Series</h2>
+            
+            <p><a href = "../02statmodels.html#statmeasures">(back to 02. Time Series Statistical Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        mean of a moving average series-->
+        <div class="section">
+        
+            <h4>Mean of a Moving Average Series:</h4>
+            
+            <p><i>This problem is taken from [1], example 1.13.</i></p>
+            
+            <p>Suppose we wanted to to take this moving average:</p>
+            
+            <p>
+            \begin{equation*}
+            E\{x[t]\} = E\left\{\frac{w[t - 1] + w[t] + w[t + 1]}{3}\right\}
+            \end{equation*}
+            </p>
+            
+            <p>Remember, $E\{w[t]\} = 0$:</p>
+            
+            <p>
+            \begin{align*}
+            E\{x[t]\} &= E\left\{\frac{w[t - 1] + w[t] + w[t + 1]}{3}\right\} \\
+                      &= \frac{1}{3} E\{w[t - 1]\} + \frac{1}{3} E\{w[t]\} + \frac{1}{3} E\{w[t + 1]\} \\
+                      &= \frac{1}{3} (0) + \frac{1}{3} (0) + \frac{1}{3} (0) \\
+                      &= 0
+            \end{align*}
+            </p>
+            
+        </div>
+        
+<!--        autocovariance of a moving average series-->
+        <div class="section">
+        
+            <h4>Autocovariance of a Moving Average Series:</h4>
+            
+            <p><i>This problem is taken from [1], example 1.17.</i></p>
+            
+            <p>Suppose we wanted to to take this autocovariance:</p>
+            
+            <p>
+            \begin{align*}
+            E\{x[t], x[t + h]\} &= E\left\{\frac{w[t - 1] + w[t] + w[t + 1]}{3}, \frac{w[t + h - 1] + w[t + h] + w[t + h + 1]}{3}\right\} \\
+                                &= E\left\{\left(\frac{w[t - 1] + w[t] + w[t + 1]}{3}\right) \left(\frac{w[t + h - 1] + w[t + h] + w[t + h + 1]}{3}\right) \right\}
+            \end{align*}
+            </p>
+            
+            Remember, $E\{w[t], w[t + h]\} = 0$ where $h \ne 0$. Exapnding out the final expression above:
+            
+            <p>
+            \begin{align*}
+            &E\left\{\left(\frac{w[t - 1] + w[t] + w[t + 1]}{3}\right) \left(\frac{w[t + h - 1] + w[t + h] + w[t + h + 1]}{3}\right) \right\} \\
+            &= \frac{1}{9} E\left\{w[t - 1]w[t + h - 1] + w[t - 1]w[t + h] + w[t - 1]w[t + h + 1] + w[t]w[t + h - 1] + w[t]w[t + h] + w[t]w[t + h + 1] + w[t + 1]w[t + h - 1] + w[t + 1]w[t + h] + w[t + 1]w[t + h + 1] \right\}
+            \end{align*}
+            </p>
+            
+            <p>Assume that $h = 0$:</p>
+            
+            <p>
+            \begin{align*}
+            & \frac{1}{9} E\left\{w[t - 1]w[t + 0 - 1] + w[t - 1]w[t + 0] + w[t - 1]w[t + 0 + 1] + w[t]w[t + 0 - 1] + w[t]w[t + 0] + w[t]w[t + 0 + 1] + w[t + 1]w[t + 0 - 1] + w[t + 1]w[t + 0] + w[t + 1]w[t + 0 + 1] \right\} = \\
+            & \frac{1}{9} E\left\{w[t - 1]w[t - 1] + w[t - 1]w[t] + w[t - 1]w[t + 1] + w[t]w[t - 1] + w[t]w[t] + w[t]w[t + 1] + w[t + 1]w[t - 1] + w[t + 1]w[t] + w[t + 1]w[t + 1] \right\} = \\
+            & \frac{1}{9} \left(E\left\{w[t - 1]w[t - 1]\right\} + E\left\{w[t - 1]w[t]\right\} + E\left\{w[t - 1]w[t + 1]\right\} + E\left\{w[t]w[t - 1]\right\} + E\left\{w[t]w[t]\right\} + E\left\{w[t]w[t + 1]\right\} + E\left\{w[t + 1]w[t - 1]\right\} + E\left\{w[t + 1]w[t]\right\} + E\left\{w[t + 1]w[t + 1]\right\}\right) = \\
+            & \frac{1}{9} \left(\sigma_w^2 + 0 + 0 + 0 + \sigma_w^2 + 0 + 0 + 0 + \sigma_w^2\right) = \\
+            & \frac{\sigma_w^2 + \sigma_w^2 + \sigma_w^2}{9} = \frac{3 \sigma_w^2}{9} = \\
+            & \frac{\sigma_w^2}{3}
+            \end{align*}
+            </p>
+            
+            <p>Assume that $h = 1$:</p>
+            
+            <p>
+            \begin{align*}
+            & \frac{1}{9} E\left\{w[t - 1]w[t + 1 - 1] + w[t - 1]w[t + 1] + w[t - 1]w[t + 1 + 1] + w[t]w[t + 1 - 1] + w[t]w[t + 1] + w[t]w[t + 1 + 1] + w[t + 1]w[t + 1 - 1] + w[t + 1]w[t + 1] + w[t + 1]w[t + 1 + 1] \right\} = \\
+            & \frac{1}{9} E\left\{w[t - 1]w[t] + w[t - 1]w[t + 1] + w[t - 1]w[t + 2] + w[t]w[t] + w[t]w[t + 1] + w[t]w[t + 2] + w[t + 1]w[t] + w[t + 1]w[t + 1] + w[t + 1]w[t + 2] \right\} = \\
+            & \frac{1}{9} \left(E\left\{w[t - 1]w[t]\right\} + E\left\{w[t - 1]w[t + 1]\right\} + E\left\{w[t - 1]w[t + 2]\right\} + E\left\{w[t]w[t]\right\} + E\left\{w[t]w[t + 1]\right\} + E\left\{w[t]w[t + 2]\right\} + E\left\{w[t + 1]w[t]\right\} + E\left\{w[t + 1]w[t + 1]\right\} + E\left\{w[t + 1]w[t + 2]\right\}\right) = \\
+            & \frac{1}{9} \left(0 + 0 + 0 + \sigma_w^2 + 0 + 0 + 0 + \sigma_w^2 + 0 \right) = \\
+            & \frac{\sigma_w^2 + \sigma_w^2}{9} = \\
+            & \frac{2 \sigma_w^2}{9}
+            \end{align*}
+            </p>
+            
+            <p>Assume that $h = 2$:</p>
+            
+            <p>
+            \begin{align*}
+            & \frac{1}{9} E\left\{w[t - 1]w[t + 2 - 1] + w[t - 1]w[t + 2] + w[t - 1]w[t + 2 + 1] + w[t]w[t + 2 - 1] + w[t]w[t + 2] + w[t]w[t + 2 + 1] + w[t + 1]w[t + 2 - 1] + w[t + 1]w[t + 2] + w[t + 1]w[t + 2 + 1] \right\} = \\
+            & \frac{1}{9} E\left\{w[t - 1]w[t + 1] + w[t - 1]w[t + 2] + w[t - 1]w[t + 3] + w[t]w[t + 1] + w[t]w[t + 2] + w[t]w[t + 3] + w[t + 1]w[t + 1] + w[t + 1]w[t + 2] + w[t + 1]w[t + 3] \right\} = \\
+            & \frac{1}{9} \left(E\left\{w[t - 1]w[t + 1]\right\} + E\left\{w[t - 1]w[t + 2]\right\} + E\left\{w[t - 1]w[t + 3]\right\} + E\left\{w[t]w[t + 1]\right\} + E\left\{w[t]w[t + 2]\right\} + E\left\{w[t]w[t + 3]\right\} + E\left\{w[t + 1]w[t + 1]\right\} + E\left\{w[t + 1]w[t + 2]\right\} + E\left\{w[t + 1]w[t + 3]\right\}\right) = \\
+            & \frac{1}{9} \left(0 + 0 + 0 + 0 + 0 + 0 + \sigma_w^2 + 0 + 0 \right) = \\
+            & \frac{\sigma_w^2}{9} \\
+            \end{align*}
+            </p>
+            
+            <p>Assume that $h = 3$:</p>
+            
+            <p>
+            \begin{align*}
+            & \frac{1}{9} E\left\{w[t - 1]w[t + 3 - 1] + w[t - 1]w[t + 3] + w[t - 1]w[t + 3 + 1] + w[t]w[t + 3 - 1] + w[t]w[t + 3] + w[t]w[t + 3 + 1] + w[t + 1]w[t + 3 - 1] + w[t + 1]w[t + 3] + w[t + 1]w[t + 3 + 1] \right\} = \\
+            & \frac{1}{9} E\left\{w[t - 1]w[t + 2] + w[t - 1]w[t + 3] + w[t - 1]w[t + 4] + w[t]w[t + 2] + w[t]w[t + 3] + w[t]w[t + 4] + w[t + 1]w[t + 2] + w[t + 1]w[t + 3] + w[t + 1]w[t + 4] \right\} = \\
+            & \frac{1}{9} \left(E\left\{w[t - 1]w[t + 2]\right\} + E\left\{w[t - 1]w[t + 3]\right\} + E\left\{w[t - 1]w[t + 4]\right\} + E\left\{w[t]w[t + 2]\right\} + E\left\{w[t]w[t + 3]\right\} + E\left\{w[t]w[t + 4]\right\} + E\left\{w[t + 1]w[t + 2]\right\} + E\left\{w[t + 1]w[t + 3]\right\} + E\left\{w[t + 1]w[t + 4]\right\}\right) = \\
+            & \frac{1}{9} \left(0 + 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0 \right) = \\
+            & 0 \\
+            \end{align*}
+            </p>
+            
+            <p>$\gamma[h] = 0$ for $h \ge 3$. Therefore, the autocovariance of this particular moving average series becomes:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[0] &= \frac{3 \sigma_w^2}{9} = \frac{\sigma_w^2}{3} \\
+            \gamma[1] &= \frac{2 \sigma_w^2}{9} \\
+            \gamma[2] &= \frac{\sigma_w^2}{9} \\
+            \gamma[h \ge 3] &= 0 \\
+            \end{align*}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

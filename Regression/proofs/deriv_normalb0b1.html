@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>01. Introduction to Linear Regression - Derivation of the Normal Equations for $\widehat{b}_0$ and $\widehat{b}_1$</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+    
+        <div class = "title">
+            
+            <h2>Derivation of the Normal Equations for $\widehat{b}_0$ and $\widehat{b}_1$</h2>
+            
+            <p><a href = "../01linreg.html">(back to 01. Introduction to Linear Regression)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+        
+        <div class = "section">
+            
+            <p>A couple of preliminaries. Let's assume that the means, $\overline{x}$ and $\overline{y}$ are found by $\overline{x} = \frac{1}{n} \sum_{i = 1}^{n} x_i$ and $\overline{y} = \frac{1}{n} \sum_{i = 1}^{n} y_i$. We can now define:</p>
+            
+            <p>
+            \begin{align*}
+            \sum_{i = 1}^{n} x_i &= n \overline{x} \\
+            \sum_{i = 1}^{n} y_i &= n \overline{y} \\
+            \end{align*}
+            </p>
+            
+            <p>Let's also solve this equation:</p>
+            
+            <p>
+            \begin{equation*}
+            \sum_{i = 1}^{n} (x_i - \overline{x})(y_i - \overline{y}) = \sum_{i = 1}^{n} (x_i y_i - \overline{y} x_i - \overline{x} y_i + \overline{x} \overline{y}) = \sum_{i = 1}^{n} x_i y_i - \overline{y} \sum_{i = 1}^{n} x_i - \overline{x} \sum_{i = 1}^{n} y_i + \overline{x} \overline{y} \sum_{i = 1}^{n} = \sum_{i = 1}^{n} x_i y_i - n \overline{x} \overline{y} - n \overline{x} \overline{y} + n \overline{x} \overline{y} = \sum_{i = 1}^{n} x_i y_i - 2 n \overline{x} \overline{y} + n \overline{x} \overline{y} = \sum_{i = 1}^{n} x_i y_i - n \overline{x} \overline{y}
+            \end{equation*}
+            </p>
+            
+            <p>And this equation:</p>
+            
+            <p>
+            \begin{equation*}
+            \sum_{i = 1}^{n} (x_i - \overline{x})^2 = \sum_{i = 1}^{n} (x_i - \overline{x})(x_i - \overline{x}) = \sum_{i = 1}^{n} (x_i^2 - \overline{x} x_i - \overline{x} x_i + \overline{x}^2) = \sum_{i = 1}^{n} x_i^2 - 2 \overline{x} \sum_{i = 1}^{n} x_i + \overline{x}^2 \sum_{i = 1}^{n} = \sum_{i = 1}^{n} x_i^2 - 2 n \overline{x}^2 + n \overline{x}^2 = \sum_{i = 1}^{n} x_i^2 - n \overline{x}^2
+            \end{equation*}
+            </p>
+            
+            <p>We begin with the $SSE$ expression as described previously:</p>
+        
+            <p>
+            \begin{equation*}
+            SSE = \sum_{i = 1}^{n} (y_i - \widehat{y}_i)^2 = \sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)^2
+            \end{equation*}
+            </p>
+            
+            <p>To find the minimum of the $SSE$ with respect to $b_0$ and $b_1$, we have to the values of $b_0$ and $b_1$ where the derivative of $SSE$ is equal to $0$:</p>
+            
+            <p>
+            \begin{align*}
+            \frac{\partial (SSE)}{\partial b_0} &= \frac{\partial (\sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)^2)}{\partial b_0} = 0 \\
+            \frac{\partial (SSE)}{\partial b_1} &= \frac{\partial (\sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)^2)}{\partial b_1} = 0 \\
+            \end{align*}
+            </p>
+            
+            Let's set $f(x_i, y_i) = y_i - b_0 - b_1 x_i$. Now, remember the <b>chain rule</b>:
+            
+            <p>
+            \begin{align*}
+            \frac{\partial \left(h\left(g(x)\right)\right)}{\partial x} = \frac{\partial \left(h\left(g(x)\right)\right)}{\partial \left(g(x) \right)} \frac{\partial \left(g(x)\right)}{\partial x}
+            \end{align*}
+            </p>
+            
+            With this in mind, we can now take the derivatives of $SSE$:
+            
+            <p>
+            \begin{align*}
+            \frac{\partial (SSE)}{\partial b_0} &= \frac{\partial (SSE)}{\partial \left(f(x_i, y_i) \right)} \frac{\partial \left(f(x_i, y_i) \right)}{\partial b_0} =  \frac{\partial \left(\sum_{i = 1}^{n} \left(f(x_i, y_i)\right)^2 \right)}{\partial \left(f(x_i, y_i) \right)} \frac{\partial \left(f(x_i, y_i) \right)}{\partial b_0} = \frac{\partial \left(\sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right)^2 \right)}{\partial \left(y_i - b_0 - b_1 x_i \right)} \frac{\partial \left(y_i - b_0 - b_1 x_i \right)}{\partial b_0} = \left(2 \sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right) \right) \left(-1 \right) = -2 \sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right)\\
+
+            \frac{\partial (SSE)}{\partial b_1} &= \frac{\partial (SSE)}{\partial \left(f(x_i, y_i) \right)} \frac{\partial \left(f(x_i, y_i) \right)}{\partial b_1} =  \frac{\partial \left(\sum_{i = 1}^{n} \left(f(x_i, y_i)\right)^2 \right)}{\partial \left(f(x_i, y_i) \right)} \frac{\partial \left(f(x_i, y_i) \right)}{\partial b_1} = \frac{\partial \left(\sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right)^2 \right)}{\partial \left(y_i - b_0 - b_1 x_i \right)} \frac{\partial \left(y_i - b_0 - b_1 x_i \right)}{\partial b_1} = \left(2 \sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right) \right) \left(-x_i \right) = -2 \sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right) x_i\\
+            \end{align*}
+            </p>
+            
+            Let's expand out these new equations, substituting in $n \overline{x}$ and $n \overline{y}$ when appropriate, and set them equal to $0$:
+            
+            <p>
+            \begin{align*}
+            \frac{\partial (SSE)}{\partial b_0} &= -2 \sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right) &= -2 \sum_{i = 1}^{n} y_i + 2 \sum_{i = 1}^{n} b_0 + 2 \sum_{i = 1}^{n} b_1 x_i &= -2(n \overline{y}) + 2 b_0 n + 2 b_1 (n \overline{x}) &= 0\\
+
+            \frac{\partial (SSE)}{\partial b_1} &= -2 \sum_{i = 1}^{n} \left(y_i - b_0 - b_1 x_i \right) x_i &= -2 \sum_{i = 1}^{n} x_i y_i + 2 \sum_{i = 1}^{n} b_0 x_i + 2 \sum_{i = 1}^{n} b_1 x_i^2 &= -2 \sum_{i = 1}^{n} x_i y_i + 2  b_0 (n \overline{x}) + 2 b_1 \sum_{i = 1}^{n} x_i^2 &= 0\\
+            \end{align*}
+            </p>
+            
+            <p>In both equations, we can divide out the constant $2$:</p>
+            
+            <p>
+            \begin{align*}
+            0 &= -n \overline{y} + b_0 n + b_1 n \overline{x}\\
+
+            0 &= \sum_{i = 1}^{n} x_i y_i + b_0 n \overline{x} + b_1 \sum_{i = 1}^{n} x_i^2\\
+            \end{align*}
+            </p>
+            
+            <p>Solve the top equation for $b_0$:</p>
+            
+            <p>
+            \begin{align*}
+            0 &= -n \overline{y} + b_0 n + b_1 n \overline{x}\\
+            -b_0 n &= -n \overline{y} + b_1 n \overline{x}\\
+            \frac{-b_0 n}{-n} &= \frac{-n \overline{y} + b_1 n \overline{x}}{-n} = \frac{-n \overline{y}}{-n} + \frac{b_1 n \overline{x}}{-n} = \frac{\overline{y}}{1} - \frac{b_1 \overline{x}}{1} = \frac{\overline{y} - b_1 \overline{x}}{1}\\
+            b_0 &= \overline{y} - b_1 \overline{x}
+            \end{align*}
+            </p>
+            
+            <p>Solve the bottom equation for $b_1$, replacing $b_0$ with $\overline{y} - b_1 \overline{x}$:</p>
+            
+            <p>
+            \begin{align*}
+            0 &= - \sum_{i = 1}^{n} x_i y_i + b_0 n \overline{x} + b_1 \sum_{i = 1}^{n} x_i^2\\
+            0 &= - \sum_{i = 1}^{n} x_i y_i + \left(\overline{y} - b_1 \overline{x} \right) n \overline{x} + b_1 \sum_{i = 1}^{n} x_i^2 = \sum_{i = 1}^{n} x_i y_i + n \overline{x} \overline{y} - n b_1 \overline{x}^2 + b_1 \sum_{i = 1}^{n} x_i^2 = \sum_{i = 1}^{n} x_i y_i + n \overline{x} \overline{y} - b_1 \left(n \overline{x}^2 - \sum_{i = 1}^{n} x_i^2 \right)\\
+            b_1 \left(n \overline{x}^2 - \sum_{i = 1}^{n} x_i^2 \right) &= - \sum_{i = 1}^{n} x_i y_i + n \overline{x} \overline{y}\\
+            b_1 &= \frac{- \sum_{i = 1}^{n} x_i y_i + n \overline{x} \overline{y}}{n \overline{x}^2 - \sum_{i = 1}^{n} x_i^2}\\
+            b_1 &= \frac{n \overline{x} \overline{y} - \sum_{i = 1}^{n} x_i y_i}{n \overline{x}^2 - \sum_{i = 1}^{n} x_i^2}\\
+            b_1 &= \frac{\sum_{i = 1}^{n} x_i y_i - n \overline{x} \overline{y}}{\sum_{i = 1}^{n} x_i^2 - n \overline{x}^2}\\
+            \end{align*}
+            </p>
+            
+            <p>Using the equations found at the beginning of this page, $\sum_{i = 1}^{n} (x_i - \overline{x})^2 = \sum_{i = 1}^{n} x_i^2 - n \overline{x}^2$ and $\sum_{i = 1}^{n} (x_i - \overline{x})(y_i - \overline{y}) = \sum_{i = 1}^{n} x_i y_i - n \overline{x} \overline{y}$, we can replace terms in the $b_1$ expression:</p>
+            
+            <p>
+            \begin{align*}
+            b_1 &= \frac{\sum_{i = 1}^{n} x_i y_i - n \overline{x} \overline{y}}{\sum_{i = 1}^{n} x_i^2 - n \overline{x}^2}\\
+                &= \frac{\sum_{i = 1}^{n} (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i = 1}^{n} (x_i - \overline{x})^2}\\
+            \end{align*}
+            </p>
+            
+            <p>Thus, the estimated <b>normal equations</b> for $b_0$ and $b_1$ are derived:</p>
+            
+            <p>
+            \begin{equation}
+            \widehat{b}_0 = \overline{y} - b_1 \overline{x}
+            \end{equation}
+            </p>
+            
+            <p>
+            \begin{equation}
+            \widehat{b}_1 = \frac{\sum_{i = 1}^{n} (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i = 1}^{n} (x_i - \overline{x})^2}
+            \end{equation}
+            </p>
+            
+        </div>
+        
+    </body>
+    
+</html>

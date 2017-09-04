@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>The Statistical Nature of a Time Series - Example: Random Walk with Drift</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Example: Random Walk with Drift</h2>
+            
+            <p><a href = "../02statmodels.html#processes">(back to 02. Time Series Statistical Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+        
+<!--        random walk with drift-->
+        <div class = "section">
+            
+            <h4>Random walk with drift:</h4>
+            
+            <p><i>This problem is taken from [1], example 1.11.</i></p>
+            
+            <p>Suppose there is a moving average random walk model with dift as represented by:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = c + x[t - 1] + w[t]
+            \end{equation*}
+            </p>
+            
+            $x[1]$ is represented by:
+            
+            <p>
+            \begin{align*}
+            x[1] &= c + x[0] + w[1] \\
+                &= c + 0 + w[1] \\
+                 &= c + w[1] \\
+            \end{align*}
+            </p>
+            
+            $x[2]$ is represented by:
+            
+            <p>
+            \begin{align*}
+            x[2] &= c + x[1] + w[2] \\
+                 &= c + (c + w[1]) + w[2] \\
+                 &= 2c + w[1] + w[2] \\
+                 &= 2c + \sum_{i = 1}^{2} w[i]
+            \end{align*}
+            </p>
+            
+            $x[3]$ is represented by:
+            
+            <p> 
+            \begin{align*}
+            x[3] &= c + x[2] + w[3] \\
+                 &= c + (2c + w[1] + w[2]) + w[3] \\
+                 &= 3c + \sum_{i = 1}^{3} w[i]
+            \end{align*}
+            </p>
+            
+            Generalizing, we can say that:
+            
+            <p>
+            \begin{equation*}
+            x[t] = ct + \sum_{i = 1}^{t} w[i]
+            \end{equation*}
+            </p>
+            
+        </div>
+        
+<!--        mean of random walk with drift-->
+        <div class="section">
+        
+            <h4>Mean of random walk with drift:</h4>
+            
+            <p><i>This problem is taken from [1], example 1.14.</i></p>
+            
+            <p>Now suppose we wanted to find the expected value of the signal:</p>
+            
+            <p>
+            \begin{equation*}
+            E\{x[t]\} = E\{ct + \sum_{i = 1}^{t} w[i]\}
+            \end{equation*}
+            </p>
+            
+            <p>We recall that the white noise process has a mean of $0$ ($E\{w[t]\} = 0$):</p>
+            
+            <p>
+            \begin{align*}
+            E\{x[t]\} &= E\left\{ct + \sum_{i = 1}^{t} w[i]\right\} \\
+                      &= E\{ct\} + \sum_{i = 1}^{t} E\{w[i]\} \\
+                      &= ct + 0 \\
+                      &= ct
+            \end{align*}
+            </p>
+            
+        </div>
+        
+<!--        autocovariance of random walk with drift-->
+        <div class="section">
+        
+            <h4>Autocovariance of random walk with drift:</h4>
+            
+            <p><i>This problem is adapted from [1], example 1.18.</i></p>
+            
+            <p>Now suppose we wanted to find the expected value of the signal:</p>
+            
+            <p>
+            \begin{align*}
+            E\{x[t], x[t + h]\} &= E\left\{ct + \sum_{i = 1}^{t} w[i], c(t + h) + \sum_{i = 1}^{t + h} w[i]\right\} \\
+                                &= E\left\{\left(ct + \sum_{i = 1}^{t} w[i] \right) \left(c(t + h) + \sum_{i = 1}^{t + h} w[i] \right) \right\}
+            \end{align*}
+            </p>
+            
+            <p>Remember, $E\{w[t], w[t + h]\} = 0$ where $h \ne 0$. Expanding out the last expression:</p>
+            
+            <p>
+            \begin{equation*}
+            E\left\{\left(ct + \sum_{i = 1}^{t} w[i] \right) \left(c(t + h) + \sum_{i = 1}^{t + h} w[i] \right) \right\} = E\left\{c^2 t^2 + c^2h + ct \sum_{i = 1}^{t + h} w[i] + c(t + h) \sum_{i = 1}^{t} w[i] + \sum_{i = 1}^{t} \sum_{i = 1}^{t + h} w[i] w[i] \right\}
+            \end{equation*}
+            </p>
+            
+            Distributing the expectation operator gives:
+            
+            <p>
+            \begin{equation*}
+            E\left\{c^2 t^2 + c^2h + ct \sum_{i = 1}^{t + h} w[i] + c(t + h) \sum_{i = 1}^{t} w[i] + \sum_{i = 1}^{t} \sum_{i = 1}^{t + h} w[i] w[i] \right\} = E\left\{c^2 t^2 \right\} + E\left\{c^2h\right\} + ct \sum_{i = 1}^{t + h} E\left\{w[i]\right\} + c(t + h) \sum_{i = 1}^{t} E\left\{w[i]\right\} + E\left\{\sum_{i = 1}^{t} \sum_{i = 1}^{t + h} w[i] w[i]\right\}
+            \end{equation*}
+            </p>
+            
+            <p>The expression $E\left\{\sum_{i = 1}^{t} \sum_{i = 1}^{t + h} w[i] w[i]\right\}$ only produces a nonzero value as long as $i = 1, ..., t$. If $i > t$, then one of the summations stops and that particular $w[i] = 0$. Therefore, the summations are only valid as long as $i \le t$. This produces $E\left\{\sum_{i = 1}^{t} \sum_{i = 1}^{t + h} w[i] w[i]\right\} = min\{t, t + h\} \sigma_w^2 = t \sigma_w^2$. Plugging this in:</p>
+            
+            <p>
+            \begin{align*}
+            E\left\{c^2 t^2 \right\} + E\left\{c^2h\right\} + ct \sum_{i = 1}^{t + h} E\left\{w[i]\right\} + c(t + h) \sum_{i = 1}^{t} E\left\{w[i]\right\} + E\left\{\sum_{i = 1}^{t} \sum_{i = 1}^{t + h} w[i] w[i]\right\} &= c^2 t^2 + c^2h + ct (0) + c(t + h) (0) + t \sigma_w^2 \\ &= c^2 t^2 + c^2h + t \sigma_w^2
+            \end{align*}
+            </p>
+            
+            <p>The autocovariance function for the random walk model is:</p>
+            
+            <p>
+            \begin{equation*}
+            \gamma[t] = c^2 t^2 + c^2h + t \sigma_w^2
+            \end{equation*}
+            </p>
+            
+            <p>This model is non-stationary because the autocovariance function depends on $t$.</p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

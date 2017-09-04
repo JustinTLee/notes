@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Proof: MA(1) Autocovariance</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Proof: Proof: MA(1) Autocovariance</h2>
+            
+            <p><a href = "../03ARMAmodels.html#armodels">(back to 03. ARMA Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        proof-->
+        <div class="section">
+        
+            <p>We begin with an $MA(1)$ model:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = w[t] + \theta w[t - 1]
+            \end{equation*}
+            </p>
+            
+            <p>Sticking this equation into the autocovariance operator:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= Cov\{x[t + h], x[t]\} \\
+                      &= E\left\{w[t + h] + \theta w[t + h - 1], w[t] + \theta w[t - 1] \right\} \\
+                      &= E\left\{(w[t + h] + \theta w[t + h - 1]) (w[t] + \theta w[t - 1]) \right\}\\
+            \end{align*}
+            </p>
+            
+            <p>Distributing the terms in the expectation operator:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= E\left\{(w[t + h] + \theta w[t + h - 1]) (w[t] + \theta w[t - 1]) \right\} \\
+                      &= E\left\{w[t + h]w[t] + \theta w[t + h]w[t - 1] + \theta w[t]w[t + h - 1] + \theta^2 w[t - 1]w[t + h - 1] \right\} \\
+                      &= E\{w[t + h]w[t]\} + \theta E\{w[t + h]w[t - 1]\} + \theta E\{w[t]w[t + h - 1]\} + \theta^2 E\{w[t - 1]w[t + h - 1]\} \\
+            \end{align*}
+            </p>
+            
+            <p>Assume $h = 0$:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[0] &= E\{w[t + 0]w[t]\} + \theta E\{w[t + 0]w[t - 1]\} + \theta E\{w[t]w[t + 0 - 1]\} + \theta^2 E\{w[t - 1]w[t + 0 - 1]\} \\
+                      &= E\{w[t]w[t]\} + \theta E\{w[t]w[t - 1]\} + \theta E\{w[t]w[t - 1]\} + \theta^2 E\{w[t - 1]w[t - 1]\} \\
+                      &= \sigma_w^2 + 0 + 0 + \theta^2 \sigma_w^2 \\
+                      &= \sigma_w^2 + \theta^2 \sigma_w^2 = (\theta^2 + 1) \sigma_w^2 \\
+            \end{align*}
+            </p>
+            
+            <p>Now assume $h = 1$:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[1]] &= E\{[t + 1]w[t]\} + \theta E\{w[t + 1]w[t - 1]\} + \theta E\{w[t]w[t + 1 - 1]\} + \theta^2 E\{w[t - 1]w[t + 1 - 1]\} \\
+                       &= E\{[t + 1]w[t]\} + \theta E\{w[t + 1]w[t - 1]\} + \theta E\{w[t]w[t]\} + \theta^2 E\{w[t - 1]w[t]\} \\
+                       &= 0 + 0 + \theta \sigma_w^2 + 0 \\
+                       &= \theta \sigma_w^2
+            \end{align*}
+            </p>
+            
+            <p>Now assume $h = 2$:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[2]] &= E\{[t + 2]w[t]\} + \theta E\{w[t + 2]w[t - 1]\} + \theta E\{w[t]w[t + 2 - 1]\} + \theta^2 E\{w[t - 1]w[t + 2 - 1]\} \\
+                       &= E\{[t + 2]w[t]\} + \theta E\{w[t + 2]w[t - 1]\} + \theta E\{w[t]w[t + 1]\} + \theta^2 E\{w[t - 1]w[t + 1]\} \\
+                       &= 0 + 0 + 0 + 0 \\
+                       &= 0
+            \end{align*}
+            </p>
+            
+            <p>The $MA(1)$ model's autocovariance function is then:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= (1 + \theta^2) \sigma_w^2 \quad &h = 0 \\
+            \gamma[h] &= \theta \sigma_w^2 \quad &h = 1 \\
+            \gamma[h] &= 0 \quad &h > 1 \\
+            \end{align*}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

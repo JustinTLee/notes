@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Example: Overparameterization</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Example: Overparameterization</h2>
+            
+            <p><a href = "../03ARMAmodels.html#armamodels">(back to 03. ARMA Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+        
+<!--        overparameterization-->
+        <div class = "section">
+            
+            <h4>Overparameterization:</h4>
+            
+            <p><i>This problem is taken from [1], example 3.6.</i></p>
+            
+            <p>Suppose there is a white noise process:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = w[t]
+            \end{equation*}
+            </p>
+            
+            <p>Iterating backwards and multiplying both sides by $0.5$ amounts to the same process:</p>
+            
+            <p>
+            \begin{equation*}
+            0.5[t - 1] = 0.5w[t - 1]
+            \end{equation*}
+            </p>
+            
+            <p>Subtracting the two equations obtains:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] - 0.5[t - 1] &= w[t] - 0.5w[t - 1] \\
+            x[t] &= 0.5[t - 1] + w[t] - 0.5w[t - 1] \\
+            \end{align*}
+            </p>
+            
+            <p>While this looks like an $ARMA(1, 1)$ model, it is still a white noise process. This can easily be proven by substituting $x[t]$ for $w[t]$ or by taking the $z$-transform of both sides:</p>
+            
+           <p>
+            \begin{align*}
+            x[t] - 0.5[t - 1] &= w[t] - 0.5w[t - 1] \\
+            \mathcal{Z} \left\{x[t] - 0.5[t - 1] \right\} &= \mathcal{Z} \left\{w[t] - 0.5w[t - 1] \right\} \\
+            (1 - 0.5z^{-1})X(z) &= (1 - 0.5z^{-1})W(z) \\
+            X(z) &= \frac{1 - 0.5z^{-1}}{1 - 0.5z^{-1}} W(z) \\
+            X(z) &= W(z) \\
+            \mathcal{Z}^{-1} \left\{X(z) \right\} &= \mathcal{Z}^{-1} \left\{W(z) \right\} \\   
+            x[t] &= w[t]
+            \end{align*}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

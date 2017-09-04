@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Proof: MA(q) Autocovariance</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Proof: MA(q) Autocovariance</h2>
+            
+            <p><a href = "../03ARMAmodels.html#pacf">(back to 04. Partial Autocorrelation)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        proof-->
+        <div class="section">
+        
+            <p>We begin with an $MA(q)$ model:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \sum_{n = 0}^{q} \theta_{n} w[t - n]
+            \end{equation*}
+            </p>
+            
+            <p>Sticking this equation into the autocovariance operator:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= Cov\{x[t + h], x[t]\} \\
+                      &= E\left\{\sum_{n = 0}^{q} \theta_{n} w[t + h - n], \sum_{n = 0}^{q} \theta_{n} w[t - n] \right\} \\
+                      &= E\left\{\left(\sum_{n = 0}^{q} \theta_{n} w[t + h - n] \right) \left(\sum_{n = 0}^{q} \theta_{n} w[t - n] \right) \right\}\\
+            \end{align*}
+            </p>
+            
+            <p>We can split up the $\sum_{n = 0}^{q} \theta_{n} w[t + h - n]$ into future values and present/past values of $w[t]$. Future values occur where $t + h - n > t$ and present/past values occur where $t + h - n \le t$. The present value occurs when $n = h$ and all past values occur when $n < h$. Splitting that term up, we get two summations:</p>
+            
+            <p>
+            \begin{equation*}
+            \sum_{n = 0}^{q}\theta_n w[t + h - n] = \sum_{n = 0}^{h - 1}\theta_n w[t + h - n] + \sum_{n = h}^{q}\theta_n w[t + h - n]
+            \end{equation*}
+            </p>
+            
+            <p>Let's shift the index for $\sum_{n = h}^{q}\theta_n w[t + h - n]$ so that $n$ starts at $0$. To do this, we subtract $h$ from the summation index, but we add $h$ to all of the terms in the expression after the index:</p>
+            
+            <p>
+            \begin{align*}
+            \sum_{n = h}^{q}\theta_n w[t + h - n] &= \sum_{n = (h - h)}^{q - h}\theta_{(n + h)} w[t + h - (n + h)] \\
+            &= \sum_{n = 0}^{q - h}\theta_{n + h} w[t + h - n - h] \\
+            &= \sum_{n = 0}^{q - h}\theta_{n + h} w[t - n]
+            \end{align*}
+            </p>
+            
+            <p>Now:</p>
+            
+            <p>
+            \begin{equation*}
+            \sum_{n = 0}^{q}\theta_n w[t + h - n] = \sum_{n = 0}^{h - 1}\theta_n w[t + h - n] + \sum_{n = 0}^{q - h}\theta_{n + h} w[t - n]
+            \end{equation*}
+            </p>
+            
+            <p>If we replace this new expression back into the autocovariance expectation that we discovered previously, we get:</p>
+            
+            <p>
+            \begin{equation*}
+            \gamma[h] = E\left\{\left(\sum_{n = 0}^{q}\theta_n w[t + h - n]\right) \left(\sum_{n = 0}^{q} \theta_n w[t - n]\right) \right\} = E\left\{\left(\sum_{n = 0}^{h - 1}\theta_n w[t + h - n] + \sum_{n = 0}^{q - h}\theta_{n + h} w[t - n] \right) \left(\sum_{n = 0}^{q} \theta_n w[t - n]\right) \right\}
+            \end{equation*}
+            </p>
+            
+            <p>Distributing the terms in the expectation operator gives:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= E\left\{\left(\sum_{n = 0}^{h - 1}\theta_n w[t + h - n] + \sum_{n = 0}^{q - h}\phi^{n + h} w[t - n] \right) \left(\sum_{n = 0}^{q} \theta_n w[t - n]\right) \right\} \\
+                      &= E\left\{ \left(\sum_{n = 0}^{h - 1} \sum_{n = 0}^{q} \left(\theta_n w[t + h - n]\right) \left(\theta_n w[t - n]\right) \right) + \left( \sum_{n = 0}^{q - h} \sum_{n = 0}^{q} \left(\theta_{n + h} w[t - n]\right) \left(\theta_n w[t - n]\right) \right) \right\} \\
+                      &= E\left\{ \sum_{n = 0}^{h - 1} \sum_{n = 0}^{q} \left(\theta_{n}^2 w[t + h - n]  w[t - n]\right) + \sum_{n = 0}^{q - h} \sum_{n = 0}^{q} \left(\theta_{n + h} \theta_n w[t - n]^2 \right) \right\}
+            \end{align*}
+            </p>
+            
+            <p>Now that the indicies start off the same in both double summations, we can combine each double summation into one. Since the index on one of the summations in $\sum_{n = 0}^{q - h} \sum_{n = 0}^{q}$ ends at $q - h$, the combined summation gets truncated to that as well:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= E\left\{ \sum_{n = 0}^{h - 1} \sum_{n = 0}^{q} \left(\theta_{n}^2 w[t + h - n]  w[t - n]\right) + \sum_{n = 0}^{q - h} \sum_{n = 0}^{q} \left(\theta_{n + h} \theta_n w[t - n]^2 \right) \right\} \\
+                      &= E\left\{ \sum_{n = 0}^{h - 1} \left(\theta_{n}^2 w[t + h - n]  w[t - n]\right) + \sum_{n = 0}^{q - h} \left(\theta_{n + h} \theta_n w[t - n]^2 \right) \right\} \\
+                      &= \sum_{n = 0}^{h - 1} \theta_{n}^2 E\{w[t + h - n]  w[t - n]\} + \sum_{n = 0}^{q - h} \theta_{n + h} \theta_n E\{w[t - n]^2 \}
+            \end{align*}
+            </p>
+            
+            <p>Since the $w[t]$ indicies will never be equal between $w[t + h - n]w[t - n]$ in $\sum_{n = 0}^{q} \theta_n^2 E\{w[t + h - n]  w[t - n]\}$, we can set that entire expression to $0$. What's left is:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= \sum_{n = 0}^{q} \theta_{n}^{2} E\{w[t + h - n]  w[t - n]\} + \sum_{n = 0}^{q - h} \theta_{n + h} \theta_n E\{w[t - n]^2 \} \\
+                      &= 0 + \sum_{n = 0}^{q - h} \theta_{n + h} \theta_n E\{w[t - n]^2 \} \\
+                      &= \sum_{n = 0}^{q - h} \theta_{n + h} \theta_n E\{w[t - j]^2 \}
+            \end{align*}
+            </p>
+            
+            <p>We know that $E\{w[t - j]\}^2 = \sigma_w^2$ because the expectation of the second moment of the Gaussian distirbution is its variance. Thus, we can replace that into the equation:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= \sum_{n = 0}^{q - h} \theta_{n + h} \theta_n E\{w[t - j]^2 \} \\
+                      &= \sum_{j = 0}^{q - h} \theta_{n + h} \theta_n \sigma_w^2 \\
+                      &= \sigma_w^2 \sum_{j = 0}^{q - h} \theta_{n + h} \theta_n
+            \end{align*}
+            </p>
+            
+            <p>We now have the following $MA(q)$ autocovariance function:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= \sigma_w^2 \sum_{n = 0}^{q - h} \theta_n \theta_{n + h} \quad &0 \le h \le q \\
+            \gamma[h] &= 0 \quad &h > q \\
+            \end{align*}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

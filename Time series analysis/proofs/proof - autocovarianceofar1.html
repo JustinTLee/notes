@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Proof: Autocovariance of AR(1)</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Proof: Autocovariance of AR(1)</h2>
+            
+            <p><a href = "../03ARMAmodels.html#armodels">(back to 03. ARMA Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+               
+<!--        proof-->
+        <div class="section">
+        
+            <p>We begin with a linear process of an $AR(1)$ model:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \sum_{j = 0}^{\infty} \phi^j w[t - j]
+            \end{equation*}
+            </p>
+            
+            <p>The autocovariance function becomes:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= Cov\{x[t + h], x[t] \} \\
+                      &= E\left\{\sum_{j = 0}^{\infty} \phi^j w[t + h - j], \sum_{j = 0}^{\infty} \phi^j w[t - j] \right\} \\
+                      &= E\left\{\left(\sum_{j = 0}^{\infty}\phi^j w[t + h - j]\right) \left(\sum_{j = 0}^{\infty} \phi^j w[t - j]\right) \right\}
+            \end{align*}
+            </p>
+            
+            <p>We can split up the $\sum_{j = 0}^{\infty}\phi^j w[t + h - j]$ into future values and present/past values of $w[t]$. Future values occur where $t + h - j > t$ and present/past values occur where $t + h - j \le t$. The present value occurs when $j = h$ and all past values occur when $j < h$. Splitting that term up, we get two summations:</p>
+            
+            <p>
+            \begin{equation*}
+            \sum_{j = 0}^{\infty}\phi^j w[t + h - j] = \sum_{j = 0}^{h - 1}\phi^j w[t + h - j] + \sum_{j = h}^{\infty}\phi^j w[t + h - j]
+            \end{equation*}
+            </p>
+            
+            <p>Let's shift the index for $\sum_{j = h}^{\infty}\phi^j w[t + h - j]$ so that $j$ starts at $0$. To do this, we subtract $h$ from the summation index, but we add $h$ to all of the terms in the expression after the index:</p>
+            
+            <p>
+            \begin{align*}
+            \sum_{j = h}^{\infty}\phi^j w[t + h - j] &= \sum_{j = (h - h)}^{\infty}\phi^{(j + h)} w[t + h - (j + h)] \\
+            &= \sum_{j = 0}^{\infty}\phi^{j + h} w[t + h - j - h] \\
+            &= \sum_{j = 0}^{\infty}\phi^{j + h} w[t - j]
+            \end{align*}
+            </p>
+            
+            <p>Now:</p>
+            
+            <p>
+            \begin{equation*}
+            \sum_{j = 0}^{\infty}\phi^j w[t + h - j] = \sum_{j = 0}^{h - 1}\phi^j w[t + h - j] + \sum_{j = 0}^{\infty}\phi^{j + h} w[t - j]
+            \end{equation*}
+            </p>
+            
+            <p>If we replace this new expression back into the autocovariance expectation that we discovered previously, we get:</p>
+            
+            <p>
+            \begin{equation*}
+            \gamma[h] = E\left\{\left(\sum_{j = 0}^{\infty}\phi^j w[t + h - j]\right) \left(\sum_{j = 0}^{\infty} \phi^j w[t - j]\right) \right\} = E\left\{\left(\sum_{j = 0}^{h - 1}\phi^j w[t + h - j] + \sum_{j = 0}^{\infty}\phi^{j + h} w[t - j] \right) \left(\sum_{j = 0}^{\infty} \phi^j w[t - j]\right) \right\}
+            \end{equation*}
+            </p>
+            
+            <p>Distributing the terms in the expectation operator gives:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= E\left\{\left(\sum_{j = 0}^{h - 1}\phi^j w[t + h - j] + \sum_{j = 0}^{\infty}\phi^{j + h} w[t - j] \right) \left(\sum_{j = 0}^{\infty} \phi^j w[t - j]\right) \right\} \\
+                      &= E\left\{ \left(\sum_{j = 0}^{h - 1} \sum_{j = 0}^{\infty} \left(\phi^j w[t + h - j]\right) \left(\phi^j w[t - j]\right) \right) + \left( \sum_{j = 0}^{\infty} \sum_{j = 0}^{\infty} \left(\phi^{j + h} w[t - j]\right) \left(\phi^j w[t - j]\right) \right) \right\} \\
+                      &= E\left\{ \sum_{j = 0}^{h - 1} \sum_{j = 0}^{\infty} \left(\phi^{2j} w[t + h - j]  w[t - j]\right) + \sum_{j = 0}^{\infty} \sum_{j = 0}^{\infty} \left(\phi^{2j + h} w[t - j]^2 \right) \right\}
+            \end{align*}
+            </p>
+            
+            <p>Now that the indicies start off the same in both double summations, we can combine each double summation into one. Since the index on one of the summations in $\sum_{j = 0}^{h - 1} \sum_{j = 0}^{\infty}$ ends at $h - 1$, the combined summation gets truncated to that as well:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= E\left\{ \sum_{j = 0}^{h - 1} \sum_{j = 0}^{\infty} \left(\phi^{2j} w[t + h - j]  w[t - j]\right) + \sum_{j = 0}^{\infty} \sum_{j = 0}^{\infty} \left(\phi^{2j + h} w[t - j]^2 \right) \right\} \\
+                      &= E\left\{ \sum_{j = 0}^{h - 1} \left(\phi^{2j} w[t + h - j]  w[t - j]\right) + \sum_{j = 0}^{\infty} \left(\phi^{2j + h} w[t - j]^2 \right) \right\} \\
+                      &= \sum_{j = 0}^{h - 1} \phi^{2j} E\{w[t + h - j]  w[t - j]\} + \sum_{j = 0}^{\infty} \phi^{2j + h} E\{w[t - j]^2 \}
+            \end{align*}
+            </p>
+            
+            <p>Since the $w[t]$ indicies will never be equal between $w[t + h - j]w[t - j]$ in $\sum_{j = 0}^{h - 1} \phi^{2j} E\{w[t + h - j]  w[t - j]\}$, we can set that entire expression to $0$. What's left is:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= \sum_{j = 0}^{h - 1} \phi^{2j} E\{w[t + h - j]  w[t - j]\} + \sum_{j = 0}^{\infty} \phi^{2j + h} E\{w[t - j]^2 \} \\
+                      &= 0 + \sum_{j = 0}^{\infty} \phi^{2j + h} E\{w[t - j]^2 \} \\
+                      &= \sum_{j = 0}^{\infty} \phi^{2j + h} E\{w[t - j]^2 \}
+            \end{align*}
+            </p>
+            
+            <p>We know that $E\{w[t - j]\}^2 = \sigma_w^2$ because the expectation of the second moment of the Gaussian distirbution is its variance. Thus, we can replace that into the equation:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= \sum_{j = 0}^{\infty} \phi^{2j + h} E\{w[t - j]^2 \} \\
+                      &= \sum_{j = 0}^{\infty} \phi^{2j + h} \sigma_w^2 \\
+                      &= \sigma_w^2 \phi^h \sum_{j = 0}^{\infty} \phi^{2j}
+            \end{align*}
+            </p>
+            
+            <p>We now have the following autocovariance function:</p>
+            
+            <p>
+            \begin{equation*}
+            \gamma[h] = \sigma_w^2 \phi^h \sum_{j = 0}^{\infty} \phi^{2j}
+            \end{equation*}
+            </p>
+            
+            <p>For a geometric series $\sum_{i = 0}^{\infty} r^i$ whose $|r| < 1$, the series solution is this (where $r = \phi^2$):</p>
+                
+            <p>
+            \begin{equation*}
+            \sum_{i = 0}^{\infty} r^i = \frac{1}{1 - r}
+            \end{equation*}
+            </p>
+            
+            <p>Since we know that $|\phi| < 1$, we can substitute the geometric series formula into our autocovariance equation to get the final result:</p>
+                
+            <p>
+            \begin{equation*}
+            \gamma[h] = \sigma_w^2 \phi^h \sum_{j = 0}^{\infty} \phi^{2j} = \frac{\sigma_w^2 \phi^h}{1 - \phi^2}
+            \end{equation*}
+            </p>
+            
+            <p>Thus, the autocovariance of an $AR(1)$ model is:</p>
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = \frac{\sigma_w^2 \phi^h}{1 - \phi^2}
+            \end{equation}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

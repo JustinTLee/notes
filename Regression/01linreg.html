@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>01. Introduction to Linear Regression</title>
+        <link rel = "stylesheet" type = "text/css" href = "css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+    
+<!--        title-->
+        <div class = "title">
+            
+            <h1>Introduction to Linear Regression</h1>
+            
+            <p><a href = "index.html">(back to index)</a></p>
+            
+        </div>
+        
+<!--        table of contents-->
+        <div class = "toc">
+            
+            <h2><a class="anchor" id="toc">Table of Contents</a></h2>
+            
+            <ol>
+                <li><a href = "#intro">Introduction to Linear Regression</a></li>
+                <li><a href = "#leastsquaresmeth">The Method of Least Squares</a></li>
+                <li><a href = "#estparametersinferences">Inferences on Least Squares Estimated Parameters</a></li>
+                <li><a href = "#linreganova">Linear Regression as Analysis of Variance</a></li>
+                <li><a href = "#summary">Summary</a></li>
+                <li><a href = "#references">References</a></li>
+            </ol>
+            
+        </div>
+        
+<!--        01. introduction to linear regression-->
+        <div class = "section">
+
+            <h2><a class="anchor" id="intro">Introduction to Linear Regression</a></h2>
+
+            <p><b>Linear regression</b> is a class of techniques that relates one or a group of variables, known as <b>predictor/design/feature/regressor variables</b>, to a <b>response variable</b>. The predictors are independent variables whereas the response is a dependent variable. Such a relationship is known as a <b>model</b>. Given that a response variable is $Y$ and its predictor variable is $X$, the following constitutes a linear model:</p>
+
+            <p>
+            \begin{equation} 
+            Y = b_0 + b_1 X
+            \end{equation}
+            </p>
+
+            <p>This equation is just a simple line, where $b_0$ is the <b>intercept</b> and $b_1$ is the <b>slope</b>, but it demonstrates the relationship between $X$ and $Y$ in a simple manner. $X$ is proportional to $Y$ by $b_1$ and offset by $b_0$. Collectively, the $b_i$'s are known as the <b>parameters/coefficients/weights</b> of the model. However, data in real life has variability. It becomes necessary to add a Gaussian probability density distribution as an error term ($\varepsilon$) to the end of the linear model:</p>
+
+            <p>
+            \begin{equation}
+            Y = b_0 + b_1 X + \varepsilon
+            \end{equation}
+            </p>
+
+            <p>The error term is assumed to have a mean of $0$ and the same variance at every $X$. Below shows a graphical image of how the error term distributes the possible values of $Y$ given an $X$ value [1]:</p>
+
+            <p><img src="images/linear%20regression%20with%20normal%20error%20distribution.PNG" alt="" align=center/></p>
+
+            <p>The goal of linear regression given a set of ($X$, $Y$) data is to estimate what $b_0$ and $b_1$ is. We denote the estimated versions of $b_0$ and $b_1$ as $\widehat{b}_0$ and $\widehat{b}_1$. Using $X$ with the estimated values, we have an estimated version of $Y$ as well:</p>
+
+            <p>
+            \begin{equation}
+            \widehat{y} = \widehat{b}_0 + \widehat{b}_1 x
+            \end{equation}
+            </p>
+
+            <p>The values of $\widehat{y}$ are simply the means of the distribution of the response given the observed values of $X$.</p>
+
+            <p><b>Simple linear regression</b> is a one-to-one relationship where one independent variable is matched to one response variable. <b>Multiple linear regression</b> describes a many-to-one relationship where a group of independent variables are matched to one response variable. Multiple linear regression expands $X$ to $X_1$, $X_2$, ..., $X_n$ and $b_1$ to $b_1$, $b_2$, ..., $b_n$.</p>
+
+            <p><a href = "#toc">(back to top)</a></p>
+
+        </div>
+        
+<!--        02. the method of least squares-->
+        <div class = "section">
+            
+            <h2><a class="anchor" id="leastsquaresmeth">The Method of Least Squares</a></h2>
+
+            <p>This section involves generating an estimate for $b_0$ and $b_1$. The common technique is known as the <b>method of least squares</b>.</p>
+
+            <p>The ultimate derivation of a least-squares problem involves linear algebra and maximum likelihood estimation and will not be covered here. Simply put, we want to minimize the difference between the true $y$'s and the estimated $\widehat{y}$'s. Ideally, if $\widehat{y} = y$ then $y - \widehat{y} = 0$. However, due to the error term, this will not be the case. For every $X$ value, there will be some difference in $y - \widehat{y}$, known as a <b>residual</b>. Sometimes $\widehat{y}$ will be greater than $y$ and other times it will be less than $y$. The net error would be the addition of all of these residuals. To ensure that two residuals don't cancel each other out, we square each one before adding them together. The sum is known as the <b>sum of squared error</b>:</p>
+
+            <p>
+            \begin{align}
+            SSE &= \sum_{i = 1}^{n} (y_i - \widehat{y}_i)^2 \\
+                &= \sum_{i = 1}^{n} (y_i - (b_0 + b_1 x_i))^2 \\
+                &= \sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)^2
+            \end{align}
+            </p>
+
+            <p>We want to try and find estimates for $b_0$ and $b_1$ that will minimize the value of the SSE. If we minimize the SSE, then we also minimize all of the residuals. To figure out which values of $b_0$ and $b_1$ will minimize the SSE, we take partial derivatives of the SSE equation with respect to each of the parameters respectively:</p>
+
+            <p>
+            \begin{equation*}
+            \frac{\partial (SSE)}{\partial b_0} = \frac{\partial (\sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)^2)}{\partial b_0} = -2 \sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)
+            \end{equation*}
+            </p>
+
+            <p>
+            \begin{equation*}
+            \frac{\partial (SSE)}{\partial b_1} = \frac{\partial (\sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)^2)}{\partial b_1} = -2 \sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)x_i
+            \end{equation*}
+            </p>
+
+            <p>In order to find the minimum SSE based on both $b_0$ and $b_1$, we set each partial derivative to 0 and solve for each parameter:</p>
+
+            <p>
+            \begin{equation*}
+            \frac{\partial (SSE)}{\partial b_0} = -2 \sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i) = 0
+            \end{equation*}
+            </p>
+
+            <p>
+            \begin{equation*}
+            \frac{\partial (SSE)}{\partial b_1} = -2 \sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)x_i = 0
+            \end{equation*}
+            </p>
+
+            <p>Now that we have a system of equations, if we solve this system for $b_0$ and $b_1$ we get their estimated versions $\widehat{b}_0$ and $\widehat{b}_1$:</p>
+
+            <p>
+            \begin{equation}
+            \widehat{b}_1 = \frac{\sum_{i = 1}^{n} (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i = 1}^{n} (x_i - \overline{x})^2}
+            \end{equation}
+            </p>
+
+            <p>
+            \begin{equation}
+            \widehat{b}_0 = \overline{y} - b_1 \overline{x}
+            \end{equation}
+            </p>
+            
+            <p>A full derivation of $\widehat{b}_0$ and $\widehat{b}_1$ can be found <a href = "proofs/deriv_normalb0b1.html">here</a>.</p>
+
+            <p><a href = "#toc">(back to top)</a></p>
+            
+        </div>
+        
+<!--        03. inferences on least squares estimated parameters-->
+        <div class = "section">
+
+            <h2><a class="anchor" id="estparametersinferences">Inferences on Least Squares Estimated Parameters</a></h2>
+            
+            <p>The unbiased estimate of $\sigma^2$ is</p>
+
+            <p>
+            \begin{equation}
+                s^2 = \frac{SSE}{n - 2} = \frac{\sum_{i = 1}^{n} (y_i - \widehat{y_i})^2}{n - 2}
+            \end{equation}
+            </p>
+            
+            <p>Each estimated value $\widehat{b}_0$, $\widehat{b}_1$, $\widehat{y}_i$ also possesses a distribution from which we can draw inferences on. In this section, common distribution properties are found for each of the estimators. Their derivations will not be described here, but can be found in [2] for those interested.</p>
+
+            <p>All t-statistic values use $n - 2$ degrees of freedom.</p>
+
+            <p>The properties of $\widehat{y}_i$ are as follows:</p>
+
+            <table style = "width:100%">
+                <tr>
+                    <td><b>mean</b></td>
+                    <td>$\mu_{\hat{y}_{i}|x_i} = \widehat{b}_0 + \widehat{b}_1 x_i$</td>
+                </tr>
+                <tr>
+                    <td><b>variance</b></td>
+                    <td>$\sigma^2_{\hat{y}_{i}|x_i} = \sigma^2$</td>
+                </tr>
+                <tr>
+                    <td><b>confidence interval bounds</b></td>
+                    <td>$\widehat{y}_i \pm t_{\alpha/2} s \sqrt{\frac{1}{n} + \frac{(x_i - \overline{x})^2}{\sum_{i = 1}^{n} (x_i - \overline{x})^2}}$</td>
+                </tr>
+                <tr>
+                    <td><b>prediction interval bounds</b></td>
+                    <td>$\widehat{y}_i \pm t_{\alpha/2} s \sqrt{1 + \frac{1}{n} + \frac{(x_i - \overline{x})^2}{\sum_{i = 1}^{n} (x_i - \overline{x})^2}}$</td>
+                </tr>
+            </table>      
+
+            <p>The properties of $\widehat{b_1}$ are as follows:</p>
+
+            <table style = "width:100%">
+                <tr>
+                    <td><b>mean</b></td>
+                    <td>$\mu_{\widehat{b}_1} = \widehat{b}_1$</td>
+                </tr>
+                <tr>
+                    <td><b>variance</b></td>
+                    <td>$\sigma^2_{\widehat{b}_1} = \frac{\sigma^2}{\sum_{i = 1}^{n} (x_i - \overline{x})^2}$</td>
+                </tr>
+                <tr>
+                    <td><b>confidence interval bounds</b></td>
+                    <td>$\widehat{b}_1 \pm t_{\alpha/2} \frac{s}{\sqrt{\sum_{i = 1}^{n} (x_i - \overline{x})^2}}$</td>
+                </tr>
+                <tr>
+                    <td><b>hypothesis testing against $H_0: b_1 = b_{10}$</b></td>
+                    <td>t-statistic: $t = \frac{b_1 - b_{10}}{s} \sqrt{\sum_{i = 1}^{n} (x_i - \overline{x})^2}$</td>
+                </tr>
+            </table>
+
+            <p>The properties of $\widehat{b_0}$ are as follows:</p>
+
+            <table style = "width:100%">
+                <tr>
+                    <td><b>mean</b></td>
+                    <td>$\mu_{\widehat{b}_0} = \widehat{b}_0$</td>
+                </tr>
+                <tr>
+                    <td><b>variance</b></td>
+                    <td>$\sigma^2_{\widehat{b}_0} = \frac{\sigma^2 \sum_{i = 1}^{n} x^2_i}{n \sum_{i = 1}^{n} (x_i - \overline{x})^2}$</td>
+                </tr>
+                <tr>
+                    <td><b>confidence interval bounds</b></td>
+                    <td>$\widehat{b}_0 \pm t_{\alpha/2} \frac{s}{\sqrt{n \sum_{i = 1}^{n} (x_i - \overline{x})^2}} \sqrt{\sum_{i = 1}^{n} x^2_i}$</td>
+                </tr>
+                <tr>
+                    <td><b>hypothesis testing against $H_0: b_0 = b_{00}$</b></td>
+                    <td>t-statistic: $t = \frac{b_0 - b_{00}}{s \sqrt{\frac{\sum_{i = 1}^{n} x^2_i}{n \sum_{i = 1}^{n} (x_i - \overline{x})^2}}}$</td>
+                </tr>
+            </table>
+
+            <p>The hypothesis tests listed for $\widehat{b}_0$ and $\widehat{b}_1$ are a way to evaluate whether the intercept or the feature variable corresponding to $\widehat{b}_1$ actually contribute to the model. Often times, $b_{00} = b_{10} = 0$. This means that if $H_0$ cannot be rejected for a specific parameter, that parameter is 0. If that parameter is 0, then its feature variable is taken out of the final model. An example of how to interpet these test results will be shown in section 5.</p>
+
+            <p>$R^2$ calculations will be covered in a separate document.</p>
+
+            <p><a href = "#toc">(back to top)</a></p>
+            
+        </div>
+        
+<!--        04. linear regression as analysis of variance-->
+        <div class = "section">
+
+            <h2><a class="anchor" id="linreganova">Linear Regression as Analysis of Variance</a></h2>
+        
+            <p>With a model specified, it is essential to see whether the generated model actually fits the data. For example, it would be meaningless to find a relationship between students' heights and spelling test grades. An analysis of variance approach to linear regression will indicate that there is little to no relationship between heights and grades.</p>
+
+            <p>First, let's define two new terms.</p>
+
+            <p>The <b>regression sum of squares</b> shows how much variation can be found in the predicted $\widehat{y}$ values compared to the data mean ($\overline{y}$):</p>
+
+            <p>
+            \begin{equation}
+            SSR = \sum_{i = 1}^{n} (\widehat{y}_i - \overline{y})^2
+            \end{equation}
+            </p>
+
+            <p>In many sources, the SSR is said to reflect the amount of variation as explained by the model.</p>
+
+            <p>The <b>total corrected sum of squares</b> shows much variation can be found in the original $y$ values compared to the data mean ($\overline{y}$):</p>
+
+            <p>
+            \begin{equation}
+            SST = \sum_{i = 1}^{n} (y_i - \overline{y})^2
+            \end{equation}
+            </p>
+
+            <p>The SST can also be written as the sum of the SSR and the SSE:</p>
+
+            <p>
+            \begin{equation}
+            SST = SSR + SSE
+            \end{equation}
+            </p>
+
+            <p>
+            \begin{equation}
+            \sum_{i = 1}^{n} (y_i - \overline{y})^2 = \sum_{i = 1}^{n} (\widehat{y}_i - \overline{y})^2 + \sum_{i = 1}^{n} (y_i - \widehat{y}_i)^2
+            \end{equation}
+            </p>
+
+            <p>This equation states that the variation in the original $y$ values with respect to their mean is equal to the variation in the predicted $\widehat{y}$ values with respect to the original data's mean plus the sum of squared residuals. Putting it another way, the variance in the original values (SST) is split between the variance explained by the model (SSR) and the variance not explained by the model (SSE).</p>
+
+            <p>We want the model to explain as much of the data as possible. Thus, we want the ratio between SSR to SSE to be large. Take the null hypothesis $H_0: b_1 = 0$. This essentially says that none of the data is explained by the model. The alternate hypothesis $H_1: b_1 \neq 0$ says that at least some of the data is explained by the model. To turn the sum of squares functions into true variance functions, we divide each sum of squares term by its degrees of freedom. This result is known as the <b>mean square</b>:</p>
+
+            <p>
+            \begin{equation}
+            MS_{SSR} = \frac{SSR}{1}
+            \end{equation}
+            </p>
+
+            <p>
+            \begin{equation}
+            MS_{SSE} = \frac{SSE}{n - 2}
+            \end{equation}
+            </p>
+
+            <p>The f-statistic, then, is the ratio of the two mean square terms:</p>
+
+            <p>
+            \begin{equation}
+            f = \frac{MS_{SSR}}{MS_{SSE}} = \frac{\frac{SSR}{1}}{\frac{SSE}{n - 2}} = (n - 2) \frac{SSR}{SSE}
+            \end{equation}
+            </p>
+
+            <p>The f-statistic is represented by an $F$-distribution with $n - 2$ degrees of freedom. We can display the sum of squares information as the following table:</p>
+
+            <table style = "width:100%">
+                <tr>
+                    <td><b>source of variation</b></td>
+                    <td><b>sum of squares</b></td>
+                    <td><b>degrees of freedom</b></td>
+                    <td><b>mean square</b></td>
+                    <td><b>f-statistic</b></td>
+                </tr>
+                <tr>
+                    <td>regression</td>
+                    <td>$SSR$</td>
+                    <td>$1$</td>
+                    <td>$SSR$</td>
+                    <td>$\frac{SSR}{s^2}$</td>
+                </tr>
+                <tr>
+                    <td>error</td>
+                    <td>$SSE$</td>
+                    <td>$n - 2$</td>
+                    <td>$s^2 = \frac{SSE}{n - 2}$</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>total</b></td>
+                    <td>$SST$</td>
+                    <td>$n - 1$</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <p>Using the information on this table, we see that the f-statistic is:</p>
+
+            <p>
+            \begin{equation}
+            f = \frac{MS_{SSR}}{MS_{SSE}} = \frac{SSR}{s^2}
+            \end{equation}
+            </p>
+
+            <p>$H_0$ can be rejected if $f > f_\alpha(1, n - 2)$. if $H_0$ is ultimately rejected, we can conclude that the proposed model <b>does</b> explain much of the variance that can be found in the original data.</p>
+
+            <p><a href = "#toc">(back to top)</a></p>
+            
+        </div>
+
+<!--        05. summary-->
+        <div class = "section">
+            
+            <h2><a class="anchor" id="summary">Summary</a></h2>
+        
+            <p>In this document, we learned:</p>
+            
+            <ul>
+                <li>what linear regression is</li>
+                <li>the difference between simple and multiple linear regression</li>
+                <li>how to calculate estimated parameters for simple linear regression</li>
+                <li>about the relationship between diffferent sum of squares components</li>
+                <li>how ANOVA techniques can determine model adequacy</li>
+                <li>how to perform and interpret inference tests for estimated parameters</li>
+                <li>how to run a simple linear regression in SAS</li>
+            </ul>
+
+            <p>Key equations:</p>
+            
+            <ul>
+                <li>$SSE = \sum_{i = 1}^{n} (y_i - \widehat{y}_i)^2 = \sum_{i = 1}^{n} (y_i - b_0 - b_1 x_i)^2$</li>
+                <li>$\widehat{b}_1 = \frac{\sum_{i = 1}^{n} (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i = 1}^{n} (x_i - \overline{x})^2}$</li>
+                <li>$\widehat{b}_0 = \overline{y} - b_1 \overline{x}$</li>
+            </ul>
+
+            <p><a href = "#toc">(back to top)</a></p>
+            
+        </div>
+
+<!--        06. references-->
+        <div class = "references">
+        
+            <h2><a class="anchor" id="references">References</a></h2>
+            
+            <p>[1] J. L. Devore, “Simple Linear Regression and Correlation,” in *Probability and Statistics for Engineering and the Sciences*, 8th ed. Boston, USA: Brooks/Cole, 2012, ch. 12, sec. 1, pp. 473.</p>
+
+            <p>[2] R. E. Walpole, R. H. Myers, S. L. Myers, K. Ye, in *Probability & Statistics for Engineers & Scientists*, 9th ed. Boston, USA: Pearson Education, Inc., 2012, ch. 11, sec. 4-6, pp. 400-413.</p>
+            
+            <p><a href = "#toc">(back to top)</a></p>
+
+            <br/>
+
+            <p><a href = "index.html">Back to Main Page</a></p>
+        
+        </div>
+        
+    </body>
+    
+</html>

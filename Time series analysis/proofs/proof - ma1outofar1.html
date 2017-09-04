@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Proof: Generating an MA(1) Model out of AR</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Proof: Generating an MA(1) Model out of AR</h2>
+            
+            <p><a href = "../03ARMAmodels.html#armodels">(back to 03. ARMA Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        proof-->
+        <div class="section">
+        
+            <p>We begin with an $MA(1)$ model:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = w[t] + \theta w[t - 1]
+            \end{equation*}
+            </p>
+            
+            <p>Let's rearrange the equation to solve for $w[t]$:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] &= w[t] + \theta w[t - 1] \\
+            w[t] &= -\theta w[t - 1] + x[t] \\
+            \end{align*}
+            </p>
+            
+            <p>Iterating backwards once (1st time) gives:</p>
+            
+            <p>
+            \begin{align*}
+            w[t] &= -\theta w[t - 1] + x[t] \\
+                 &= -\theta (-\theta w[t - 2] + x[t - 1]) + x[t] = \theta^2 x[t - 2] - \theta x[t - 1] + x[t] \\
+                 &= \theta^2 w[t - 2] + \sum_{j = 0}^{1} (-\theta)^j x[t - j]
+            \end{align*}
+            </p>
+            
+            <p>Iterating backwards again (2nd time) gives:</p>
+            
+            <p>
+            \begin{align*}
+            w[t] &= \theta^2 x[t - 2] + \sum_{j = 0}^{1} (-\theta)^j x[t - j] \\
+                 &= \theta^2 (-\theta w[t - 3] + x[t - 2]) + \sum_{j = 0}^{1} (-\theta)^j x[t - j] \\
+                 &= -\theta^3 x[t - 3] + \theta^2 x[t - 2] + \sum_{j = 0}^{1} (-\theta)^j x[t - j] \\
+                 &= -\theta^3 w[t - 3] + \sum_{j = 0}^{2} (-\theta)^j x[t - j]
+            \end{align*}
+            </p>
+            
+            <p>Iterating backwards again (3rd time) gives:</p>
+            
+            <p>
+            \begin{align*}
+            w[t] &= -\theta^3 w[t - 3] + \sum_{j = 0}^{2} (-\theta)^j x[t - j] \\
+                 &= -\theta^3 (-\theta w[t - 4] + x[t - 3]) + \sum_{j = 0}^{2} (-\theta)^j x[t - j] \\
+                 &= \theta^4 w[t - 4] - \theta^3 x[t - 3] + \sum_{j = 0}^{2} (-\theta)^j x[t - j] \\
+                 &= \theta^4 w[t - 4] + \sum_{j = 0}^{3} (-\theta)^j x[t - j]
+            \end{align*}
+            </p>
+            
+            <p>Iterating backwards $k$ times gives:</p>
+            
+            <p>
+            \begin{equation*}
+            w[t] = (-\theta)^{k + 1} w[t - (k + 1)] + \sum_{j = 0}^{k} (-\theta)^j w[t - j]
+            \end{equation*}
+            </p>
+            
+            <p>If $|\theta| < 1$, then the equation gets reduced to:</p>
+                
+            <p>
+            \begin{align*}
+            x[t] &= \lim_{k \to \infty} (-\theta)^{k + 1} w[t - (k + 1)] + \sum_{j = 0}^{k} (-\theta)^j x[t - j] \\
+                 &= 0 + \sum_{j = 0}^{k} (-\theta)^j x[t - j] \\
+                 &= \sum_{j = 0}^{k} (-\theta)^j x[t - j]
+            \end{align*}
+            </p>
+            
+            <p>Thus, an $MA(1)$ model can be written as:</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = \sum_{j = 0}^{k} (-\theta)^j x[t - j]
+            \end{equation}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

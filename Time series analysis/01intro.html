@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Introduction to time series</title>
+        <link rel = "stylesheet" type = "text/css" href = "css/main.css">
+    </head>
+    
+    <body>
+        
+        <div class = "title">
+            <h1>Introduction to time series</h1>
+        </div>
+        
+        <div class = "text">
+            <p>
+                A <b>time series</b> is a collection of observations or values that are indexed by fixed time points. Time time series can be discrcete (known as a discrete-time time series) or continuous (known as a continuous-time time series). Common signals represented by time series include:
+            </p>
+            <ul>
+                <li>speech signals</li>
+                <li>stock market quotes</li>
+                <li>Physiological parameters</li>
+                <li>Dow Jones Industrial Average</li>
+                <li>EEG and LFP signals</li>
+            </ul> 
+            <p>
+                Investigations into time series can be broken down into two concepts: <i>analysis</i> and <i>forecasting</i>. <i>Time series analysis</i> involves elucidating the properties that define a particular signal. <i>Time series forecasting</i> involves predicting future values and properties of the series in question. Both need to address the underlying statistical properties inherent in the signal. Time series can be analyzed by both <i>time domain</i> and <i>frequency domain</i> approaches. The <i>time domain</i> approach determines the dependence of a current value on past values through parametric modeling. In particular, it draws on regression analysis to fit and make inferences on such models. The <i>frequency domain</i>  approach uses spectral analysis to explain seasonal (periodic) variations in the data. While it is more appropriate to use time domain methods for short samples, both domains provide tools to analyze any data set.
+            </p>
+        </div>
+        
+        <div class = "text">
+            <h3>Examples of time series data</h3>
+            
+            <h4>Australian red wine sales</h4>
+            <figure>
+                <img src = ".\images\01_redwine.png" alt = "Australian red wine sales">
+                <figcaption>Red wine sales by month from Jan. 1980 to Oct. 1991</figcaption>
+            </figure>
+            <p>
+                This line plot shows the monthly sales of red wine in Australia from January 1980 to October 1991. There are 142 time points. The graph shows both clear seasonality and an upward trend throughout the time period that the data was sampled from. Image was created in Python. [<a href="#cite01">1</a>].
+            </p>
+            
+            <h4>New York Stock Exchange</h4>
+            <figure>
+                <img src = ".\images\01_NYSE.png" alt = "NYSE returns">
+                <figcaption>NYSE returns from February 2, 1984 to December 31, 1991</figcaption>
+            </figure>
+            <p>
+                Here are 2000 trading day time points from the New York Stock Exchange. The data runs from February 2, 1984 to December 31, 1991. The values are the daily weighted market returns. There appears to be constant mean. The disturbance towards the middle of the figure represents the crahs of October 19, 1987. Image was created in R. [<a href="#cite02">2</a>].
+            </p>
+        </div>
+        
+        <div class = "text">
+            <h2>Time series analysis goals</h2>
+            <p>
+                The main question to be answered is how to represent the underlying process that generates the data. Once a satisfactory probability model is established, inferences and estimations can be made. Models themselves are made up of 3 components:
+            </p>
+            <ul>
+                <li>trend terms</li>
+                <li>seasonal terms</li>
+                <li>a noise term</li>
+            </ul>
+            <p>
+                Once these components are identified, they can be individually removed from the data in order to clean up confounding properties. For example, de-noising signals reveal deterministic properties and seasonal adjustments can shed light on long-term patterns. A model is an important tool that gives analysts the most simplistic version of the system while still retaining its key features.
+            </p>
+        </div>
+        
+        <div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        
+        <div class = "citations">
+            <h4>Citations:</h4>
+            <p id = "cite01">[1] P. J. Brockwell and R. A. Davis, <i>Introduction to Time Series and Forecasting</i>, 2nd ed. New York, USA: Springer, 2002.</p>
+            <p id = "cite02">[2] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            <br/>
+            <a href = "index.html">Back to Main Page</a>
+        </div>
+        
+    </body>
+    
+</html>

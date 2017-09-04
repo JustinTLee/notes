@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Proof: Turning a Non-Causal AR(1) Model to a Causal One</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Proof: Turning a Non-Causal AR(1) Model to a Causal One</h2>
+            
+            <p><a href = "../03ARMAmodels.html#armodels">(back to 03. ARMA Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        proof-->
+        <div class="section">
+        
+            <p>We begin with the non-causal $AR(1)$ model:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j]
+            \end{equation*}
+            </p>
+            
+            <p>The autocovariance function becomes:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= Cov\{x[t + h], x[t] \} \\
+                      &= E\left\{- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + h + j], - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j] \right\} \\
+                      &= E\left\{\left(- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + h + j] \right) \left(- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j] \right) \right\}
+            \end{align*}
+            </p>
+            
+            <p>Let's expand $- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j]$ into:</p>
+            
+            <p>
+            \begin{equation*}
+            - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j] = - \sum_{j = 1}^{h} \frac{1}{\phi^j} w[t + j] - \sum_{j = h + 1}^{\infty} \frac{1}{\phi^j} w[t + j]
+            \end{equation*}
+            </p>
+            
+            <p>Let's shift the index for $\sum_{j = h + 1}^{\infty} \frac{1}{\phi^j} w[t + j]$ so that $j$ starts at $1$. To do this, we subtract $h$ from the summation index, but we add $h$ to all of the terms in the expression after the index:</p>
+            
+            <p>
+            \begin{align*}
+            - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j] &= - \sum_{j = 1}^{h} \frac{1}{\phi^j} w[t + j] - \sum_{j = h + 1}^{\infty} \frac{1}{\phi^j} w[t + j] \\
+                &= - \sum_{j = 1}^{h} \frac{1}{\phi^j} w[t + j] - \sum_{j = 1}^{\infty} \frac{1}{\phi^{j + h}} w[t + h + j]
+            \end{align*}
+            </p>
+            
+            <p>If we replace this new expression back into the autocovariance expectation that we discovered previously, we get:</p>
+            
+            <p>
+            \begin{equation*}
+            \gamma[h] = E\left\{\left(- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + h + j] \right) \left(- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j] \right) \right\} = E\left\{\left(- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + h + j] \right) \left(- \sum_{j = 1}^{h} \frac{1}{\phi^j} w[t + j] - \sum_{j = 1}^{\infty} \frac{1}{\phi^{j + h}} w[t + h + j] \right) \right\}
+            \end{equation*}
+            </p>
+            
+            <p>Distributing the terms in the expectation operator gives:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= E\left\{\left(- \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + h + j] \right) \left(- \sum_{j = 1}^{h} \frac{1}{\phi^j} w[t + j] - \sum_{j = 1}^{\infty} \frac{1}{\phi^{j + h}} w[t + h + j] \right) \right\} \\ 
+                      &= E\left\{\sum_{j = 1}^{\infty} \sum_{j = 1}^{h} \left( \frac{1}{\phi^j} w[t + h + j]\right) \left( \frac{1}{\phi^j} w[t + j] \right) + \sum_{j = 1}^{\infty} \sum_{j = 1}^{\infty} \left(\frac{1}{\phi^j} w[t + h + j] \right) \left(\frac{1}{\phi^{j + h}} w[t + h + j] \right) \right\} \\
+                      &= E\left\{\sum_{j = 1}^{\infty} \sum_{j = 1}^{h} \left( \frac{1}{\phi^{2j}} w[t + h + j] w[t + j]\right) + \sum_{j = 1}^{\infty} \sum_{j = 1}^{\infty} \left( \frac{1}{\phi^{2j + h}} w[t + h + j]^2 \right) \right\}
+            \end{align*}
+            </p>
+            
+            <p>Now that the indicies start off the same in both double summations, we can combine each double summation into one. Since the index on one of the summations in $\sum_{j = 1}^{\infty} \sum_{j = 1}^{h}$ ends at $h$, the combined summation gets truncated to that as well:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= E\left\{\sum_{j = 1}^{\infty} \sum_{j = 1}^{h} \left( \frac{1}{\phi^{2j}} w[t + h + j] w[t + j]\right) + \sum_{j = 1}^{\infty} \sum_{j = 1}^{\infty} \left( \frac{1}{\phi^{2j + h}} w[t + h + j]^2 \right) \right\} \\
+                      &= E \left\{ \sum_{j = 1}^{h} \left( \frac{1}{\phi^{2j}} w[t + h + j] w[t + j]\right) + \sum_{j = 1}^{\infty} \left( \frac{1}{\phi^{2j + h}} w[t + h + j]^2 \right) \right\} \\
+                      &= \sum_{j = 1}^{h} \frac{1}{\phi^{2j}} E\{w[t + h + j] w[t + j]\} + \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j + h}} E\{w[t + h + j]^2\}
+            \end{align*}
+            </p>
+            
+            <p>Since the $w[t]$ indicies will never be equal between $w[t + h + j]w[t + j]$ in $\sum_{j = 1}^{h} \frac{1}{\phi^{2j}} E\{w[t + h + j] w[t + j]\}$, we can set that entire expression to $0$. What's left is:</p>
+            
+            <p>
+            \begin{align*}
+            \gamma[h] &= \sum_{j = 1}^{h} \frac{1}{\phi^{2j}} E\{w[t + h + j] w[t + j]\} + \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j + h}} E\{w[t + h + j]^2\} \\
+                      &= 0 + \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j + h}} E\{w[t + h + j]^2\} \\
+                      &= \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j + h}} E\{w[t + h + j]^2\}
+            \end{align*}
+            </p>
+            
+            <p>We know that $E\{w[t + h + j]\}^2 = \sigma_w^2$ because the expectation of the second moment of the Gaussian distirbution is its variance. Thus, we can replace that into the equation:</p>
+            
+            <p>
+            \begin{equation*}
+            \gamma[h] = \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j + h}} E\{w[t + h + j]^2\} = \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j + h}} \sigma_w^2 = \frac{\sigma_w^2}{\phi^h} \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j}}
+            \end{equation*}
+            </p>
+            
+            <p>We now have the following autocovariance function:</p>
+            
+            <p>
+            \begin{equation*}
+            \gamma[h] = \frac{\sigma_w^2}{\phi^h} \sum_{j = 1}^{\infty} \frac{1}{\phi^{2j}} = \sigma_w^2 \phi^{-h} \sum_{j = 1}^{\infty} \phi^{-2j}
+            \end{equation*}
+            </p>
+            
+            <p>For a geometric series $\sum_{i = 0}^{\infty} r^i$ whose $|r| < 1$, the series solution is this:</p>
+                
+            <p>
+            \begin{equation*}
+            \sum_{i = 0}^{\infty} r^i = \frac{1}{1 - r}
+            \end{equation*}
+            </p>
+            
+            <p>Howver, in this case, our index starts at $i = 1$ instead of $i = 0$. Therefore, we need to modity this geometric series a bit:</p>
+            
+            <p>
+            \begin{align*}
+            \sum_{i = 0}^{\infty} r^i &= \frac{1}{1 - r} \\
+            \sum_{i = 0}^{\infty} r^i - r^0 &= \frac{1}{1 - r} - r^0 &= \sum_{i = 1}^{\infty} r^i \\
+            \sum_{i = 0}^{\infty} r^i - 1 &= \frac{1}{1 - r} - 1 &= \sum_{i = 1}^{\infty} r^i \\
+            \sum_{i = 0}^{\infty} r^i - 1 &= \frac{1}{1 - r} - \frac{1 - r}{1 - r} &= \sum_{i = 1}^{\infty} r^i \\
+            \sum_{i = 0}^{\infty} r^i - 1 &= \frac{1 - (1 - r)}{1 - r} &= \sum_{i = 1}^{\infty} r^i \\
+            \sum_{i = 0}^{\infty} r^i - 1 &= \frac{1 - 1 + r}{1 - r} &= \sum_{i = 1}^{\infty} r^i \\
+            \sum_{i = 0}^{\infty} r^i - 1 &= \frac{r}{1 - r} &= \sum_{i = 1}^{\infty} r^i \\
+            \end{align*}
+            </p>
+            
+            <p>Therefore, the geometric series $\sum_{i = 1}^{\infty} r^i = \frac{r}{1 - r}$. Since we know that $|\phi^{-1}| < 1$, we can substitute the geometric series formula into our autocovariance equation to get the final result (where $r = \phi^{-2}$):</p>
+                
+            <p>
+            \begin{equation*}
+            \gamma[h] = \sigma_w^2 \phi^{-h} \sum_{j = 0}^{\infty} \phi^{-2j} = \frac{\sigma_w^2 \phi^{-2} \phi^{-h}}{1 - \phi^{-2}}
+            \end{equation*}
+            </p>
+            
+            <p>Thus, the autocovariance of the non-causal $AR(1)$ model is:</p>
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = \frac{\sigma_w^2 \phi^{-2} \phi^{-h}}{1 - \phi^{-2}}
+            \end{equation}
+            </p>
+            
+            <p>Comparing this result to the causal $AR(1)$ model, $\gamma[h] = \frac{\sigma_w^2 \phi^h}{1 - \phi^2}$, we can see that if we take $\phi_{new} = \phi^{-1}$, then we can write the autocovariance as:</p>
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = \frac{\sigma_w^2 \phi^{-2} \phi_{new}^{h}}{1 - \phi_{new}^{2}}
+            \end{equation}
+            </p>
+            
+            <p>Since we just restructured the non-causal autocovariance function to be the same as the causal one, we can make the new variance of the white noise to be $\sigma_w^2 \phi^{-2} = \sigma_{w, new}^2$:</p>
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = \frac{\sigma_{w, new}^2 \phi_{new}^{h}}{1 - \phi_{new}^{2}}
+            \end{equation}
+            </p>
+            
+            <p>Therefore, the non-causal $AR(1)$ model is equivalent to an $AR(1)$ model whose white noise mean is zero and variance is $\sigma_w^2 \phi^{-2}$.</p>
+            
+            <p>We name the white noise with mean zero and variance is $\sigma_w^2 \phi^{-2}$ as $v[t]$. The new $AR(1)$ model becomes:</p>
+            
+            <p>
+            \begin{equation}
+            y[t] = \frac{1}{\phi} y[t - 1] + v[t]
+            \end{equation}
+            </p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

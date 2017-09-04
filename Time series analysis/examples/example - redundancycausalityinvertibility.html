@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA Models - Example: Overparameterization, Causality, and Invertibility</title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h2>Example: Overparameterization, Causality, and Invertibility</h2>
+            
+            <p><a href = "../03ARMAmodels.html#armamodels">(back to 03. ARMA Models)</a></p>
+            
+            <p><a href = "../index.html">(back to index)</a></p>
+            
+        </div>
+                
+<!--        parameter redundancy-->
+        <div class="section">
+        
+            <h4>Overparameterization:</h4>
+            
+            <p><i>This problem is taken from [1], example 3.7.</i></p>
+            
+            <p>Suppose we wanted to analyze this $ARMA$ model:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = 0.4x[t - 1] + 0.45x[t - 2] + w[t] + w[t - 1] + 0.25 w[t - 2]
+            \end{equation*}
+            </p>
+            
+            <p>Collecting like terms and taking the $z$-transform of both sides yields:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] &= 0.4x[t - 1] + 0.45x[t - 2] + w[t] + w[t - 1] + 0.25 w[t - 2]\\
+            x[t] - 0.4x[t - 1] - 0.45x[t - 2] &= w[t] + w[t - 1] + 0.25 w[t - 2]\\
+            \mathcal{Z} \left\{ x[t] - 0.4x[t - 1] - 0.45x[t - 2] \right\} &= \mathcal{Z} \left\{ w[t] + w[t - 1] + 0.25 w[t - 2] \right\} \\
+            X(z) - 0.4z^{-1}X(z) - 0.45z^{-2}X(z) &= W(z) + z^{-1}W(z) + 0.25z^{-2}W(z) \\
+            (1 - 0.4z^{-1} - 0.45z^{-2}) X(z) &= (1 + z^{-1} + 0.25z^{-2}) W(z) \\
+            X(z) &= \frac{1 + z^{-1} + 0.25z^{-2}}{1 - 0.4z^{-1} - 0.45z^{-2}} W(z)
+            \end{align*}
+            </p>
+            
+            <p>The quadratics can be factored:</p>
+            
+            <p>
+            \begin{align*}
+            X(z) &= \frac{1 + z^{-1} + 0.25z^{-2}}{1 - 0.4z^{-1} - 0.45z^{-2}} W(z) \\
+            X(z) &= \frac{(1 + 0.5z^{-1})(1 + 0.5z^{-1})}{(1 + 0.5z^{-1})(1 - 0.9z^{-1})} W(z) \\
+            X(z) &= \frac{1 + 0.5z^{-1}}{1 - 0.9z^{-1}} W(z) \\
+            \end{align*}
+            </p>
+            
+            <p>Multiplying both sides by $1 - 0.9z^{-1}$ and taking the inverse $z$-transform yields:</p>
+            
+            <p>
+            \begin{align*}
+            X(z) &= \frac{1 + 0.5z^{-1}}{1 - 0.9z^{-1}} W(z) \\
+            (1 - 0.9z^{-1})X(z) &= (1 + 0.5z^{-1})W(z) \\
+            X(z) - 0.9z^{-1}X(z) &= W(z) + 0.5z^{-1}W(z) \\
+            \mathcal{Z} \left\{ X(z) - 0.9z^{-1}X(z) \right\} &=  \mathcal{Z} \left\{ W(z) + 0.5z^{-1}W(z) \right\} \\
+            x[t] - 0.9x[t - 1] &= w[t] + 0.5w[t - 1] \\
+            x[t] &= 0.9x[t - 1] + w[t] + 0.5w[t - 1] \\
+            \end{align*}
+            </p>
+            
+            <p>Thus, $x[t] = 0.4x[t - 1] + 0.45x[t - 2] + w[t] + w[t - 1] + 0.25 w[t - 2]$ reduces down to an $ARMA(1, 1)$ equation: $x[t] = 0.9x[t - 1] + w[t] + 0.5w[t - 1]$.</p>
+            
+        </div>
+        
+<!--        causality-->
+        <div class="section">
+        
+            <h4>Causality:</h4>
+            
+            <p><i>This problem is taken from [1], example 3.7.</i></p>
+            
+            <p>At this point, we can examine if poles of $\psi(z)$ are inside the unit circle:</p>
+            
+            <p>
+            \begin{align*}
+            X(z) &= \frac{1 + 0.5z^{-1}}{1 - 0.9z^{-1}} W(z)
+            \end{align*}
+            </p>
+            
+            <p>The pole of $1 - 0.9z^{-1}$ would be $0.9$, which indeed does lie inside the unit circle. Thus, this model is causal.</p>
+            
+        </div>
+        
+<!--        invertibility-->
+        <div class="section">
+        
+            <h4>Invertibility:</h4>
+            
+            <p><i>This problem is taken from [1], example 3.7.</i></p>
+            
+            <p>Since $\psi(z) = \frac{\theta(z)}{\phi(z)}$ and $\pi(z) = \frac{\phi(z)}{\theta(z)}$, we can flip $X(z) = \frac{\theta(z)}{\phi(z)} W(z)$ to get $W(z)$ alone. At this point, we can examine if poles are inside the unit circle:</p>
+            
+            <p>
+            \begin{align*}
+            W(z) &= \frac{1 - 0.9z^{-1}}{1 + 0.5z^{-1}} X(z)
+            \end{align*}
+            </p>
+            
+            <p>The pole of $1 + 0.5z^{-1}$ would be $-0.5$, which indeed does lie inside the unit circle. Thus, this model is invertible.</p>
+            
+        </div>
+        
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>

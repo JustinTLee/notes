@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>ARMA models</title>
+        <link rel = "stylesheet" type = "text/css" href = "css/main.css">
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              processEscapes: true
+            }
+          });
+        </script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    </head>
+    
+    <body>
+        
+<!--        title-->
+        <div class = "title">
+            
+            <h1>ARMA Models</h1>
+            
+            <p><a href = "index.html">(back to index)</a></p>
+            
+        </div>
+        
+<!--        table of contents-->
+        <div class = "toc">
+            
+            <h2><a class="anchor" id="toc">Table of Contents</a></h2>
+            
+            <ol>
+                <li><a href = "#armodels">Introduction to Autoregressive (AR) Models</a></li>
+                <li><a href = "#mamodels">Introduction to Moving Average (MA) Models</a></li>
+                <li><a href = "#armamodels">Introduction to Autoregressive Moving Average (ARMA) Models</a></li>
+                <li><a href = "#pacf">Partial Autocorrelation</a></li>
+                <li><a href = "#arima">Introduction to Autoregressive Integrated Moving Average (ARIMA) Models</a></li>
+            </ol>
+            
+        </div>
+        
+<!--        introduction to autoregressive (AR) models-->
+        <div class = "section">
+            
+            <h2><a class="anchor" id="armodels">Introduction to Autoregressive (AR) Models</a></h2>
+            
+            <p><b>Autoregressive models</b> demonstrate present values of a time series that are influenced by its past values and some present white noise term. The current value is a linear function of $p$ past values. The number $p$ is known as the model's order. An autoregressive model is often identified as $AR(p)$ and can mathematically expressed this way:</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = \sum_{m = 1}^{p} \phi_{m} x[t - m] + w[t]
+            \end{equation}
+            </p>
+            
+            <p>It is generally assumed that the mean of $x[t]$ is zero. If not, then the equation can be written thus:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] - \mu &= \sum_{m = 1}^{p} \phi_{m} (x[t - m] - \mu) + w[t] \\
+            x[t] &= \mu(1 - \sum_{m = 1}^{p} \phi_{m}) + \sum_{m = 1}^{p} \phi_{m} x[t - m] + w[t] = \alpha + \sum_{m = 1}^{p} \phi_{m} x[t - m] + w[t]\\
+            \end{align*}
+            </p>
+            
+            <p>It is convenient to write the $AR(p)$ equation in operator notation, where $B$ is the backshift operator:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \sum_{m = 1}^{p} \phi_{m} B^m x[t] + w[t]
+            \end{equation*}
+            </p>
+            
+            <p>Solving for the white noise term, we get:</p>
+            
+            <p>
+            \begin{equation}
+            x[t] - \sum_{m = 1}^{p} \phi_{m} B^m x[t] = x[t] - \phi_1 B x[t] - ... - \phi_p B^p x[t] = (1 - \phi_1 B - ... - \phi_p B^p) = \phi(B)x[t] = w[t]
+            \end{equation}
+            </p>
+            
+            <p>If we had an $AR(1)$ model, we can use the white noise term and solve for $x[t]$ (<a href = "./proofs/proof%20-%20ar1outofwhitenoise.html">proof</a>):</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = \sum_{j = 0}^{\infty} \phi^j w[t - j]
+            \end{equation}
+            </p>
+            
+            <p>We have turned an $AR(1)$ model into a linear process. At this stage, we could define $\psi_j = \phi^j$:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] &= \sum_{j = 0}^{\infty} \psi_j w[t - j] \\
+                 &= \sum_{j = 0}^{\infty} \psi_j B^j w[t] = (\psi_0 + \psi_1 B + \psi_2 B^2 + ...) w[t] \\
+                 &= \psi(B) w[t]
+            \end{align*}
+            </p>
+            
+            <p>Now, given $\phi(B)x[t] = w[t]$ from before, we can now substitute in $\psi(B)w[t] = x[t]$ to get:</p>
+            
+            <p>
+            \begin{equation*}
+            \phi(B)x[t] = \phi(B)\left(\psi(B)w[t]\right) = \phi(B)\psi(B)w[t] = w[t]
+            \end{equation*}
+            </p>
+            
+            <p>This means that:</p>
+            
+            <p>
+            \begin{equation*}
+            \phi(B)\psi(B) = 1
+            \end{equation*}
+            </p>
+            
+            <p>For an $AR(1)$ then:</p>
+            
+            <p>
+            \begin{equation*}
+            \psi(B) = \frac{1}{\phi(B)} = \frac{1}{1 - \phi_1 B} = \sum_{j = 0}^{\infty} \phi^j B^j
+            \end{equation*}
+            </p>
+            
+            <p>Taking a $z$-transform:</p>
+            
+            <p>
+            \begin{equation*}
+            \psi(z) = \frac{1}{\phi(z^{-1})} = \frac{1}{1 - \phi_1 z^{-1}} = \sum_{j = 0}^{\infty} \phi^j z^{-j}
+            \end{equation*}
+            </p>
+            
+            <p>The $AR(1)$ process has zero mean with an autocovariance function of (<a href = "./proofs/proof%20-%20autocovarianceofar1.html">proof</a>):</p>
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = \frac{\sigma_w^2 \phi^h}{1 - \phi^2}
+            \end{equation}
+            </p>
+            
+            <p>where $h \ge 0$. The autocorrelation function becomes:</p>
+            
+            <p>
+            \begin{equation}
+            \rho[h] = \frac{\gamma[h]}{\gamma[0]} = \frac{\frac{\sigma_w^2 \phi^h}{1 - \phi^2}}{\frac{\sigma_w^2}{1 - \phi^2}} = \phi^h
+            \end{equation}
+            </p>
+            
+            <p>Since $\phi^h$ slowly decays to $0$ depending on the value of $\phi$, we note that $x[t]$ is correlated with all $x[t \pm h]$ values.</p>
+            
+            <p>Now, suppose that $|\phi| > 1$. This would cause each iterative value of $x[t]$ to increase to a point where long term values of x[t] approach infinity. In this case, $\sum_{j = 0}^{\infty} \phi^j$ will not converge. However, we can still derive a working stationary model using mathematical trickery (<a href = "./proofs/proof%20-%20ar1unboundedtobounded.html">proof</a>):</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = - \sum_{j = 1}^{\infty} \frac{1}{\phi^j} w[t + j]
+            \end{equation}
+            </p>
+            
+            <p>Since $x[t]$ depend on future values $w[t + j]$, this model is noncausal. However, we can define a causal AR(1) process given $|\phi| > 1$ by substituting in new terms (<a href = "./proofs/proof%20-%20ar1noncausaltocausal.html">proof</a>):</p>
+            
+            <p>
+            \begin{equation*}
+            y[t] = \frac{1}{\phi} y[t - 1] + v[t]
+            \end{equation*}
+            </p>
+            
+            where $v[t]$ is a zero-mean Gaussian distribution with a variance of $\sigma_v^2 = \frac{\sigma_w^2}{\phi^2}$. This new model is stochastically equivalent to the original $AR(1)$ model using $x[t]$.
+            
+        </div>
+        
+<!--        introduction to moving average (MA) models-->
+        <div class = "section">
+        
+            <h2><a class="anchor" id="mamodels">Introduction to Moving Average (MA) Models</a></h2>
+            
+            <p><b>Moving average models</b> demonstrate present values of a time series that are influenced by past and present values of white noise. The current value is a linear function of $q$ values of the white noise distribution. The number $q$ is known as the model's order. A moving average model is often identified as $MA(q)$ and can mathematically expressed this way:</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = \sum_{n = 0}^{q} \theta_{n} w[t - n]
+            \end{equation}
+            </p>
+            
+            <p>It is convenient to write the $MA(q)$ equation in operator notation, where $B$ is the backshift operator:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \sum_{n = 0}^{q} \theta_{n} B^n w[t] = \theta(B) w[t]
+            \end{equation*}
+            </p>
+            
+            <p>A moving average process is always stationary.</p>
+            
+            <p>If we had an $MA(1)$ model, we can get the autocovariance function <a href = "./proofs/proof - ma1acf.html">(proof)</a>:</p>
+            
+            <p>
+            \begin{align}
+            \gamma[h] &= (1 + \theta^2) \sigma_w^2 \quad &h = 0 \\
+            \gamma[h] &= \theta \sigma_w^2 \quad &h = 1 \\
+            \gamma[h] &= 0 \quad &h > 1 \\
+            \end{align}
+            </p>
+            
+            <p>The autocorrelation function can be obtained by dividing each value of the autocovariance function by $y[h] = (1 + \theta^2) \sigma_w^2$:</p>
+            
+            <p>
+            \begin{align}
+            \rho[h] &= \frac{(1 + \theta^2) \sigma_w^2}{(1 + \theta^2) \sigma_w^2} = 1 \quad &h = 0 \\
+            \rho[h] &= \frac{\theta \sigma_w^2}{(1 + \theta^2) \sigma_w^2} = \frac{\theta}{(1 + \theta)} \quad &h = 1 \\
+            \rho[h] &= \frac{0}{(1 + \theta^2) \sigma_w^2} = 0 \quad &h > 1 \\
+            \end{align}
+            </p>
+            
+            <p>One thing to note here is that for $MA(1)$, $x[t]$ is only correlated with $x[t + 1]$ or $x[t - 1]$, whereas $AR(1)$ has $x[t]$ correlated to all $x[t \pm h]$ values.</p>
+            
+            <p>The same $MA(1)$ model can be described by multiple $\theta$ and $\sigma_w^2$ pairs, making each set of parameters non-unique. Since we can only observe realizations and not the underlying statistical process, we would have no idea which pair is the right pair for our model. Since each $AR$ model is unique, we could figure out which $MA(1)$ model best fits our data by turning our $MA(1)$ model into an $AR$ one, given that $|\theta| < 1$. The end $AR$ model is called an <b>invertible process</b> (<a href = "./proofs/proof%20-%20ma1outofar1.html">proof</a>):</p>
+            
+            <p>
+            \begin{equation}
+            w[t] = \sum_{j = 0}^{\infty} (-\theta)^{j} x[t - j]
+            \end{equation}
+            </p>
+    
+            <p>At this stage, we could define $\pi_j = -\theta^j$:</p>
+            
+            <p>
+            \begin{align*}
+            w[t] &= \sum_{j = 0}^{\infty} \pi_j x[t - j] \\
+                 &= \sum_{j = 0}^{\infty} \pi_j B^j x[t] = (\pi_0 + \pi_1 B + \pi_2 B^2 + ...) x[t] \\
+                 &= \pi(B) x[t]
+            \end{align*}
+            </p>
+    
+            <p>Now, given $\theta(B)w[t] = x[t]$ from before, we can now substitute in $\pi(B)x[t] = w[t]$ to get:</p>
+            
+            <p>
+            \begin{equation*}
+            \theta(B)w[t] = \theta(B)\left(\pi(B)x[t]\right) = \theta(B)\pi(B)x[t] = x[t]
+            \end{equation*}
+            </p>
+            
+            <p>This means that:</p>
+            
+            <p>
+            \begin{equation*}
+            \theta(B)\pi(B) = 1
+            \end{equation*}
+            </p>
+            
+            <p>For an $MA(1)$ then:</p>
+            
+            <p>
+            \begin{equation*}
+            \pi(B) = \frac{1}{\theta(B)} = \frac{1}{1 + \theta_1 B} = \sum_{j = 0}^{\infty} (-\theta)^j B^j
+            \end{equation*}
+            </p>
+            
+            <p>Taking a $z$-transform:</p>
+            
+            <p>
+            \begin{equation*}
+            \pi(z) = \frac{1}{\theta(z^{-1})} = \frac{1}{1 + \theta_1 z^{-1}} = \sum_{j = 0}^{\infty} (-\theta)^j z^{-j}
+            \end{equation*}
+            </p>
+        
+        </div>
+        
+<!--        introduction to autoregressive moving average (ARMA) models-->
+        <div class = "section">
+
+            <h2><a class="anchor" id="armamodels">Introduction to Autoregressive Moving Average (ARMA) Models</a></h2>
+            
+            <p><b>Autoregressive moving average models</b> are a mix of both AR and MA models. The current value is a function of both $p$ past values and $q$ values of the white noise distribution. The ARMA model is often identified as $ARMA(p, q)$ and can be mathematically expressed this way:</p>
+            
+            <p>
+            \begin{equation}
+            x[t] = \sum_{j = 1}^{p} \phi_j x[t - j] + \sum_{k = 0}^{q} \theta_k w[t - k]
+            \end{equation}
+            </p>
+            
+            <p>It is generally assumed that the mean of $x[t]$ is zero. If not, then the equation can be written thus:</p>
+            
+            <p>
+            \begin{align*}
+            x[t] - \mu &= \sum_{j = 1}^{p} \phi_j x[t - j] + \sum_{k = 0}^{q} \theta_k w[t - k] \\
+            x[t] &= \mu(1 - \sum_{j = 1}^{p} \phi_{j}) + \sum_{j = 1}^{p} \phi_j x[t - j] + \sum_{k = 0}^{q} \theta_k w[t - k] \\
+                 &= \alpha + \sum_{j = 1}^{p} \phi_j x[t - j] + \sum_{k = 0}^{q} \theta_k w[t - k]\\
+            \end{align*}
+            </p>
+            
+            <p>If we subtract all of the $AR$ terms to one side, we can rewrite the model in terms of $\phi(B)$ and $\theta(B)$:</p>
+            
+            <p>
+            \begin{align}
+            x[t] &= \sum_{j = 1}^{p} \phi_j x[t - j] + \sum_{k = 0}^{q} \theta_k w[t - k] \\
+            x[t] - \sum_{j = 1}^{p} \phi_j x[t - j] &= \sum_{k = 0}^{q} \theta_k w[t - k] \\
+            x[t] - \sum_{j = 1}^{p} \phi_j B^j x[t] &= \sum_{k = 0}^{q} \theta_k B^k w[t] \\
+            \left(1 - \sum_{j = 1}^{p} \phi_j B^j \right) x[t] &= \left(\sum_{k = 0}^{q} \theta_k B^k \right) w[t] \\
+            \phi(B) x[t] &= \theta(B) w[t]
+            \end{align}
+            </p>
+            
+            <p>At this point, it is important to address the 3 difficulties with working with $ARMA$ models:</p>
+            
+            <ol>
+                <li>overparameterization/redundancy of models</li>
+                <li>the potential for noncausality in models</li>
+                <li>the potential for nonuniqueness in models</li>
+            </ol>
+            
+            <h3>Overparameterization</h3>
+            
+            <p>Writing the $ARMA$ notation like that will help us with overparameterization of a model. Parameter redundancy, or overparameterization, occurs when two or more parameters in a given model represent the same thing. They obscure details of the model, leading to difficult interpretations.</p>
+            
+            <p>An example of overparameterization can be found <a href = "./examples/example%20-%20overparameterization.html">here</a>.</p>
+            
+            <p>Writing $\phi(B)$ and $\theta(B)$ as polynomials will allow us to factor and divide out redundant terms.</p>
+            
+            <p>The $AR$ polynomial is the $z$-transform of $\phi(B)$, where $\phi_p \ne 0$:</p>
+            
+            <p>
+            \begin{equation}
+            \phi(z) = 1 - \sum_{j = 1}^{p} \phi_j z^{-j}
+            \end{equation}
+            </p>
+            
+            <p>The $MA$ polynomial is the $z$-transform of $\theta(B)$, where $\theta_q \ne 0$:</p>
+            
+            <p>
+            \begin{equation}
+            \theta(z) = \sum_{k = 0}^{q} \theta_k z^{-k}
+            \end{equation}
+            </p>
+            
+            <p>To avoid redudancy, we require that $\phi(s)$ and $\theta(s)$ have no common factors, that their GCF is $1$.</p>
+            
+            <h3>Noncausality</h3>
+            
+            <p>$ARMA$ models are causal if they can be written as a one-sided linear process (simiar to the $AR(1)$ case):</p>
+            
+            <p>
+            \begin{align*}
+            w[t] &= \sum_{j = 0}^{\infty} \psi_j w[t - j] \\
+                 &= \psi(B) w[t]
+            \end{align*}
+            </p>
+            
+            <p>where $\psi(B) = \sum_{j = 0}^{\infty} \psi_j B^j$, $\sum_{j = 0}^{\infty} |\psi_j| < \infty$, and $\psi_0 = 1$.</p>
+            
+            <p>To ensure causality, we require that the $ARMA$ model to be able to be written as a one-sided invertible process:</p>
+            
+            <p>
+            \begin{align}
+            \phi(B) x[t] &= \theta(B) w[t] \\
+            x[t] &= \frac{\theta(B)}{\phi(B)} w[t] \\
+            \mathcal{Z} \left\{x[t] \right\} &= \mathcal{Z} \left\{ \frac{\theta(B)}{\phi(B)} w[t] \right\} \\
+            X(z) &= \frac{\theta(z)}{\phi(z)} W(z) \\
+            X(z) &= \psi(z) W(z) \\
+            X(z) &= \sum_{j = 0}^{\infty} \psi_j z^{-j} W(z) \\
+            \end{align}
+            </p>
+            
+            <p>So, equivalently:</p>
+            
+            <p>
+            \begin{equation}
+            \psi(z) = \sum_{j = 0}^{\infty} \psi_j z^{-j} = \frac{\theta(z)}{\phi(z)} = \frac{\sum_{k = 0}^{q} \theta_k z^{-k}}{1 - \sum_{j = 1}^{p} \phi_j z^{-j}}
+            \end{equation}
+            </p>
+            
+            <p>The function $\frac{\theta(z)}{\phi(z)}$ needs to be bounded for the condition $\sum_{j = 0}^{\infty} |\psi_j| < \infty$ to hold. Therefore, the poles of $\frac{\theta(z)}{\phi(z)}$, being the roots of $\phi(z)$ must lie within the unit circle. Alternatively, $\phi(z)$ must cross $0$ at least once when $|z| < 1$.</p>
+
+            <h3>Non-invertibility</h3>
+
+            <p>$ARMA$ models are invertible if they can be written as a one-sided invertible process (simiar to the $MA(1)$ case):</p>
+            
+            <p>
+            \begin{align*}
+            w[t] &= \sum_{j = 0}^{\infty} \pi_j x[t - j] \\
+                 &= \pi(B) x[t]
+            \end{align*}
+            </p>
+            
+            <p>where $\pi(B) = \sum_{j = 0}^{\infty} \pi_j B^j$ and $\sum_{j = 0}^{\infty} |\pi_j| < \infty$.</p>
+            
+            <p>To ensure invertibility, we require that the $ARMA$ model to be able to be written as a one-sided invertible process:</p>
+            
+            <p>
+            \begin{align}
+            \phi(B) x[t] &= \theta(B) w[t] \\
+            w[t] &= \frac{\phi(B)}{\theta(B)} w[t] \\
+            \mathcal{Z} \left\{w[t] \right\} &= \mathcal{Z} \left\{ \frac{\phi(B)}{\theta(B)} x[t] \right\} \\
+            W(z) &= \frac{\phi(z)}{\theta(z)} X(z) \\
+            W(z) &= \pi(z) X(z) \\
+            W(z) &= \sum_{j = 0}^{\infty} \pi_j z^{-j} X(z) \\
+            \end{align}
+            </p>
+            
+            <p>So, equivalently:</p>
+            
+            <p>
+            \begin{equation}
+            \psi(z) = \sum_{j = 0}^{\infty} \pi_j z^{-j} = \frac{\phi(z)}{\theta(z)} = \frac{1 - \sum_{j = 1}^{p} \phi_j z^{-j}}{\sum_{k = 0}^{q} \theta_k z^{-k}}
+            \end{equation}
+            </p>
+            
+            <p>The function $\frac{\phi(z)}{\theta(z)}$ needs to be bounded for the condition $\sum_{j = 0}^{\infty} |\pi_j| < \infty$ to hold. Therefore, the poles of $\frac{\phi(z)}{\theta(z)}$, being the roots of $\theta(z)$ must lie within the unit circle. Alternatively, $\pi(z)$ must cross $0$ at least once when $|z| < 1$.</p>
+            
+            <p>An example of how to use these formulas for redundancy, causality and invertibility can be found <a href = "./examples/example%20-%20redundancycausalityinvertibility.html">here</a>.</p>
+            
+        </div>
+
+<!--        partial autocorrelation-->
+        <div class = "section">
+
+            <h2><a class="anchor" id="pacf">Partial Autocorrelation</a></h2>
+            
+            <p>The mean of the $MA$ model is always $0$:</p>
+            
+            <p>
+            \begin{equation}
+            E \left\{x_t \right\} = \sum_{n = 0}^{q} \theta_n E \left\{w_{t - j} \right\} = 0
+            \end{equation}
+            </p>
+            
+            <p>The autocovariance function is (<a href = "./proofs/proof%20-%20maqacf.html">proof</a>):</p>
+            
+            <p>
+            \begin{align}
+            \gamma[h] &= \sigma_w^2 \sum_{n = 0}^{q - h} \theta_n \theta_{n + h} \quad &0 \le h \le q \\
+            \gamma[h] &= 0 \quad &h > q \\
+            \end{align}
+            </p>
+            
+            <p>making its autocorrelation function:</p>
+            
+            <p>
+            \begin{align}
+            \gamma[h] &= 1 \quad &h = 0 \\
+            \gamma[h] &= \frac{\sum_{n = 0}^{q - h} \theta_n \theta_{n + h}}{1 + \sum_{n = 1}^{q} \theta_n^2} \quad &1 \le h \le q \\
+            \gamma[h] &= 0 \quad &h > q \\
+            \end{align}
+            </p>
+            
+            <p>It is evident then that for a $MA(q)$ model the ACF will be $0$ when $h > q$. Thus, we can deduce that when a sample ACF vanishes to $0$ at a certain lag, the process is $MA$ of order $q$. The same is not true of the $AR(p)$ process, as its ACF vanishes to $0$ when the lag approaches infinity. This is due to the fact that the correlation between $x[t]$ and $x[t + h]$ is dependent on the $h - 1$ values of $x[t]$ in between. In order to get an $MA$-like autocorrelation statistic that we can use to judge whether a model is $AR$ or not, we must break this chain of dependence. The <b>partial autocorrelation</b> seeks to do that. If $h \ge 2$, we cam write $x[t + h]$ as the sum of its previous lag components:</p>
+            
+            <p>
+            \begin{equation}
+            \widehat{x}[t + h] = \sum_{j = 1}^{h - 1} \beta_j x[t + h - j]
+            \end{equation}
+            </p>
+            
+            <p>Next let's write $x[t]$ as the sum of the lag components up to $h - 1$:</p>
+            
+            <p>
+            \begin{equation}
+            \widehat{x}[t] = \sum_{k = 1}^{h - 1} \beta_j x[t + k]
+            \end{equation}
+            </p>
+            
+            <p>where the coefficients $\beta_1$ to $\beta_{h - 1}$ are the same in both equations. The $\beta_j$ can be estimated using regular regression methods and will not be covered here.The partial autocorrelation between $x[t]$ and $x[t + h]$, then, is:</p>
+            
+            <p>
+            \begin{equation}
+            \phi_{hh} = Corr\{x[t + h] - \widehat{x}[t + h], x[t] - \widehat{x}[t]\} \quad h \ge 2
+            \end{equation}
+            </p>
+            
+            <p>For an $AR(p)$, when $h > p$, $\phi_{hh} = 0$ (<a href = "">proof</a>).</p>
+            
+            <p>Given the linear process:</p>
+            
+            <p>
+            \begin{equation*}
+            x[t] = \sum_{j = 0}^{\infty} \psi_j w[t - j]
+            \end{equation*}
+            </p>
+            
+            <p>It is obvious that the autocorrelation of this takes the same form as $MA(q)$, with the exception that the top of the summation is infinity:</p> 
+            
+            <p>
+            \begin{equation}
+            \gamma[h] = \sigma_w^2 \sum_{n = 0}^{\infty} \psi_j \psi_{j + h} \quad h \ge 0
+            \end{equation}
+            </p>
+            
+            
+        </div>
+
+<!--        references-->
+        <div class = "references">
+            
+            <h4>References:</h4>
+            
+            <p id = "cite01">[1] P. J. Brockwell and R. A. Davis, <i>Introduction to Time Series and Forecasting</i>, 2nd ed. New York, USA: Springer, 2002.</p>
+            
+            <p id = "cite02">[2] R. H. Shumway and D. S. Stoffer, <i>Time Series Analysis and Its Applications with R Examples</i>, 2nd ed. New York, USA: Springer, 2011.</p>
+            
+            <br/>
+            <p><a href = "index.html">Back to Main Page</a></p>
+        </div>
+        
+    </body>
+    
+</html>
