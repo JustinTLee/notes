@@ -17,23 +17,18 @@
 
 ## Sets
 
-A **set** is a well-defined collection of **elements**. Elements that exist within a set are called **members**. The order of members is not important. Each member is distinct. Enumerating the contents of a set with $n$ members is represented by:
+A **set** is a well-defined collection of **elements**. Elements that exist within a set are called **members**. 
+
+* member order is not important
+* each member is distinct.
+
+Enumerating the contents of a set with $n$ members is represented by:
 
 \begin{equation*}
 S = {A_{1}, \dotso, A_{n}}
 \end{equation*}
 
-This defines that $x$ **is** a member of set $S$:
-
-\begin{equation*}
-x \in S
-\end{equation*}
-
-This defines that $x$ **is not** a member of set $S$:
-
-\begin{equation*}
-x \notin S
-\end{equation*}
+$x \in S$ defines that $x$ **is** a member of set $S$. $x \notin S$ defines that $x$ **is not** a member of set $S$.
 
 We can specify a set by the properties that all the members have in common like so:
 
@@ -282,7 +277,7 @@ The set $S^{*}$ is called a **regular set** of $S$.
 
 #### Algorthim: computing a regular set
 
-Computing a regular set involves the following algortihm:
+Computing a regular set involves the following algorithm:
 
 1. Expression $\lambda$ corresponds to the set $\{\Lambda\}$
 2. if $x \in S$, then the regular expression $x$ corresponds to set $\{x\}$
@@ -298,6 +293,26 @@ Computing a regular set involves the following algortihm:
 
 ## Definitions
 
+* **set** - well-defined collection of elements
+* **members** - elements that exist within a set
+* **equal** - two sets that have the same elements, denoted by $=$
+* **subset** - a set in which all members are also members of another set
+* **finite** - a set with $n$ distinct elements
+* **cardinality** - the number of distinct elements within a finite set, denoted by $|S|$
+* **power set** - set of all subsets of $S$, denoted by $P(S)$
+* **union** - a set that contains all of the elements of two or more other sets
+* **intersection** - a set that contains all of the common elements of two or more other sets
+* **disjoint** - two or more sets that share no elements in common
+* **complement** - the elements in one set but not in another set being compared to
+* **symmetric difference** - the non-common elements between two or more sets
+* **sequence** - a list of elements ordered by increasing value
+* **countable set** - set corresponding to all distinct elements in a sequence
+* **alphabet** - a set of symbols
+* **strings** - finite sequences of members of a set, where the members are symbols
+* **catenation** - the writing of two or more strings adjacently
+* **permutation** - an arragement of members of a set into a sequence
+* **regular expression** - a string constructed from the elements of a set and a subclass of symbols
+
 ---
 
 [(back to top)](#table-of-contents)
@@ -305,6 +320,46 @@ Computing a regular set involves the following algortihm:
 ---
 
 ## Equations
+
+#### Cardinality of power set:
+
+\begin{equation*}
+|P(S)| = 2^{n}
+\end{equation*}
+
+#### Addition principle of disjoint sets:
+
+\begin{equation*}
+|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}|
+\end{equation*}
+
+#### Addition principle of non-disjoint sets:
+
+\begin{equation*}
+|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}| - |S_{1} \cap S_{2}|
+\end{equation*}
+
+#### Characteristic function:
+
+\begin{equation*}
+f_{S}(x) =
+\begin{cases}
+1 \quad \text{if } x \in S \\
+0 \quad \text{if } x \notin S
+\end{cases}
+\end{equation*}
+
+#### Permutation:
+
+\begin{equation*}
+P_{r}^{n} = \frac{n!}{(n - r)!}
+\end{equation*}
+
+#### Combination:
+
+\begin{equation*}
+C_{r}^{n} = \frac{n!}{r!(n - r)!}
+\end{equation*}
 
 ---
 
@@ -319,30 +374,30 @@ Computing a regular set involves the following algortihm:
 The algebraic properties of sets are:
 
 * **Commutative**: 
- * $S_{1} \cup S_{2} = S_{2} \cup S_{1}$
-* $S_{1} \cap S_{2} = S_{2} \cap S_{1}$
+	* $S_{1} \cup S_{2} = S_{2} \cup S_{1}$
+	* $S_{1} \cap S_{2} = S_{2} \cap S_{1}$
 * **Associative**: 
-* $S_{1} \cup (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cup S_{3}$
-* $S_{1} \cap (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cap S_{3}$
+	* $S_{1} \cup (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cup S_{3}$
+	* $S_{1} \cap (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cap S_{3}$
 * **Distributive**:
-* $S_{1} \cup (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cup (S_{1} \cap S_{3})$
-* $S_{1} \cap (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cap (S_{1} \cup S_{3})$
+	* $S_{1} \cup (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cup (S_{1} \cap S_{3})$
+	* $S_{1} \cap (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cap (S_{1} \cup S_{3})$
 * **Idempotent**:
-* $S_{1} \cup S_{1} = S_{1}$
-* $S_{1} \cap S_{1} = S_{1}$
+	* $S_{1} \cup S_{1} = S_{1}$
+	* $S_{1} \cap S_{1} = S_{1}$
 * **Complement rules**:
-* $\overline{(\overline{S_{1}})} = S_{1}$
-* $S_{1} \cup \overline{S_{1}} = U$
-* $S_{1} \cap \overline{S_{1}} = \emptyset$
-* $\overline{\emptyset} = U$
-* $\overline{U} = \emptyset$
-* $\overline{S_{1} \cup S_{2}} = \overline{S_{1}} \cap \overline{S_{2}}$
-* $\overline{S_{1} \cap S_{2}} = \overline{S_{1}} \cup \overline{S_{2}}$
-* $S_{1} \cup U = U$
-* $S_{1} \cap U = S_{1}$
+	* $\overline{(\overline{S_{1}})} = S_{1}$
+	* $S_{1} \cup \overline{S_{1}} = U$
+	* $S_{1} \cap \overline{S_{1}} = \emptyset$
+	* $\overline{\emptyset} = U$
+	* $\overline{U} = \emptyset$
+	* $\overline{S_{1} \cup S_{2}} = \overline{S_{1}} \cap \overline{S_{2}}$
+	* $\overline{S_{1} \cap S_{2}} = \overline{S_{1}} \cup \overline{S_{2}}$
+	* $S_{1} \cup U = U$
+	* $S_{1} \cap U = S_{1}$
 * **Null rules**:
-* $S_{1} \cup \emptyset = S_{1}$
-* $S_{1} \cap \emptyset = \emptyset$
+	* $S_{1} \cup \emptyset = S_{1}$
+	* $S_{1} \cap \emptyset = \emptyset$
 
 #### _Theorem 01.02 (**Sets - addition principle**)_:
 
@@ -393,6 +448,14 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 ---
 
 ## Algorithms
+
+#### Computing a regular set
+
+1. Expression $\lambda$ corresponds to the set $\{\Lambda\}$
+2. if $x \in S$, then the regular expression $x$ corresponds to set $\{x\}$
+3. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\beta$ corresponds to $A \cdot B = \{s \cdot t \: | \: s \in A \text{ and } x \in B\}$
+4. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\vee\beta$ corresponds to $A \cup B$
+5. if $\alpha$ is a regular expression that corresponds to subset $A$ of $S^{*}$, then $(\alpha)^{*}$ corresponds to set $A^{*}$
 
 ---
 

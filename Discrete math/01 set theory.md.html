@@ -33,18 +33,16 @@
 </ol>
 <hr />
 <h2 id="sets">Sets</h2>
-<p>A <strong>set</strong> is a well-defined collection of <strong>elements</strong>. Elements that exist within a set are called <strong>members</strong>. The order of members is not important. Each member is distinct. Enumerating the contents of a set with <span class="math inline">\(n\)</span> members is represented by:</p>
+<p>A <strong>set</strong> is a well-defined collection of <strong>elements</strong>. Elements that exist within a set are called <strong>members</strong>.</p>
+<ul>
+<li>member order is not important</li>
+<li>each member is distinct.</li>
+</ul>
+<p>Enumerating the contents of a set with <span class="math inline">\(n\)</span> members is represented by:</p>
 \begin{equation*}
 S = {A_{1}, \dotso, A_{n}}
 \end{equation*}
-<p>This defines that <span class="math inline">\(x\)</span> <strong>is</strong> a member of set <span class="math inline">\(S\)</span>:</p>
-\begin{equation*}
-x \in S
-\end{equation*}
-<p>This defines that <span class="math inline">\(x\)</span> <strong>is not</strong> a member of set <span class="math inline">\(S\)</span>:</p>
-\begin{equation*}
-x \notin S
-\end{equation*}
+<p><span class="math inline">\(x \in S\)</span> defines that <span class="math inline">\(x\)</span> <strong>is</strong> a member of set <span class="math inline">\(S\)</span>. <span class="math inline">\(x \notin S\)</span> defines that <span class="math inline">\(x\)</span> <strong>is not</strong> a member of set <span class="math inline">\(S\)</span>.</p>
 <p>We can specify a set by the properties that all the members have in common like so:</p>
 \begin{equation*}
 S = \{x \: | \: P(x)\}
@@ -222,7 +220,7 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <p>The set <span class="math inline">\(S^{*}\)</span> is called a <strong>regular set</strong> of <span class="math inline">\(S\)</span>.</p>
 <hr />
 <h4 id="algorthim-computing-a-regular-set">Algorthim: computing a regular set</h4>
-<p>Computing a regular set involves the following algortihm:</p>
+<p>Computing a regular set involves the following algorithm:</p>
 <ol style="list-style-type: decimal">
 <li>Expression <span class="math inline">\(\lambda\)</span> corresponds to the set <span class="math inline">\(\{\Lambda\}\)</span></li>
 <li>if <span class="math inline">\(x \in S\)</span>, then the regular expression <span class="math inline">\(x\)</span> corresponds to set <span class="math inline">\(\{x\}\)</span></li>
@@ -234,10 +232,59 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
 <h2 id="definitions">Definitions</h2>
+<ul>
+<li><strong>set</strong> - well-defined collection of elements</li>
+<li><strong>members</strong> - elements that exist within a set</li>
+<li><strong>equal</strong> - two sets that have the same elements, denoted by <span class="math inline">\(=\)</span></li>
+<li><strong>subset</strong> - a set in which all members are also members of another set</li>
+<li><strong>finite</strong> - a set with <span class="math inline">\(n\)</span> distinct elements</li>
+<li><strong>cardinality</strong> - the number of distinct elements within a finite set, denoted by <span class="math inline">\(|S|\)</span></li>
+<li><strong>power set</strong> - set of all subsets of <span class="math inline">\(S\)</span>, denoted by <span class="math inline">\(P(S)\)</span></li>
+<li><strong>union</strong> - a set that contains all of the elements of two or more other sets</li>
+<li><strong>intersection</strong> - a set that contains all of the common elements of two or more other sets</li>
+<li><strong>disjoint</strong> - two or more sets that share no elements in common</li>
+<li><strong>complement</strong> - the elements in one set but not in another set being compared to</li>
+<li><strong>symmetric difference</strong> - the non-common elements between two or more sets</li>
+<li><strong>sequence</strong> - a list of elements ordered by increasing value</li>
+<li><strong>countable set</strong> - set corresponding to all distinct elements in a sequence</li>
+<li><strong>alphabet</strong> - a set of symbols</li>
+<li><strong>strings</strong> - finite sequences of members of a set, where the members are symbols</li>
+<li><strong>catenation</strong> - the writing of two or more strings adjacently</li>
+<li><strong>permutation</strong> - an arragement of members of a set into a sequence</li>
+<li><strong>regular expression</strong> - a string constructed from the elements of a set and a subclass of symbols</li>
+</ul>
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
 <h2 id="equations">Equations</h2>
+<h4 id="cardinality-of-power-set">Cardinality of power set:</h4>
+\begin{equation*}
+|P(S)| = 2^{n}
+\end{equation*}
+<h4 id="addition-principle-of-disjoint-sets">Addition principle of disjoint sets:</h4>
+\begin{equation*}
+|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}|
+\end{equation*}
+<h4 id="addition-principle-of-non-disjoint-sets">Addition principle of non-disjoint sets:</h4>
+\begin{equation*}
+|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}| - |S_{1} \cap S_{2}|
+\end{equation*}
+<h4 id="characteristic-function">Characteristic function:</h4>
+\begin{equation*}
+f_{S}(x) =
+\begin{cases}
+1 \quad \text{if } x \in S \\
+0 \quad \text{if } x \notin S
+\end{cases}
+\end{equation*}
+<h4 id="permutation">Permutation:</h4>
+\begin{equation*}
+P_{r}^{n} = \frac{n!}{(n - r)!}
+\end{equation*}
+<h4 id="combination">Combination:</h4>
+\begin{equation*}
+C_{r}^{n} = \frac{n!}{r!(n - r)!}
+\end{equation*}
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
@@ -245,19 +292,28 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <h4 id="theorem-01.01-sets"><em>Theorem 01.01 (<strong>Sets</strong>)</em>:</h4>
 <p>The algebraic properties of sets are:</p>
 <ul>
-<li><strong>Commutative</strong>:</li>
+<li><strong>Commutative</strong>:
+<ul>
 <li><span class="math inline">\(S_{1} \cup S_{2} = S_{2} \cup S_{1}\)</span></li>
 <li><span class="math inline">\(S_{1} \cap S_{2} = S_{2} \cap S_{1}\)</span></li>
-<li><strong>Associative</strong>:</li>
+</ul></li>
+<li><strong>Associative</strong>:
+<ul>
 <li><span class="math inline">\(S_{1} \cup (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cup S_{3}\)</span></li>
 <li><span class="math inline">\(S_{1} \cap (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cap S_{3}\)</span></li>
-<li><strong>Distributive</strong>:</li>
+</ul></li>
+<li><strong>Distributive</strong>:
+<ul>
 <li><span class="math inline">\(S_{1} \cup (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cup (S_{1} \cap S_{3})\)</span></li>
 <li><span class="math inline">\(S_{1} \cap (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cap (S_{1} \cup S_{3})\)</span></li>
-<li><strong>Idempotent</strong>:</li>
+</ul></li>
+<li><strong>Idempotent</strong>:
+<ul>
 <li><span class="math inline">\(S_{1} \cup S_{1} = S_{1}\)</span></li>
 <li><span class="math inline">\(S_{1} \cap S_{1} = S_{1}\)</span></li>
-<li><strong>Complement rules</strong>:</li>
+</ul></li>
+<li><strong>Complement rules</strong>:
+<ul>
 <li><span class="math inline">\(\overline{(\overline{S_{1}})} = S_{1}\)</span></li>
 <li><span class="math inline">\(S_{1} \cup \overline{S_{1}} = U\)</span></li>
 <li><span class="math inline">\(S_{1} \cap \overline{S_{1}} = \emptyset\)</span></li>
@@ -267,9 +323,12 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <li><span class="math inline">\(\overline{S_{1} \cap S_{2}} = \overline{S_{1}} \cup \overline{S_{2}}\)</span></li>
 <li><span class="math inline">\(S_{1} \cup U = U\)</span></li>
 <li><span class="math inline">\(S_{1} \cap U = S_{1}\)</span></li>
-<li><strong>Null rules</strong>:</li>
+</ul></li>
+<li><strong>Null rules</strong>:
+<ul>
 <li><span class="math inline">\(S_{1} \cup \emptyset = S_{1}\)</span></li>
 <li><span class="math inline">\(S_{1} \cap \emptyset = \emptyset\)</span></li>
+</ul></li>
 </ul>
 <h4 id="theorem-01.02-sets---addition-principle"><em>Theorem 01.02 (<strong>Sets - addition principle</strong>)</em>:</h4>
 <p>If two sets are disjoint, the cardinality of their union is:</p>
@@ -303,6 +362,14 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
 <h2 id="algorithms">Algorithms</h2>
+<h4 id="computing-a-regular-set">Computing a regular set</h4>
+<ol style="list-style-type: decimal">
+<li>Expression <span class="math inline">\(\lambda\)</span> corresponds to the set <span class="math inline">\(\{\Lambda\}\)</span></li>
+<li>if <span class="math inline">\(x \in S\)</span>, then the regular expression <span class="math inline">\(x\)</span> corresponds to set <span class="math inline">\(\{x\}\)</span></li>
+<li>if <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are regular expressions corresponding to subsets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\(\alpha\beta\)</span> corresponds to <span class="math inline">\(A \cdot B = \{s \cdot t \: | \: s \in A \text{ and } x \in B\}\)</span></li>
+<li>if <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are regular expressions corresponding to subsets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\(\alpha\vee\beta\)</span> corresponds to <span class="math inline">\(A \cup B\)</span></li>
+<li>if <span class="math inline">\(\alpha\)</span> is a regular expression that corresponds to subset <span class="math inline">\(A\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\((\alpha)^{*}\)</span> corresponds to set <span class="math inline">\(A^{*}\)</span></li>
+</ol>
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
