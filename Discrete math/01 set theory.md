@@ -194,6 +194,39 @@ Characteristic functions of subsets satify the following properties:
 
 ---
 
+An **ordered pair** is a listing of objects $a$ and $b$ in a prescribed order $(a, b)$. It can be thought of as a sequence of length 2.
+
+If $A$ and $B$ are non-empty sets, then the **Cartesian product** of $A$ and $B$ are defined as:
+
+\begin{equation*}
+A \times B = \{(a, b) | \, a \in A \; \text{and} \; b \in B\}
+\end{equation*}
+
+---
+
+#### Theorem
+
+For any two finite, non-empty sets $A$ and $B$, $|A \times B| = |A| |B|$.
+
+---
+
+Generalizing the Cartesian product, for any non-empty sets $A_{1}$, $A_{2}$, ..., $A_{n}$, the Cartesian product is:
+
+\begin{equation*}
+A_{1} \times A_{2} \times \cdots \times A_{n} = \{(a_{1}, a_{2}, \dots, a_{n}) | \, a_{i} \in A_{i} \; \text{for} \; i = 1, \dots, n\}
+\end{equation*}
+
+---
+
+A **partition** is a collection of non-empty subsets of $S$ such that:
+
+* $A_{i} \cap A_{j}$ = \emptyset$
+* $s \in S$ and $s \in A_{i}$ for at least one $A_{i}$
+
+where $A_{i} \subseteq S$ for all $i$. $A_{i}$ is known as a **block** of the partition.
+
+---
+
 [(back to top)](#table-of-contents)
 
 ---
@@ -305,6 +338,9 @@ Computing a regular set involves the following algorithm:
 * **disjoint** - two or more sets that share no elements in common
 * **complement** - the elements in one set but not in another set being compared to
 * **symmetric difference** - the non-common elements between two or more sets
+* **ordered pair** - a listing of objects $a$ and $b$ in a prescribed order $(a, b)$
+* **partition** - a collection of non-empty, non-overlapping subsets of set $S$
+* **block** - a member of a partition 
 * **sequence** - a list of elements ordered by increasing value
 * **countable set** - set corresponding to all distinct elements in a sequence
 * **alphabet** - a set of symbols
@@ -421,11 +457,15 @@ Characteristic functions of subsets satify the following properties:
 * $f_{S_{1} \cap S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - f_{S_{1}}(x)f_{S_{2}}(x)$
 * $f_{S_{1} \oplus S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - 2f_{S_{1}}(x)f_{S_{2}}(x)$
 
-#### _Theorem 01.04 (**Sequences - multiplication principle**)_:
+#### _Theorem 01.04 (**Sets**)_:
+
+For any two finite, non-empty sets $A$ and $B$, $|A \times B| = |A| |B|$.
+
+#### _Theorem 01.05 (**Sequences - multiplication principle**)_:
 
 If independent tasks $T_{i}$ for $i = 1, \dotsc, n$ are to be performed in sequence and each $T_{i}$ can be performed $N_{i}$ ways, then the sequence $T_{1}T_{2} \dotsc T_{n}$ can be performed $\prod_{i = 1}^{n} N_{i}$ ways.
 
-#### _Theorem 01.05 (**Sequences - permutation**)_:
+#### _Theorem 01.06 (**Sequences - permutation**)_:
 
 If $|S| = n$ and $1 \leq r \leq n$, then the number of permutations of $S$ taken $r$ at a time is:
 
@@ -433,7 +473,7 @@ If $|S| = n$ and $1 \leq r \leq n$, then the number of permutations of $S$ taken
 P_{r}^{n} = \frac{n!}{(n - r)!}
 \end{equation*}
 
-#### _Theorem 01.06 (**Sequences - combination**)_:
+#### _Theorem 01.07 (**Sequences - combination**)_:
 
 If $|S| = n$ and $1 \leq 0 \leq n$, then the number of $r$-element subsets of $S$ is:
 

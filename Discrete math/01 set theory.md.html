@@ -165,6 +165,27 @@ f_{S}(x) =
 <li><span class="math inline">\(f_{S_{1} \oplus S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - 2f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
 </ul>
 <hr />
+<p>An <strong>ordered pair</strong> is a listing of objects <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> in a prescribed order <span class="math inline">\((a, b)\)</span>. It can be thought of as a sequence of length 2.</p>
+<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are non-empty sets, then the <strong>Cartesian product</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are defined as:</p>
+\begin{equation*}
+A \times B = \{(a, b) | \, a \in A \; \text{and} \; b \in B\}
+\end{equation*}
+<hr />
+<h4 id="theorem-2">Theorem</h4>
+<p>For any two finite, non-empty sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(|A \times B| = |A| |B|\)</span>.</p>
+<hr />
+<p>Generalizing the Cartesian product, for any non-empty sets <span class="math inline">\(A_{1}\)</span>, <span class="math inline">\(A_{2}\)</span>, ..., <span class="math inline">\(A_{n}\)</span>, the Cartesian product is:</p>
+\begin{equation*}
+A_{1} \times A_{2} \times \cdots \times A_{n} = \{(a_{1}, a_{2}, \dots, a_{n}) | \, a_{i} \in A_{i} \; \text{for} \; i = 1, \dots, n\}
+\end{equation*}
+<hr />
+<p>A <strong>partition</strong> is a collection of non-empty subsets of <span class="math inline">\(S\)</span> such that:</p>
+<ul>
+<li><span class="math inline">\(A_{i} \cap A_{j}\)</span> = $</li>
+<li><span class="math inline">\(s \in S\)</span> and <span class="math inline">\(s \in A_{i}\)</span> for at least one <span class="math inline">\(A_{i}\)</span></li>
+</ul>
+<p>where <span class="math inline">\(A_{i} \subseteq S\)</span> for all <span class="math inline">\(i\)</span>. <span class="math inline">\(A_{i}\)</span> is known as a <strong>block</strong> of the partition.</p>
+<hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
 <h2 id="sequences">Sequences</h2>
@@ -245,6 +266,9 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <li><strong>disjoint</strong> - two or more sets that share no elements in common</li>
 <li><strong>complement</strong> - the elements in one set but not in another set being compared to</li>
 <li><strong>symmetric difference</strong> - the non-common elements between two or more sets</li>
+<li><strong>ordered pair</strong> - a listing of objects <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> in a prescribed order <span class="math inline">\((a, b)\)</span></li>
+<li><strong>partition</strong> - a collection of non-empty, non-overlapping subsets of set <span class="math inline">\(S\)</span></li>
+<li><strong>block</strong> - a member of a partition</li>
 <li><strong>sequence</strong> - a list of elements ordered by increasing value</li>
 <li><strong>countable set</strong> - set corresponding to all distinct elements in a sequence</li>
 <li><strong>alphabet</strong> - a set of symbols</li>
@@ -346,14 +370,16 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <li><span class="math inline">\(f_{S_{1} \cap S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
 <li><span class="math inline">\(f_{S_{1} \oplus S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - 2f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
 </ul>
-<h4 id="theorem-01.04-sequences---multiplication-principle"><em>Theorem 01.04 (<strong>Sequences - multiplication principle</strong>)</em>:</h4>
+<h4 id="theorem-01.04-sets"><em>Theorem 01.04 (<strong>Sets</strong>)</em>:</h4>
+<p>For any two finite, non-empty sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(|A \times B| = |A| |B|\)</span>.</p>
+<h4 id="theorem-01.05-sequences---multiplication-principle"><em>Theorem 01.05 (<strong>Sequences - multiplication principle</strong>)</em>:</h4>
 <p>If independent tasks <span class="math inline">\(T_{i}\)</span> for <span class="math inline">\(i = 1, \dotsc, n\)</span> are to be performed in sequence and each <span class="math inline">\(T_{i}\)</span> can be performed <span class="math inline">\(N_{i}\)</span> ways, then the sequence <span class="math inline">\(T_{1}T_{2} \dotsc T_{n}\)</span> can be performed <span class="math inline">\(\prod_{i = 1}^{n} N_{i}\)</span> ways.</p>
-<h4 id="theorem-01.05-sequences---permutation"><em>Theorem 01.05 (<strong>Sequences - permutation</strong>)</em>:</h4>
+<h4 id="theorem-01.06-sequences---permutation"><em>Theorem 01.06 (<strong>Sequences - permutation</strong>)</em>:</h4>
 <p>If <span class="math inline">\(|S| = n\)</span> and <span class="math inline">\(1 \leq r \leq n\)</span>, then the number of permutations of <span class="math inline">\(S\)</span> taken <span class="math inline">\(r\)</span> at a time is:</p>
 \begin{equation*}
 P_{r}^{n} = \frac{n!}{(n - r)!}
 \end{equation*}
-<h4 id="theorem-01.06-sequences---combination"><em>Theorem 01.06 (<strong>Sequences - combination</strong>)</em>:</h4>
+<h4 id="theorem-01.07-sequences---combination"><em>Theorem 01.07 (<strong>Sequences - combination</strong>)</em>:</h4>
 <p>If <span class="math inline">\(|S| = n\)</span> and <span class="math inline">\(1 \leq 0 \leq n\)</span>, then the number of <span class="math inline">\(r\)</span>-element subsets of <span class="math inline">\(S\)</span> is:</p>
 \begin{equation*}
 C_{r}^{n} = \frac{n!}{r!(n - r)!}
