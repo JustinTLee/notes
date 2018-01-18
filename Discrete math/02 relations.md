@@ -1,5 +1,4 @@
 # Set theory
-a
 
 ---
 
