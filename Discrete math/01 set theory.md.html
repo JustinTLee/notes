@@ -25,78 +25,115 @@
 <li><a href="#sets">Sets</a></li>
 <li><a href="#sequences">Sequences</a></li>
 <li><a href="#regular-expressions">Regular expressions</a></li>
-<li><a href="#definitions">Definitions</a></li>
 <li><a href="#equations">Equations</a></li>
 <li><a href="#theorems">Theorems</a></li>
-<li><a href="#algorithms">Algorithms</a></li>
 <li><a href="#references">References</a></li>
 </ol>
 <hr />
 <h2 id="sets">Sets</h2>
-<p>A <strong>set</strong> is a well-defined collection of <strong>elements</strong>. Elements that exist within a set are called <strong>members</strong>.</p>
+<ul>
+<li>a <strong>set</strong> is a well-defined collection of <strong>elements</strong></li>
+<li>elements that exist within a set are called <strong>members</strong>
 <ul>
 <li>member order is not important</li>
-<li>each member is distinct.</li>
+<li>each member is distinct</li>
+</ul></li>
 </ul>
-<p>Enumerating the contents of a set with <span class="math inline">\(n\)</span> members is represented by:</p>
+<p><br/></p>
+<ul>
+<li>enumerate contents of set <span class="math inline">\(S\)</span> with <span class="math inline">\(n\)</span> members:</li>
+</ul>
 \begin{equation*}
 S = {A_{1}, \dotso, A_{n}}
 \end{equation*}
-<p><span class="math inline">\(x \in S\)</span> defines that <span class="math inline">\(x\)</span> <strong>is</strong> a member of set <span class="math inline">\(S\)</span>. <span class="math inline">\(x \notin S\)</span> defines that <span class="math inline">\(x\)</span> <strong>is not</strong> a member of set <span class="math inline">\(S\)</span>.</p>
-<p>We can specify a set by the properties that all the members have in common like so:</p>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(x \in S\)</span> defines that <span class="math inline">\(x\)</span> <strong>is</strong> a member of set <span class="math inline">\(S\)</span></li>
+<li><span class="math inline">\(x \notin S\)</span> defines that <span class="math inline">\(x\)</span> <strong>is not</strong> a member of set <span class="math inline">\(S\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li>define set by a property that all members have in common where <span class="math inline">\(P(x)\)</span> denotes true proposition concerning member <span class="math inline">\(x\)</span>:</li>
+</ul>
 \begin{equation*}
 S = \{x \: | \: P(x)\}
 \end{equation*}
-<p>where <span class="math inline">\(P(x)\)</span> denotes a proposition concerning member <span class="math inline">\(x\)</span> where <span class="math inline">\(P(x)\)</span> is true.</p>
-<hr />
-<p>The following are common sets:</p>
+<p><br/></p>
+<ul>
+<li>commonly encountered sets:
 <ul>
 <li><span class="math inline">\(Z^{+} = \{x \: | \: x \text{ is a positive integer}\}\)</span></li>
 <li><span class="math inline">\(N = \{x \: | \: x \ge 0 \text{ and } x \text{ is an integer}\}\)</span></li>
 <li><span class="math inline">\(Z = \{x \: | \: x \text{ is an integer}\}\)</span></li>
 <li><span class="math inline">\(\mathbb{R} = \{x \: | \: x \text{ is real number}\}\)</span></li>
 <li><span class="math inline">\(\emptyset\)</span> has no elements (<span class="math inline">\(S = \{\}\)</span>)</li>
+</ul></li>
 </ul>
-<hr />
-<p>Two sets are <strong>equal</strong> if they have the same elements, written as:</p>
+<p><br/></p>
+<ul>
+<li><strong>equal</strong> sets have same elements:</li>
+</ul>
 \begin{equation*}
 S_{1} = S_{2}
 \end{equation*}
-<p>If every member of <span class="math inline">\(A\)</span> is also a member of <span class="math inline">\(B\)</span> (<span class="math inline">\(x \in A\)</span> and <span class="math inline">\(x \in B\)</span> for all x), then <span class="math inline">\(A\)</span> is a <strong>subset</strong> of <span class="math inline">\(B\)</span>:</p>
+<ul>
+<li>If <span class="math inline">\(x \in A\)</span> and <span class="math inline">\(x \in B\)</span> for all <span class="math inline">\(x\)</span>, then <span class="math inline">\(A\)</span> is a <strong>subset</strong> of <span class="math inline">\(B\)</span>:</li>
+</ul>
 \begin{equation*}
 A \subseteq B
 \end{equation*}
-<p>Furthermore, <span class="math inline">\(\emptyset \subseteq S\)</span> at all times.</p>
-<hr />
-<p>A set is <strong>finite</strong> if it has <span class="math inline">\(n\)</span> distinct elements. <span class="math inline">\(n\)</span> is called the <strong>cardinality</strong> of set <span class="math inline">\(S\)</span> and is denoted by <span class="math inline">\(|S|\)</span>.</p>
-<p>A <strong>power set</strong> is the set of all subsets of <span class="math inline">\(S\)</span> and is denoted by <span class="math inline">\(P(S)\)</span>. If <span class="math inline">\(|S| = n\)</span>, then <span class="math inline">\(|P(S)| = 2^{n}\)</span>.</p>
-<hr />
-<p>The <strong>union</strong> between two sets is defined as:</p>
+<ul>
+<li><span class="math inline">\(\emptyset \subseteq S\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><strong>finite</strong> set has <span class="math inline">\(n\)</span> distinct elements</li>
+<li><span class="math inline">\(n\)</span> is <strong>cardinality</strong> of set <span class="math inline">\(S\)</span>
+<ul>
+<li>denoted by <span class="math inline">\(|S|\)</span></li>
+</ul></li>
+<li><strong>power set</strong> is set of all subsets of <span class="math inline">\(S\)</span>
+<ul>
+<li>denoted by <span class="math inline">\(P(S)\)</span></li>
+</ul></li>
+<li>if <span class="math inline">\(|S| = n\)</span>, then <span class="math inline">\(|P(S)| = 2^{n}\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><strong>union</strong> between two sets:</li>
+</ul>
 \begin{equation*}
 S_{1} \cup S_{2} = \{x \: | \: x \in S_{1} \text{ or } x \in S_{2}\}
 \end{equation*}
-<p>The union between <span class="math inline">\(k\)</span> sets can be written as <span class="math inline">\(\bigcup_{i = 1}^{k} S_{i}\)</span>.</p>
-<p>The <strong>intersection</strong> between two sets is defined as:</p>
+<ul>
+<li>union between <span class="math inline">\(k\)</span> sets: <span class="math inline">\(\bigcup_{i = 1}^{k} S_{i}\)</span>.</li>
+<li><strong>intersection</strong> between two sets:</li>
+</ul>
 \begin{equation*}
 S_{1} \cap S_{2} = \{x \: | \: x \in S_{1} \text{ and } x \in S_{2}\}
 \end{equation*}
-<p>The union between <span class="math inline">\(k\)</span> sets can be written as <span class="math inline">\(\bigcap_{i = 1}^{k} S_{i}\)</span>.</p>
-<p>Two sets that have no common elements are called <strong>disjoint</strong> and can be represented as:</p>
+<ul>
+<li><p>intersection between <span class="math inline">\(k\)</span> sets: <span class="math inline">\(\bigcap_{i = 1}^{k} S_{i}\)</span>.</p></li>
+<li><p><strong>disjoint</strong> sets have no common elements:</p></li>
+</ul>
 \begin{equation*}
 S_{1} \cup S_{2} = \emptyset
 \end{equation*}
-<p>The <strong>complement</strong> of two sets is defined as:</p>
+<ul>
+<li><strong>complement</strong> of two sets:</li>
+</ul>
 \begin{equation*}
 S_{1} - S_{2} = \{x \: | \: x \in S_{1} \text{ and } x \notin S_{2}\}
 \end{equation*}
-<p>The complement of a set compared to some universal set can be denoted as <span class="math inline">\(\overline{S}\)</span>.</p>
-<p>The <strong>symmetric difference</strong> between two sets are all the elements that belong to either one of the sets but not to both. It is represented by:</p>
+<ul>
+<li><p>complement of a set compared to some universal set: <span class="math inline">\(\overline{S}\)</span>.</p></li>
+<li><p><strong>symmetric difference</strong> between two sets are all the elements that belong to either one of the sets but not to both:</p></li>
+</ul>
 \begin{equation*}
 S_{1} \oplus S_{2} = \{x \: | \: (x \in S_{1} \text{ and } x \notin S_{2}) \text{ or } (x \notin S_{1} \text{ and } x \in S_{2})\}
 \end{equation*}
-<hr />
-<h4 id="theorem">Theorem</h4>
-<p>The algebraic properties of sets are:</p>
+<p><br/></p>
+<h4 id="theorem-algebraic-properties-of-sets">Theorem: algebraic properties of sets</h4>
 <p><strong>Commutative</strong>:</p>
 <ul>
 <li><span class="math inline">\(S_{1} \cup S_{2} = S_{2} \cup S_{1}\)</span></li>
@@ -137,18 +174,22 @@ S_{1} \oplus S_{2} = \{x \: | \: (x \in S_{1} \text{ and } x \notin S_{2}) \text
 <li><span class="math inline">\(S_{1} \cup \emptyset = S_{1}\)</span></li>
 <li><span class="math inline">\(S_{1} \cap \emptyset = \emptyset\)</span></li>
 </ul>
-<hr />
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
 <h4 id="theorem-addition-principle">Theorem: addition principle</h4>
-<p>If two sets are disjoint, the cardinality of their union is:</p>
+<p>For two disjoint sets, the cardinality of their union is:</p>
 \begin{equation*}
 |S_{1} \cup S_{2}| = |S_{1}| + |S_{2}|
 \end{equation*}
-<p>If two sets are not disjoint, the cardinality of their union is given by the <strong>addition principle</strong>:</p>
+<p>For two non-disjoint sets, the cardinality of their union is given by the <strong>addition principle</strong>:</p>
 \begin{equation*}
 |S_{1} \cup S_{2}| = |S_{1}| + |S_{2}| - |S_{1} \cap S_{2}|
 \end{equation*}
-<hr />
-<p>The <strong>characteristic function</strong> of a set is defined as:</p>
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
+<ul>
+<li><strong>characteristic function</strong> of a set:</li>
+</ul>
 \begin{equation*}
 f_{S}(x) =
 \begin{cases}
@@ -156,91 +197,137 @@ f_{S}(x) =
 0 \quad \text{if } x \notin S
 \end{cases}
 \end{equation*}
-<hr />
-<h4 id="theorem-1">Theorem</h4>
-<p>Characteristic functions of subsets satify the following properties:</p>
+<p><br/></p>
+<h4 id="theorem-properties-of-characteristic-functions">Theorem: properties of characteristic functions</h4>
+<p>Characteristic functions of subsets satisfy the following properties:</p>
 <ul>
 <li><span class="math inline">\(f_{S_{1} \cup S_{2}}(x) = f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
 <li><span class="math inline">\(f_{S_{1} \cap S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
 <li><span class="math inline">\(f_{S_{1} \oplus S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - 2f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
 </ul>
-<hr />
-<p>An <strong>ordered pair</strong> is a listing of objects <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> in a prescribed order <span class="math inline">\((a, b)\)</span>. It can be thought of as a sequence of length 2.</p>
-<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are non-empty sets, then the <strong>Cartesian product</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are defined as:</p>
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
+<ul>
+<li><strong>ordered pair</strong> - a listing of objects <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> in a prescribed order <span class="math inline">\((a, b)\)</span>
+<ul>
+<li>same as a sequence of length 2</li>
+</ul></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><strong>Cartesian product</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>:</li>
+</ul>
 \begin{equation*}
 A \times B = \{(a, b) | \, a \in A \; \text{and} \; b \in B\}
 \end{equation*}
-<hr />
-<h4 id="theorem-2">Theorem</h4>
+<p><br/></p>
+<h4 id="theorem-cardinality-of-cartesisan-product">Theorem: cardinality of Cartesisan product</h4>
 <p>For any two finite, non-empty sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(|A \times B| = |A| |B|\)</span>.</p>
-<hr />
-<p>Generalizing the Cartesian product, for any non-empty sets <span class="math inline">\(A_{1}\)</span>, <span class="math inline">\(A_{2}\)</span>, ..., <span class="math inline">\(A_{n}\)</span>, the Cartesian product is:</p>
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
+<ul>
+<li>for any non-empty sets <span class="math inline">\(A_{1}\)</span>, <span class="math inline">\(A_{2}\)</span>, ..., <span class="math inline">\(A_{n}\)</span>, the Cartesian product is:</li>
+</ul>
 \begin{equation*}
 A_{1} \times A_{2} \times \cdots \times A_{n} = \{(a_{1}, a_{2}, \dots, a_{n}) | \, a_{i} \in A_{i} \; \text{for} \; i = 1, \dots, n\}
 \end{equation*}
-<hr />
-<p>A <strong>partition</strong> is a collection of non-empty subsets of <span class="math inline">\(S\)</span> such that:</p>
+<p><br/></p>
+<ul>
+<li><strong>partition</strong> is collection of non-empty subsets of <span class="math inline">\(S\)</span> such that:
 <ul>
 <li><span class="math inline">\(A_{i} \cap A_{j}\)</span> = $</li>
-<li><span class="math inline">\(s \in S\)</span> and <span class="math inline">\(s \in A_{i}\)</span> for at least one <span class="math inline">\(A_{i}\)</span></li>
+<li><span class="math inline">\(s \in S\)</span> and <span class="math inline">\(s \in A_{i}\)</span> for at least one <span class="math inline">\(A_{i}\)</span>
+<ul>
+<li>where <span class="math inline">\(A_{i} \subseteq S\)</span> for all <span class="math inline">\(i\)</span></li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(A_{i}\)</span> is a <strong>block</strong> of the partition</li>
 </ul>
-<p>where <span class="math inline">\(A_{i} \subseteq S\)</span> for all <span class="math inline">\(i\)</span>. <span class="math inline">\(A_{i}\)</span> is known as a <strong>block</strong> of the partition.</p>
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
 <h2 id="sequences">Sequences</h2>
-<p>A <strong>sequence</strong> is a list of elements ordered by increasing value. The list may be finite or infinite. List items can be non-distinct. A general sequence can be written as <span class="math inline">\(a_{1}, a_{2}, a_{3}, \dotsc\)</span> or <span class="math inline">\((a_{i})_{1 \leq i &lt; \infty}\)</span>.</p>
-<p>A <strong>countable</strong> set is a set corresponding to all distinct elements in a sequence. The set <span class="math inline">\(S^{*}\)</span> consists of all finite sequences of the members of <span class="math inline">\(S\)</span>. If the members of <span class="math inline">\(S\)</span> are symbols, <span class="math inline">\(S^{*}\)</span> is called an <strong>alphabet</strong>. Finite sequences in <span class="math inline">\(S^{*}\)</span> are called <strong>strings</strong>. <span class="math inline">\(S^{*}\)</span> includes the empty string <span class="math inline">\(\Lambda\)</span>. The <strong>catenation</strong> of two strings is equivalent to:</p>
+<ul>
+<li><strong>sequence</strong> is list of elements ordered by increasing value
+<ul>
+<li>list may be finite or infinite</li>
+<li>list items can be non-distinct</li>
+</ul></li>
+<li>general sequence can be written as <span class="math inline">\(a_{1}, a_{2}, a_{3}, \dotsc\)</span> or <span class="math inline">\((a_{i})_{1 \leq i &lt; \infty}\)</span>.</li>
+</ul>
+<p><br/></p>
+<ul>
+<li><strong>countable</strong> set is set corresponding to all distinct elements in a sequence
+<ul>
+<li>set <span class="math inline">\(S^{*}\)</span> consists of all finite sequences of the members of <span class="math inline">\(S\)</span></li>
+</ul></li>
+<li>if the members of <span class="math inline">\(S\)</span> are symbols, <span class="math inline">\(S^{*}\)</span> is <strong>alphabet</strong></li>
+<li>finite sequences in <span class="math inline">\(S^{*}\)</span> are <strong>strings</strong>
+<ul>
+<li><span class="math inline">\(S^{*}\)</span> includes empty string <span class="math inline">\(\Lambda\)</span></li>
+<li>the <strong>catenation</strong> of two strings is equivalent to:</li>
+</ul></li>
+</ul>
 \begin{equation*}
 s \cdot w = \underbrace{s_{1}s_{2}s_{3}}_{\text{string #1}} \underbrace{w_{1}w_{2}w_{3}}_{\text{string #2}}
 \end{equation*}
-<p>Catenation with the empty string is an identity:</p>
+<ul>
+<li>Catenation with empty string is identity:
 <ul>
 <li><span class="math inline">\(s \cdot \Lambda = s\)</span></li>
 <li><span class="math inline">\(\Lambda \cdot s = s\)</span></li>
+</ul></li>
 </ul>
-<hr />
+<p><br/></p>
 <h4 id="theorem-multiplication-principle">Theorem: multiplication principle</h4>
 <p>If independent tasks <span class="math inline">\(T_{i}\)</span> for <span class="math inline">\(i = 1, \dotsc, n\)</span> are to be performed in sequence and each <span class="math inline">\(T_{i}\)</span> can be performed <span class="math inline">\(N_{i}\)</span> ways, then the sequence <span class="math inline">\(T_{1}T_{2} \dotsc T_{n}\)</span> can be performed <span class="math inline">\(\prod_{i = 1}^{n} N_{i}\)</span> ways.</p>
-<hr />
-<p>For a set that is <span class="math inline">\(|S| = n\)</span>, an arrangement of the members of S into a sequence of length <span class="math inline">\(n\)</span> is a <strong>permutation</strong> of S. For a sequence that is length <span class="math inline">\(r\)</span> taken from set <span class="math inline">\(S\)</span>, it is known as a <strong>permutation of <span class="math inline">\(S\)</span> taken <span class="math inline">\(r\)</span> at a time</strong>.</p>
-<hr />
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
+<ul>
+<li>for set <span class="math inline">\(|S| = n\)</span>, arrangement of the members of S into sequence of length <span class="math inline">\(n\)</span> is <strong>permutation</strong> of S</li>
+<li>for sequence that is length <span class="math inline">\(r\)</span> taken from set <span class="math inline">\(S\)</span>, it is known as a <strong>permutation of <span class="math inline">\(S\)</span> taken <span class="math inline">\(r\)</span> at a time</strong></li>
+</ul>
+<p><br/></p>
 <h4 id="theorem-permutation">Theorem: permutation</h4>
 <p>If <span class="math inline">\(|S| = n\)</span> and <span class="math inline">\(1 \leq r \leq n\)</span>, then the number of permutations of <span class="math inline">\(S\)</span> taken <span class="math inline">\(r\)</span> at a time is:</p>
 \begin{equation*}
 P_{r}^{n} = \frac{n!}{(n - r)!}
 \end{equation*}
 <p>This formula is also known as a <strong>permutation</strong>.</p>
-<hr />
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
 <h4 id="theorem-combination">Theorem: combination</h4>
 <p>If <span class="math inline">\(|S| = n\)</span> and <span class="math inline">\(1 \leq 0 \leq n\)</span>, then the number of <span class="math inline">\(r\)</span>-element subsets of <span class="math inline">\(S\)</span> is:</p>
 \begin{equation*}
 C_{r}^{n} = \frac{n!}{r!(n - r)!}
 \end{equation*}
 <p>This formula is also known as a <strong>combination</strong>.</p>
+<p><strong>End theorem.</strong></p>
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
 <h2 id="regular-expressions">Regular expressions</h2>
-<p>A <strong>regular expression</strong> over set <span class="math inline">\(S\)</span> is a string constructed from the elements of <span class="math inline">\(S\)</span> and/or the following symbols:</p>
+<ul>
+<li><strong>regular expression</strong> over set <span class="math inline">\(S\)</span> is string constructed from the elements of <span class="math inline">\(S\)</span> and/or the following symbols:
 <ul>
 <li>(</li>
 <li>)</li>
 <li><span class="math inline">\(\vee\)</span></li>
 <li><span class="math inline">\(*\)</span></li>
 <li><span class="math inline">\(\lambda\)</span></li>
-</ul>
-<p>The following are rules for regular expressions:</p>
+</ul></li>
+<li>rules for regular expressions:
 <ul>
 <li>the symbol <span class="math inline">\(\lambda\)</span> is a regular expression</li>
 <li>if <span class="math inline">\(x \in S\)</span> then <span class="math inline">\(x\)</span> is a regular expression</li>
 <li>if <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are regular expressions, then <span class="math inline">\(\alpha\beta\)</span> is a regular expression</li>
 <li>if <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are regular expressions, then <span class="math inline">\(\alpha\vee\beta\)</span> is a regular expression</li>
 <li>if <span class="math inline">\(\alpha\)</span> is a regular expression, then <span class="math inline">\((\alpha)^{*}\)</span> is a regular expression</li>
+</ul></li>
+<li>set <span class="math inline">\(S^{*}\)</span> is called a <strong>regular set</strong> of <span class="math inline">\(S\)</span></li>
 </ul>
-<p>The set <span class="math inline">\(S^{*}\)</span> is called a <strong>regular set</strong> of <span class="math inline">\(S\)</span>.</p>
-<hr />
-<h4 id="algorthim-computing-a-regular-set">Algorthim: computing a regular set</h4>
+<p><br/></p>
+<h4 id="algorithm-computing-a-regular-set">Algorithm: computing a regular set</h4>
 <p>Computing a regular set involves the following algorithm:</p>
 <ol style="list-style-type: decimal">
 <li>Expression <span class="math inline">\(\lambda\)</span> corresponds to the set <span class="math inline">\(\{\Lambda\}\)</span></li>
@@ -249,34 +336,7 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 <li>if <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are regular expressions corresponding to subsets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\(\alpha\vee\beta\)</span> corresponds to <span class="math inline">\(A \cup B\)</span></li>
 <li>if <span class="math inline">\(\alpha\)</span> is a regular expression that corresponds to subset <span class="math inline">\(A\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\((\alpha)^{*}\)</span> corresponds to set <span class="math inline">\(A^{*}\)</span></li>
 </ol>
-<hr />
-<p><a href="#table-of-contents">(back to top)</a></p>
-<hr />
-<h2 id="definitions">Definitions</h2>
-<ul>
-<li><strong>set</strong> - well-defined collection of elements</li>
-<li><strong>members</strong> - elements that exist within a set</li>
-<li><strong>equal</strong> - two sets that have the same elements, denoted by <span class="math inline">\(=\)</span></li>
-<li><strong>subset</strong> - a set in which all members are also members of another set</li>
-<li><strong>finite</strong> - a set with <span class="math inline">\(n\)</span> distinct elements</li>
-<li><strong>cardinality</strong> - the number of distinct elements within a finite set, denoted by <span class="math inline">\(|S|\)</span></li>
-<li><strong>power set</strong> - set of all subsets of <span class="math inline">\(S\)</span>, denoted by <span class="math inline">\(P(S)\)</span></li>
-<li><strong>union</strong> - a set that contains all of the elements of two or more other sets</li>
-<li><strong>intersection</strong> - a set that contains all of the common elements of two or more other sets</li>
-<li><strong>disjoint</strong> - two or more sets that share no elements in common</li>
-<li><strong>complement</strong> - the elements in one set but not in another set being compared to</li>
-<li><strong>symmetric difference</strong> - the non-common elements between two or more sets</li>
-<li><strong>ordered pair</strong> - a listing of objects <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> in a prescribed order <span class="math inline">\((a, b)\)</span></li>
-<li><strong>partition</strong> - a collection of non-empty, non-overlapping subsets of set <span class="math inline">\(S\)</span></li>
-<li><strong>block</strong> - a member of a partition</li>
-<li><strong>sequence</strong> - a list of elements ordered by increasing value</li>
-<li><strong>countable set</strong> - set corresponding to all distinct elements in a sequence</li>
-<li><strong>alphabet</strong> - a set of symbols</li>
-<li><strong>strings</strong> - finite sequences of members of a set, where the members are symbols</li>
-<li><strong>catenation</strong> - the writing of two or more strings adjacently</li>
-<li><strong>permutation</strong> - an arragement of members of a set into a sequence</li>
-<li><strong>regular expression</strong> - a string constructed from the elements of a set and a subclass of symbols</li>
-</ul>
+<p><strong>End algorithm.</strong></p>
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
@@ -384,20 +444,6 @@ P_{r}^{n} = \frac{n!}{(n - r)!}
 \begin{equation*}
 C_{r}^{n} = \frac{n!}{r!(n - r)!}
 \end{equation*}
-<hr />
-<p><a href="#table-of-contents">(back to top)</a></p>
-<hr />
-<h2 id="algorithms">Algorithms</h2>
-<h4 id="computing-a-regular-set">Computing a regular set</h4>
-<ol style="list-style-type: decimal">
-<li>Expression <span class="math inline">\(\lambda\)</span> corresponds to the set <span class="math inline">\(\{\Lambda\}\)</span></li>
-<li>if <span class="math inline">\(x \in S\)</span>, then the regular expression <span class="math inline">\(x\)</span> corresponds to set <span class="math inline">\(\{x\}\)</span></li>
-<li>if <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are regular expressions corresponding to subsets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\(\alpha\beta\)</span> corresponds to <span class="math inline">\(A \cdot B = \{s \cdot t \: | \: s \in A \text{ and } x \in B\}\)</span></li>
-<li>if <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are regular expressions corresponding to subsets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\(\alpha\vee\beta\)</span> corresponds to <span class="math inline">\(A \cup B\)</span></li>
-<li>if <span class="math inline">\(\alpha\)</span> is a regular expression that corresponds to subset <span class="math inline">\(A\)</span> of <span class="math inline">\(S^{*}\)</span>, then <span class="math inline">\((\alpha)^{*}\)</span> corresponds to set <span class="math inline">\(A^{*}\)</span></li>
-</ol>
-<hr />
-<p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
 <h2 id="references">References</h2>
 <hr />

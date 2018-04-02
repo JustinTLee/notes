@@ -7,112 +7,115 @@
 01. [Sets](#sets)
 02. [Sequences](#sequences)
 03. [Regular expressions](#regular-expressions)
-04. [Definitions](#definitions)
-05. [Equations](#equations)
-06. [Theorems](#theorems)
-07. [Algorithms](#algorithms)
-08. [References](#references)
+04. [Equations](#equations)
+05. [Theorems](#theorems)
+06. [References](#references)
 
 ---
 
 ## Sets
 
-A **set** is a well-defined collection of **elements**. Elements that exist within a set are called **members**. 
+* a **set** is a well-defined collection of **elements**
+* elements that exist within a set are called **members**
+    * member order is not important
+    * each member is distinct
 
-* member order is not important
-* each member is distinct.
 
-Enumerating the contents of a set with $n$ members is represented by:
+<br/>
+
+* enumerate contents of set $S$ with $n$ members:
 
 \begin{equation*}
 S = {A_{1}, \dotso, A_{n}}
 \end{equation*}
 
-$x \in S$ defines that $x$ **is** a member of set $S$. $x \notin S$ defines that $x$ **is not** a member of set $S$.
+<br/>
 
-We can specify a set by the properties that all the members have in common like so:
+* $x \in S$ defines that $x$ **is** a member of set $S$
+* $x \notin S$ defines that $x$ **is not** a member of set $S$
+
+<br/>
+
+* define set by a property that all members have in common where $P(x)$ denotes true proposition concerning member $x$:
 
 \begin{equation*}
 S = \{x \: | \: P(x)\}
 \end{equation*}
 
-where $P(x)$ denotes a proposition concerning member $x$ where $P(x)$ is true.
+<br/>
 
----
+* commonly encountered sets:
+    * $Z^{+} = \{x \: | \: x \text{ is a positive integer}\}$
+    * $N = \{x \: | \: x \ge 0 \text{ and } x \text{ is an integer}\}$
+    * $Z = \{x \: | \: x \text{ is an integer}\}$
+    * $\mathbb{R} = \{x \: | \: x \text{ is real number}\}$
+    * $\emptyset$ has no elements ($S = \{\}$)
 
-The following are common sets:
+<br/>
 
-* $Z^{+} = \{x \: | \: x \text{ is a positive integer}\}$
-* $N = \{x \: | \: x \ge 0 \text{ and } x \text{ is an integer}\}$
-* $Z = \{x \: | \: x \text{ is an integer}\}$
-* $\mathbb{R} = \{x \: | \: x \text{ is real number}\}$
-* $\emptyset$ has no elements ($S = \{\}$)
-
----
-
-Two sets are **equal** if they have the same elements, written as:
+* **equal** sets have same elements:
 
 \begin{equation*}
 S_{1} = S_{2}
 \end{equation*}
 
-If every member of $A$ is also a member of $B$ ($x \in A$ and $x \in B$ for all x), then $A$ is a **subset** of $B$:
+* If $x \in A$ and $x \in B$ for all $x$, then $A$ is a **subset** of $B$:
 
 \begin{equation*}
 A \subseteq B
 \end{equation*}
 
-Furthermore, $\emptyset \subseteq S$ at all times.
+* $\emptyset \subseteq S$
 
----
+<br/>
 
-A set is **finite** if it has $n$ distinct elements. $n$ is called the **cardinality** of set $S$ and is denoted by $|S|$.
+* **finite** set has $n$ distinct elements
+* $n$ is **cardinality** of set $S$
+    * denoted by $|S|$
+* **power set** is set of all subsets of $S$
+    * denoted by $P(S)$
+* if $|S| = n$, then $|P(S)| = 2^{n}$
 
-A **power set** is the set of all subsets of $S$ and is denoted by $P(S)$. If $|S| = n$, then $|P(S)| = 2^{n}$.
+<br/>
 
----
-
-The **union** between two sets is defined as:
+* **union** between two sets:
 
 \begin{equation*}
 S_{1} \cup S_{2} = \{x \: | \: x \in S_{1} \text{ or } x \in S_{2}\}
 \end{equation*}
 
-The union between $k$ sets can be written as $\bigcup_{i = 1}^{k} S_{i}$.
-
-The **intersection** between two sets is defined as:
+* union between $k$ sets: $\bigcup_{i = 1}^{k} S_{i}$.
+* **intersection** between two sets:
 
 \begin{equation*}
 S_{1} \cap S_{2} = \{x \: | \: x \in S_{1} \text{ and } x \in S_{2}\}
 \end{equation*}
 
-The union between $k$ sets can be written as $\bigcap_{i = 1}^{k} S_{i}$.
+* intersection between $k$ sets: $\bigcap_{i = 1}^{k} S_{i}$.
 
-Two sets that have no common elements are called **disjoint** and can be represented as:
+* **disjoint** sets  have no common elements:
 
 \begin{equation*}
 S_{1} \cup S_{2} = \emptyset
 \end{equation*}
 
-The **complement** of two sets is defined as:
+* **complement** of two sets:
 
 \begin{equation*}
 S_{1} - S_{2} = \{x \: | \: x \in S_{1} \text{ and } x \notin S_{2}\}
 \end{equation*}
 
-The complement of a set compared to some universal set can be denoted as $\overline{S}$.
+* complement of a set compared to some universal set: $\overline{S}$.
 
-The **symmetric difference** between two sets are all the elements that belong to either one of the sets but not to both. It is represented by:
+* **symmetric difference** between two sets are all the elements that belong to either one of the sets but not to both:
 
 \begin{equation*}
 S_{1} \oplus S_{2} = \{x \: | \: (x \in S_{1} \text{ and } x \notin S_{2}) \text{ or } (x \notin S_{1} \text{ and } x \in S_{2})\}
 \end{equation*}
 
----
+<br/>
 
-#### Theorem
-
-The algebraic properties of sets are:
+#### Theorem: algebraic properties of sets
 
 **Commutative**:
 
@@ -154,25 +157,29 @@ The algebraic properties of sets are:
 * $S_{1} \cup \emptyset = S_{1}$
 * $S_{1} \cap \emptyset = \emptyset$
 
----
+**End theorem.**
+
+<br/>
 
 #### Theorem: addition principle
 
-If two sets are disjoint, the cardinality of their union is:
+For two disjoint sets, the cardinality of their union is:
 
 \begin{equation*}
 |S_{1} \cup S_{2}| = |S_{1}| + |S_{2}|
 \end{equation*}
 
-If two sets are not disjoint, the cardinality of their union is given by the **addition principle**:
+For two non-disjoint sets, the cardinality of their union is given by the **addition principle**:
 
 \begin{equation*}
 |S_{1} \cup S_{2}| = |S_{1}| + |S_{2}| - |S_{1} \cap S_{2}|
 \end{equation*}
 
----
+**End theorem.**
 
-The **characteristic function** of a set is defined as:
+<br/>
+
+* **characteristic function** of a set:
 
 \begin{equation*}
 f_{S}(x) =
@@ -182,48 +189,55 @@ f_{S}(x) =
 \end{cases}
 \end{equation*}
 
----
+<br/>
 
-#### Theorem
+#### Theorem: properties of characteristic functions
 
-Characteristic functions of subsets satify the following properties:
+Characteristic functions of subsets satisfy the following properties:
 
 * $f_{S_{1} \cup S_{2}}(x) = f_{S_{1}}(x)f_{S_{2}}(x)$
 * $f_{S_{1} \cap S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - f_{S_{1}}(x)f_{S_{2}}(x)$
 * $f_{S_{1} \oplus S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - 2f_{S_{1}}(x)f_{S_{2}}(x)$
 
----
+**End theorem.**
 
-An **ordered pair** is a listing of objects $a$ and $b$ in a prescribed order $(a, b)$. It can be thought of as a sequence of length 2.
+<br/>
 
-If $A$ and $B$ are non-empty sets, then the **Cartesian product** of $A$ and $B$ are defined as:
+* **ordered pair** - a listing of objects $a$ and $b$ in a prescribed order $(a, b)$ 
+    * same as a sequence of length 2
+
+<br/>
+
+* **Cartesian product** of $A$ and $B$:
 
 \begin{equation*}
 A \times B = \{(a, b) | \, a \in A \; \text{and} \; b \in B\}
 \end{equation*}
 
----
+<br/>
 
-#### Theorem
+#### Theorem: cardinality of Cartesisan product
 
 For any two finite, non-empty sets $A$ and $B$, $|A \times B| = |A| |B|$.
 
----
+**End theorem.**
 
-Generalizing the Cartesian product, for any non-empty sets $A_{1}$, $A_{2}$, ..., $A_{n}$, the Cartesian product is:
+<br/>
+
+* for any non-empty sets $A_{1}$, $A_{2}$, ..., $A_{n}$, the Cartesian product is:
 
 \begin{equation*}
 A_{1} \times A_{2} \times \cdots \times A_{n} = \{(a_{1}, a_{2}, \dots, a_{n}) | \, a_{i} \in A_{i} \; \text{for} \; i = 1, \dots, n\}
 \end{equation*}
 
----
+<br/>
 
-A **partition** is a collection of non-empty subsets of $S$ such that:
 
-* $A_{i} \cap A_{j}$ = \emptyset$
-* $s \in S$ and $s \in A_{i}$ for at least one $A_{i}$
-
-where $A_{i} \subseteq S$ for all $i$. $A_{i}$ is known as a **block** of the partition.
+* **partition** is collection of non-empty subsets of $S$ such that:
+    * $A_{i} \cap A_{j}$ = \emptyset$
+    * $s \in S$ and $s \in A_{i}$ for at least one $A_{i}$
+        * where $A_{i} \subseteq S$ for all $i$
+* $A_{i}$ is a **block** of the partition
 
 ---
 
@@ -233,30 +247,42 @@ where $A_{i} \subseteq S$ for all $i$. $A_{i}$ is known as a **block** of the pa
 
 ## Sequences
 
-A **sequence** is a list of elements ordered by increasing value. The list may be finite or infinite. List items can be non-distinct. A general sequence can be written as $a_{1}, a_{2}, a_{3}, \dotsc$ or $(a_{i})_{1 \leq i < \infty}$.
+* **sequence** is list of elements ordered by increasing value
+    * list may be finite or infinite
+    * list items can be non-distinct
+* general sequence can be written as $a_{1}, a_{2}, a_{3}, \dotsc$ or $(a_{i})_{1 \leq i < \infty}$.
 
-A **countable** set is a set corresponding to all distinct elements in a sequence. The set $S^{*}$ consists of all finite sequences of the members of $S$. If the members of $S$ are symbols, $S^{*}$ is called an **alphabet**. Finite sequences in $S^{*}$ are called **strings**. $S^{*}$ includes the empty string $\Lambda$. The **catenation** of two strings is equivalent to:
+<br/>
+
+* **countable** set is set corresponding to all distinct elements in a sequence
+    * set $S^{*}$ consists of all finite sequences of the members of $S$
+* if the members of $S$ are symbols, $S^{*}$ is **alphabet**
+* finite sequences in $S^{*}$ are **strings**
+    * $S^{*}$ includes empty string $\Lambda$
+    * the **catenation** of two strings is equivalent to:
 
 \begin{equation*}
 s \cdot w = \underbrace{s_{1}s_{2}s_{3}}_{\text{string #1}} \underbrace{w_{1}w_{2}w_{3}}_{\text{string #2}}
 \end{equation*}
 
-Catenation with the empty string is an identity:
+* Catenation with empty string is identity:
+    * $s \cdot \Lambda = s$
+    * $\Lambda \cdot s = s$
 
-* $s \cdot \Lambda = s$
-* $\Lambda \cdot s = s$
-
----
+<br/>
 
 #### Theorem: multiplication principle
 
 If independent tasks $T_{i}$ for $i = 1, \dotsc, n$ are to be performed in sequence and each $T_{i}$ can be performed $N_{i}$ ways, then the sequence $T_{1}T_{2} \dotsc T_{n}$ can be performed $\prod_{i = 1}^{n} N_{i}$ ways.
 
----
+**End theorem.**
 
-For a set that is $|S| = n$, an arrangement of the members of S into a sequence of length $n$ is a **permutation** of S. For a sequence that is length $r$ taken from set $S$, it is known as a **permutation of $S$ taken $r$ at a time**.
+<br/>
 
----
+* for set $|S| = n$, arrangement of the members of S into sequence of length $n$ is **permutation** of S
+* for sequence that is length $r$ taken from set $S$, it is known as a **permutation of $S$ taken $r$ at a time**
+
+<br/>
 
 #### Theorem: permutation
 
@@ -268,7 +294,9 @@ P_{r}^{n} = \frac{n!}{(n - r)!}
 
 This formula is also known as a **permutation**.
 
----
+**End theorem.**
+
+<br/>
 
 #### Theorem: combination
 
@@ -280,6 +308,8 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 
 This formula is also known as a **combination**.
 
+**End theorem.**
+
 ---
 
 [(back to top)](#table-of-contents)
@@ -288,27 +318,24 @@ This formula is also known as a **combination**.
 
 ## Regular expressions
 
-A **regular expression** over set $S$ is a string constructed from the elements of $S$ and/or the following symbols:
+* **regular expression** over set $S$ is string constructed from the elements of $S$ and/or the following symbols:
+    * (
+    * )
+    * $\vee$
+    * $*$
+    * $\lambda$
+* rules for regular expressions:
+    * the symbol $\lambda$ is a regular expression
+    * if $x \in S$ then $x$ is a regular expression
+    * if $\alpha$ and $\beta$ are regular expressions, then $\alpha\beta$ is a regular expression
+    * if $\alpha$ and $\beta$ are regular expressions, then $\alpha\vee\beta$ is a regular expression
+    * if $\alpha$ is a regular expression, then $(\alpha)^{*}$ is a regular expression
 
-* (
-* )
-* $\vee$
-* $*$
-* $\lambda$
+* set $S^{*}$ is called a **regular set** of $S$
 
-The following are rules for regular expressions:
+<br/>
 
-* the symbol $\lambda$ is a regular expression
-* if $x \in S$ then $x$ is a regular expression
-* if $\alpha$ and $\beta$ are regular expressions, then $\alpha\beta$ is a regular expression
-* if $\alpha$ and $\beta$ are regular expressions, then $\alpha\vee\beta$ is a regular expression
-* if $\alpha$ is a regular expression, then $(\alpha)^{*}$ is a regular expression
-
-The set $S^{*}$ is called a **regular set** of $S$. 
-
----
-
-#### Algorthim: computing a regular set
+#### Algorithm: computing a regular set
 
 Computing a regular set involves the following algorithm:
 
@@ -318,36 +345,7 @@ Computing a regular set involves the following algorithm:
 4. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\vee\beta$ corresponds to $A \cup B$
 5. if $\alpha$ is a regular expression that corresponds to subset $A$ of $S^{*}$, then $(\alpha)^{*}$ corresponds to set $A^{*}$
 
----
-
-[(back to top)](#table-of-contents)
-
----
-
-## Definitions
-
-* **set** - well-defined collection of elements
-* **members** - elements that exist within a set
-* **equal** - two sets that have the same elements, denoted by $=$
-* **subset** - a set in which all members are also members of another set
-* **finite** - a set with $n$ distinct elements
-* **cardinality** - the number of distinct elements within a finite set, denoted by $|S|$
-* **power set** - set of all subsets of $S$, denoted by $P(S)$
-* **union** - a set that contains all of the elements of two or more other sets
-* **intersection** - a set that contains all of the common elements of two or more other sets
-* **disjoint** - two or more sets that share no elements in common
-* **complement** - the elements in one set but not in another set being compared to
-* **symmetric difference** - the non-common elements between two or more sets
-* **ordered pair** - a listing of objects $a$ and $b$ in a prescribed order $(a, b)$
-* **partition** - a collection of non-empty, non-overlapping subsets of set $S$
-* **block** - a member of a partition 
-* **sequence** - a list of elements ordered by increasing value
-* **countable set** - set corresponding to all distinct elements in a sequence
-* **alphabet** - a set of symbols
-* **strings** - finite sequences of members of a set, where the members are symbols
-* **catenation** - the writing of two or more strings adjacently
-* **permutation** - an arragement of members of a set into a sequence
-* **regular expression** - a string constructed from the elements of a set and a subclass of symbols
+**End algorithm.**
 
 ---
 
@@ -480,26 +478,6 @@ If $|S| = n$ and $1 \leq 0 \leq n$, then the number of $r$-element subsets of $S
 \begin{equation*}
 C_{r}^{n} = \frac{n!}{r!(n - r)!}
 \end{equation*}
-
----
-
-[(back to top)](#table-of-contents)
-
----
-
-## Algorithms
-
-#### Computing a regular set
-
-1. Expression $\lambda$ corresponds to the set $\{\Lambda\}$
-2. if $x \in S$, then the regular expression $x$ corresponds to set $\{x\}$
-3. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\beta$ corresponds to $A \cdot B = \{s \cdot t \: | \: s \in A \text{ and } x \in B\}$
-4. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\vee\beta$ corresponds to $A \cup B$
-5. if $\alpha$ is a regular expression that corresponds to subset $A$ of $S^{*}$, then $(\alpha)^{*}$ corresponds to set $A^{*}$
-
----
-
-[(back to top)](#table-of-contents)
 
 ---
 
