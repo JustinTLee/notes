@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.line-block{white-space: pre-line;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<h1 id="relations">Relations</h1>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol style="list-style-type: decimal">
+<li><a href="#relations">Relations</a></li>
+<li><a href="#digraphs">Digraphs</a></li>
+<li><a href="#paths">Paths</a></li>
+</ol>
+<hr />
+<h2 id="relations-1">Relations</h2>
+<ul>
+<li><strong>relation</strong> from a set <span class="math inline">\(A\)</span> to set <span class="math inline">\(B\)</span> is subset of <span class="math inline">\(A \times B\)</span>
+<ul>
+<li>each element of <span class="math inline">\(A \times B\)</span> represented by ordered pair <span class="math inline">\((a, b)\)</span></li>
+</ul></li>
+<li>if <span class="math inline">\(R \subseteq A \times B\)</span> and <span class="math inline">\((a, b) \in R\)</span>, then <span class="math inline">\(a\)</span> is related to <span class="math inline">\(b\)</span> by <span class="math inline">\(R\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(a\)</span> being related to <span class="math inline">\(b\)</span> by <span class="math inline">\(R\)</span>: <span class="math inline">\(a \, \text{R} \, b\)</span></li>
+<li><span class="math inline">\(a\)</span> not being related to <span class="math inline">\(b\)</span> by <span class="math inline">\(R\)</span>: <span class="math inline">\(a \, \not{\text{R}} \, b\)</span>.</li>
+</ul>
+<p><br/></p>
+<ul>
+<li><strong>domain</strong> of <span class="math inline">\(R\)</span> (<span class="math inline">\(\text{dom}\{R\}\)</span>) is set of elements in <span class="math inline">\(A\)</span> which are related to an element in <span class="math inline">\(B\)</span></li>
+<li><strong>range</strong> of <span class="math inline">\(R\)</span> (<span class="math inline">\(\text{range}\{R\}\)</span>) is set of elements in <span class="math inline">\(B\)</span> which form an ordered pair with an element in <span class="math inline">\(A\)</span>.</li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(R\)</span> represented by <span class="math inline">\(m \times n\)</span> matrix <span class="math inline">\(\textbf{M}_{\textbf{R}}\)</span>:</li>
+</ul>
+\begin{equation*}
+m_{ij} =
+\begin{cases}
+1 \quad \text{if } (a_{i}, b_{i}) \in R \\
+0 \quad \text{if } (a_{i}, b_{i}) \notin R \\
+\end{cases}
+\end{equation*}
+<hr />
+<p><a href="#table-of-contents">(back to top)</a></p>
+<hr />
+<h3 id="digraphs">Digraphs</h3>
+<ul>
+<li>a relation matrix can be represented by a <strong>directed graph</strong> (<strong>digraph</strong>)
+<ul>
+<li>elements of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are vertices</li>
+<li>an edge from one vertex to another (with an arrow indicating direction) exists only if <span class="math inline">\(m_{ij} = 1\)</span></li>
+</ul></li>
+<li><strong>in-degree</strong> of a vertex <span class="math inline">\(a\)</span> is amount of directed edges leading to <span class="math inline">\(a\)</span></li>
+<li><strong>out-degree</strong> of a vertex <span class="math inline">\(a\)</span> is amount of directed edges coming out of <span class="math inline">\(a\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li>the following produces the digraph below:</li>
+</ul>
+\begin{equation*}
+A = \{1, 2, 3, 4\}
+\end{equation*}\begin{equation*}
+R = \{(1, 1), (1, 2), (2, 1), (2, 2), (2, 3), (2, 4), (3, 4), (4, 1)\}
+\end{equation*}
+<div class="figure">
+<img src="./images/digraph%20example.png" alt="" />
+
+</div>
+<p><br/></p>
+<ul>
+<li><strong>restriction of <span class="math inline">\(R\)</span> to <span class="math inline">\(B\)</span></strong> is <span class="math inline">\(R \cup B \times B\)</span> when <span class="math inline">\(B \subseteq A\)</span></li>
+</ul>
+<hr />
+<p><a href="#table-of-contents">(back to top)</a></p>
+<hr />
+<h3 id="paths">Paths</h3>
+<ul>
+<li>a path of length n from elements <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span> in set <span class="math inline">\(A\)</span> is such that:</li>
+</ul>
+\begin{equation*}
+a \, R \, x_{1}, x_{1} \, R \, x_{2}, \dots, x_{n - 1} \, R \, b
+\end{equation*}
+<ul>
+<li>paths are not necessarily distinct
+<ul>
+<li>follows the directions of arrows in digraphs</li>
+</ul></li>
+<li>paths that begin and end at same vertex called <strong>cycles</strong>
+<ul>
+<li>1 to 2 to 3 to 4 is a cycle:</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/digraph%20example.png" alt="" />
+
+</div>
+<ul>
+<li><span class="math inline">\(a \, R^{n} \, b\)</span> represents path of length <span class="math inline">\(n\)</span> from <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span> in <span class="math inline">\(R\)</span>
+<ul>
+<li><span class="math inline">\(a \, R^{\infty} \, b\)</span> means that there exists some path that will eventually lead <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span></li>
+</ul></li>
+</ul>
+<p><br/></p>
+<ul>
+<li>given that <span class="math inline">\(\textbf{M}_{\textbf{R}} = [m_{ij}]\)</span> represents the relation matrix of <span class="math inline">\(R\)</span>
+<ul>
+<li><span class="math inline">\(m_{ij} = 1\)</span> if <span class="math inline">\(a_{i} \, R \, a_{j}\)</span> exists</li>
+<li><span class="math inline">\(R^{n}\)</span> is represented by <span class="math inline">\(\textbf{M}_{\textbf{R}}^{n}\)</span></li>
+</ul></li>
+</ul>
+<p><br/></p>
+<h4 id="theorem-traversing-digraph-using-matrices">Theorem: traversing digraph using matrices</h4>
+<p>For <span class="math inline">\(n \ge 1\)</span>:</p>
+\begin{equation*}
+\textbf{M}_{\textbf{R}^{\textbf{n}}} = \textbf{M}_{\textbf{R}}^{n}
+\end{equation*}
+<p>where <span class="math inline">\(R\)</span> is a relation on set <span class="math inline">\(A\)</span>.</p>
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
+<ul>
+<li><strong>reachability</strong> (<span class="math inline">\(R^{*}\)</span>) means that either:
+<ul>
+<li><span class="math inline">\(x \, R^{*} \, y\)</span></li>
+<li><span class="math inline">\(x = y\)</span></li>
+</ul></li>
+<li>given <span class="math inline">\(\pi_{1} = a, x_{1}, \dots, x_{n - 1}, b\)</span> and <span class="math inline">\(\pi_{2} = b, y_{1}, \dots, y_{m - 1}, c\)</span>, the <strong>composition</strong> of <span class="math inline">\(\pi_{1}\)</span> and <span class="math inline">\(\pi_{2}\)</span> is:</li>
+</ul>
+\begin{equation*}
+a, x_{1}, \dots, x_{n - 1}, b, y_{1}, \dots, y_{m - 1}, c
+\end{equation*}
+<ul>
+<li>where the path is of length <span class="math inline">\(n + m\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><strong>inverse path</strong> is a path defined in reverse:</li>
+</ul>
+\begin{equation*}
+\pi^{-1} = b, x_{n - 1}, \dots, x_{1}, a
+\end{equation*}
+<ul>
+<li>inverse path may not be in <span class="math inline">\(R\)</span>, given <span class="math inline">\(R\)</span> is digraph</li>
+</ul>
+<hr />
+<p><a href="#table-of-contents">(back to top)</a></p>
+<hr />
+</body>
+</html>

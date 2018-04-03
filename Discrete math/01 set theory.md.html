@@ -221,7 +221,7 @@ f_{S}(x) =
 A \times B = \{(a, b) | \, a \in A \; \text{and} \; b \in B\}
 \end{equation*}
 <p><br/></p>
-<h4 id="theorem-cardinality-of-cartesisan-product">Theorem: cardinality of Cartesisan product</h4>
+<h4 id="theorem-cardinality-of-cartesian-product">Theorem: cardinality of Cartesian product</h4>
 <p>For any two finite, non-empty sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(|A \times B| = |A| |B|\)</span>.</p>
 <p><strong>End theorem.</strong></p>
 <p><br/></p>
@@ -371,79 +371,6 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 \end{equation*}
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
-<hr />
-<h2 id="theorems">Theorems</h2>
-<h4 id="theorem-01.01-sets"><em>Theorem 01.01 (<strong>Sets</strong>)</em>:</h4>
-<p>The algebraic properties of sets are:</p>
-<ul>
-<li><strong>Commutative</strong>:
-<ul>
-<li><span class="math inline">\(S_{1} \cup S_{2} = S_{2} \cup S_{1}\)</span></li>
-<li><span class="math inline">\(S_{1} \cap S_{2} = S_{2} \cap S_{1}\)</span></li>
-</ul></li>
-<li><strong>Associative</strong>:
-<ul>
-<li><span class="math inline">\(S_{1} \cup (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cup S_{3}\)</span></li>
-<li><span class="math inline">\(S_{1} \cap (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cap S_{3}\)</span></li>
-</ul></li>
-<li><strong>Distributive</strong>:
-<ul>
-<li><span class="math inline">\(S_{1} \cup (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cup (S_{1} \cap S_{3})\)</span></li>
-<li><span class="math inline">\(S_{1} \cap (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cap (S_{1} \cup S_{3})\)</span></li>
-</ul></li>
-<li><strong>Idempotent</strong>:
-<ul>
-<li><span class="math inline">\(S_{1} \cup S_{1} = S_{1}\)</span></li>
-<li><span class="math inline">\(S_{1} \cap S_{1} = S_{1}\)</span></li>
-</ul></li>
-<li><strong>Complement rules</strong>:
-<ul>
-<li><span class="math inline">\(\overline{(\overline{S_{1}})} = S_{1}\)</span></li>
-<li><span class="math inline">\(S_{1} \cup \overline{S_{1}} = U\)</span></li>
-<li><span class="math inline">\(S_{1} \cap \overline{S_{1}} = \emptyset\)</span></li>
-<li><span class="math inline">\(\overline{\emptyset} = U\)</span></li>
-<li><span class="math inline">\(\overline{U} = \emptyset\)</span></li>
-<li><span class="math inline">\(\overline{S_{1} \cup S_{2}} = \overline{S_{1}} \cap \overline{S_{2}}\)</span></li>
-<li><span class="math inline">\(\overline{S_{1} \cap S_{2}} = \overline{S_{1}} \cup \overline{S_{2}}\)</span></li>
-<li><span class="math inline">\(S_{1} \cup U = U\)</span></li>
-<li><span class="math inline">\(S_{1} \cap U = S_{1}\)</span></li>
-</ul></li>
-<li><strong>Null rules</strong>:
-<ul>
-<li><span class="math inline">\(S_{1} \cup \emptyset = S_{1}\)</span></li>
-<li><span class="math inline">\(S_{1} \cap \emptyset = \emptyset\)</span></li>
-</ul></li>
-</ul>
-<h4 id="theorem-01.02-sets---addition-principle"><em>Theorem 01.02 (<strong>Sets - addition principle</strong>)</em>:</h4>
-<p>If two sets are disjoint, the cardinality of their union is:</p>
-\begin{equation*}
-|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}|
-\end{equation*}
-<p>If two sets are not disjoint, the cardinality of their union is given by the <strong>addition principle</strong>:</p>
-\begin{equation*}
-|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}| - |S_{1} \cap S_{2}|
-\end{equation*}
-<h4 id="theorem-01.03-sets"><em>Theorem 01.03 (<strong>Sets</strong>)</em>:</h4>
-<p>Characteristic functions of subsets satify the following properties:</p>
-<ul>
-<li><span class="math inline">\(f_{S_{1} \cup S_{2}}(x) = f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
-<li><span class="math inline">\(f_{S_{1} \cap S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
-<li><span class="math inline">\(f_{S_{1} \oplus S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - 2f_{S_{1}}(x)f_{S_{2}}(x)\)</span></li>
-</ul>
-<h4 id="theorem-01.04-sets"><em>Theorem 01.04 (<strong>Sets</strong>)</em>:</h4>
-<p>For any two finite, non-empty sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(|A \times B| = |A| |B|\)</span>.</p>
-<h4 id="theorem-01.05-sequences---multiplication-principle"><em>Theorem 01.05 (<strong>Sequences - multiplication principle</strong>)</em>:</h4>
-<p>If independent tasks <span class="math inline">\(T_{i}\)</span> for <span class="math inline">\(i = 1, \dotsc, n\)</span> are to be performed in sequence and each <span class="math inline">\(T_{i}\)</span> can be performed <span class="math inline">\(N_{i}\)</span> ways, then the sequence <span class="math inline">\(T_{1}T_{2} \dotsc T_{n}\)</span> can be performed <span class="math inline">\(\prod_{i = 1}^{n} N_{i}\)</span> ways.</p>
-<h4 id="theorem-01.06-sequences---permutation"><em>Theorem 01.06 (<strong>Sequences - permutation</strong>)</em>:</h4>
-<p>If <span class="math inline">\(|S| = n\)</span> and <span class="math inline">\(1 \leq r \leq n\)</span>, then the number of permutations of <span class="math inline">\(S\)</span> taken <span class="math inline">\(r\)</span> at a time is:</p>
-\begin{equation*}
-P_{r}^{n} = \frac{n!}{(n - r)!}
-\end{equation*}
-<h4 id="theorem-01.07-sequences---combination"><em>Theorem 01.07 (<strong>Sequences - combination</strong>)</em>:</h4>
-<p>If <span class="math inline">\(|S| = n\)</span> and <span class="math inline">\(1 \leq 0 \leq n\)</span>, then the number of <span class="math inline">\(r\)</span>-element subsets of <span class="math inline">\(S\)</span> is:</p>
-\begin{equation*}
-C_{r}^{n} = \frac{n!}{r!(n - r)!}
-\end{equation*}
 <hr />
 <h2 id="references">References</h2>
 <hr />

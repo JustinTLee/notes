@@ -216,7 +216,7 @@ A \times B = \{(a, b) | \, a \in A \; \text{and} \; b \in B\}
 
 <br/>
 
-#### Theorem: cardinality of Cartesisan product
+#### Theorem: cardinality of Cartesian product
 
 For any two finite, non-empty sets $A$ and $B$, $|A \times B| = |A| |B|$.
 
@@ -398,86 +398,6 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 ---
 
 [(back to top)](#table-of-contents)
-
----
-
-## Theorems
-
-#### _Theorem 01.01 (**Sets**)_:
-
-The algebraic properties of sets are:
-
-* **Commutative**: 
-	* $S_{1} \cup S_{2} = S_{2} \cup S_{1}$
-	* $S_{1} \cap S_{2} = S_{2} \cap S_{1}$
-* **Associative**: 
-	* $S_{1} \cup (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cup S_{3}$
-	* $S_{1} \cap (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cap S_{3}$
-* **Distributive**:
-	* $S_{1} \cup (S_{2} \cap S_{3}) = (S_{1} \cap S_{2}) \cup (S_{1} \cap S_{3})$
-	* $S_{1} \cap (S_{2} \cup S_{3}) = (S_{1} \cup S_{2}) \cap (S_{1} \cup S_{3})$
-* **Idempotent**:
-	* $S_{1} \cup S_{1} = S_{1}$
-	* $S_{1} \cap S_{1} = S_{1}$
-* **Complement rules**:
-	* $\overline{(\overline{S_{1}})} = S_{1}$
-	* $S_{1} \cup \overline{S_{1}} = U$
-	* $S_{1} \cap \overline{S_{1}} = \emptyset$
-	* $\overline{\emptyset} = U$
-	* $\overline{U} = \emptyset$
-	* $\overline{S_{1} \cup S_{2}} = \overline{S_{1}} \cap \overline{S_{2}}$
-	* $\overline{S_{1} \cap S_{2}} = \overline{S_{1}} \cup \overline{S_{2}}$
-	* $S_{1} \cup U = U$
-	* $S_{1} \cap U = S_{1}$
-* **Null rules**:
-	* $S_{1} \cup \emptyset = S_{1}$
-	* $S_{1} \cap \emptyset = \emptyset$
-
-#### _Theorem 01.02 (**Sets - addition principle**)_:
-
-If two sets are disjoint, the cardinality of their union is:
-
-\begin{equation*}
-|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}|
-\end{equation*}
-
-If two sets are not disjoint, the cardinality of their union is given by the **addition principle**:
-
-\begin{equation*}
-|S_{1} \cup S_{2}| = |S_{1}| + |S_{2}| - |S_{1} \cap S_{2}|
-\end{equation*}
-
-#### _Theorem 01.03 (**Sets**)_:
-
-Characteristic functions of subsets satify the following properties:
-
-* $f_{S_{1} \cup S_{2}}(x) = f_{S_{1}}(x)f_{S_{2}}(x)$
-* $f_{S_{1} \cap S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - f_{S_{1}}(x)f_{S_{2}}(x)$
-* $f_{S_{1} \oplus S_{2}}(x) = f_{S_{1}}(x) + f_{S_{2}}(x) - 2f_{S_{1}}(x)f_{S_{2}}(x)$
-
-#### _Theorem 01.04 (**Sets**)_:
-
-For any two finite, non-empty sets $A$ and $B$, $|A \times B| = |A| |B|$.
-
-#### _Theorem 01.05 (**Sequences - multiplication principle**)_:
-
-If independent tasks $T_{i}$ for $i = 1, \dotsc, n$ are to be performed in sequence and each $T_{i}$ can be performed $N_{i}$ ways, then the sequence $T_{1}T_{2} \dotsc T_{n}$ can be performed $\prod_{i = 1}^{n} N_{i}$ ways.
-
-#### _Theorem 01.06 (**Sequences - permutation**)_:
-
-If $|S| = n$ and $1 \leq r \leq n$, then the number of permutations of $S$ taken $r$ at a time is:
-
-\begin{equation*}
-P_{r}^{n} = \frac{n!}{(n - r)!}
-\end{equation*}
-
-#### _Theorem 01.07 (**Sequences - combination**)_:
-
-If $|S| = n$ and $1 \leq 0 \leq n$, then the number of $r$-element subsets of $S$ is:
-
-\begin{equation*}
-C_{r}^{n} = \frac{n!}{r!(n - r)!}
-\end{equation*}
 
 ---
 
