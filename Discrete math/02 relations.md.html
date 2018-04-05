@@ -25,6 +25,7 @@
 <li><a href="#relations">Relations</a></li>
 <li><a href="#digraphs">Digraphs</a></li>
 <li><a href="#paths">Paths</a></li>
+<li><a href="#properties-of-relations">Properties of relations</a></li>
 </ol>
 <hr />
 <h2 id="relations-1">Relations</h2>
@@ -59,7 +60,7 @@ m_{ij} =
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
-<h3 id="digraphs">Digraphs</h3>
+<h2 id="digraphs">Digraphs</h2>
 <ul>
 <li>a relation matrix can be represented by a <strong>directed graph</strong> (<strong>digraph</strong>)
 <ul>
@@ -89,7 +90,7 @@ R = \{(1, 1), (1, 2), (2, 1), (2, 2), (2, 3), (2, 4), (3, 4), (4, 1)\}
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />
-<h3 id="paths">Paths</h3>
+<h2 id="paths">Paths</h2>
 <ul>
 <li>a path of length n from elements <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span> in set <span class="math inline">\(A\)</span> is such that:</li>
 </ul>
@@ -103,7 +104,10 @@ a \, R \, x_{1}, x_{1} \, R \, x_{2}, \dots, x_{n - 1} \, R \, b
 </ul></li>
 <li>paths that begin and end at same vertex called <strong>cycles</strong>
 <ul>
-<li>1 to 2 to 3 to 4 is a cycle:</li>
+<li>1 to 2 to 3 is a cycle:</li>
+<li>1 to 2 to 1 is a cycle:</li>
+<li>2 to 3 is not a cycle:</li>
+<li>2 to 3 to 3 is not a cycle:</li>
 </ul></li>
 </ul>
 <div class="figure">
@@ -155,8 +159,184 @@ a, x_{1}, \dots, x_{n - 1}, b, y_{1}, \dots, y_{m - 1}, c
 \pi^{-1} = b, x_{n - 1}, \dots, x_{1}, a
 \end{equation*}
 <ul>
-<li>inverse path may not be in <span class="math inline">\(R\)</span>, given <span class="math inline">\(R\)</span> is digraph</li>
+<li>inverse path may not be in <span class="math inline">\(R\)</span>, given <span class="math inline">\(R\)</span> is digraph
+<ul>
+<li>the inverse of 1 to 2 (2 to 1) exists:</li>
+<li>the inverse of 3 to 1 (1 to 3) does not exist:</li>
+</ul></li>
 </ul>
+<div class="figure">
+<img src="./images/digraph%20example.png" alt="" />
+
+</div>
+<hr />
+<p><a href="#table-of-contents">(back to top)</a></p>
+<hr />
+<h2 id="properties-of-relations">Properties of relations</h2>
+<ul>
+<li>relation is <strong>reflexive</strong> if <span class="math inline">\(a \, R \, a\)</span> for all <span class="math inline">\(a \in A\)</span>
+<ul>
+<li><span class="math inline">\((a, a) \in R\)</span> for all <span class="math inline">\(a\)</span></li>
+<li>reflexive relation:</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/reflexive%20example.png" alt="" />
+
+</div>
+<ul>
+<li>relation is <strong>irreflexive</strong> if <span class="math inline">\(a \, \not{\text{R}} \, a\)</span> for all <span class="math inline">\(a \in A\)</span>
+<ul>
+<li>if all <span class="math inline">\((a, a) \notin R\)</span>, relation is irreflexive</li>
+<li>if at least one <span class="math inline">\((a, a) \in R\)</span>, relation is not irreflexive</li>
+<li>irreflexive relation:</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/irreflexive%20example.png" alt="" />
+
+</div>
+<p><br/></p>
+<ul>
+<li>examples of relations:
+<ul>
+<li>equality relation: <span class="math inline">\(\Delta = \{(a, a) \: | \: a \in A\}\)</span>
+<ul>
+<li>reflexive</li>
+</ul></li>
+<li>inequality relation: <span class="math inline">\(R = \{(a, b) \in A \times A \: | \: a \neq b\}\)</span>
+<ul>
+<li>irreflexive</li>
+</ul></li>
+<li>empty relation: <span class="math inline">\(R = \emptyset \subseteq A \times A\)</span>
+<ul>
+<li>irreflexive</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><br/></p>
+<ul>
+<li>reflexive relations have:
+<ul>
+<li>1's along main diagonal in relation matrix</li>
+<li>cycle of length 1 at every vertex</li>
+<li><span class="math inline">\(\Delta \subseteq R\)</span></li>
+</ul></li>
+<li>irreflexive relations have:
+<ul>
+<li>0's along main diagonal in relation matrix</li>
+<li>no cycles of length 1</li>
+<li><span class="math inline">\(\Delta \cap R = \emptyset\)</span></li>
+</ul></li>
+</ul>
+<p><br/></p>
+<ul>
+<li>relationship is <strong>symmetric</strong> if <span class="math inline">\(a R b\)</span> and <span class="math inline">\(b R a\)</span> exist
+<ul>
+<li>for relation matrix: <span class="math inline">\(m_{ij} = m_{ji}\)</span></li>
+<li><span class="math inline">\(\textbf{M}_{\textbf{R}} = \textbf{M}_{\textbf{R}}^{T}\)</span></li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/symmetric%20example.png" alt="" />
+
+</div>
+<ul>
+<li>relationship is <strong>asymmetric</strong> if either <span class="math inline">\(a R b\)</span> and <span class="math inline">\(b R a\)</span> do not exist
+<ul>
+<li>for relation matrix: if <span class="math inline">\(m_{ij} = 1\)</span> then <span class="math inline">\(m_{ji} = 0\)</span> and main diagonal are 0's</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/asymmetric%20example.png" alt="" />
+
+</div>
+<ul>
+<li>relationship is <strong>antisymmetric</strong> if <span class="math inline">\(a R b\)</span> and <span class="math inline">\(b R a\)</span> exist only when <span class="math inline">\(a = b\)</span>
+<ul>
+<li>whenever <span class="math inline">\(a \neq b\)</span>, an antisymmetric relationship also needs to be asymmetric</li>
+<li>for relation matrix: if <span class="math inline">\(i \neq j\)</span> then either <span class="math inline">\(m_{ij} = 0\)</span> or <span class="math inline">\(m_{ji} = 0\)</span></li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/antisymmetric%20example.png" alt="" />
+
+</div>
+<p><br/></p>
+<ul>
+<li>for symmetric relationships, the digraph can be replaced with just one edge between two vertices:
+<ul>
+<li>type of digraph known as a <strong>graph</strong></li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/graph%20example.png" alt="" />
+
+</div>
+<ul>
+<li>for asymmetric relationships, each edge goes from vertex <span class="math inline">\(a\)</span> to vertex <span class="math inline">\(b\)</span>:
+<ul>
+<li>each edge known as an <strong>undirected edge</strong></li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="./images/asymmetric%20example.png" alt="" />
+
+</div>
+<p><br/></p>
+<ul>
+<li>symmetric relationship is <strong>connected</strong> if <span class="math inline">\(a \: R^{*} \: b\)</span> for <span class="math inline">\(a \in A\)</span> and <span class="math inline">\(b \in A\)</span>:</li>
+</ul>
+<div class="figure">
+<img src="./images/connected%20example.png" alt="" />
+
+</div>
+<p><br/></p>
+<ul>
+<li>relation is <strong>transitive</strong> if when <span class="math inline">\(a R b\)</span> and <span class="math inline">\(b R c\)</span> then <span class="math inline">\(a R c\)</span>
+<ul>
+<li>composition of <span class="math inline">\(a R b\)</span> and <span class="math inline">\(b R c\)</span> holds true</li>
+</ul></li>
+</ul>
+<h4 id="theorem-transitive-property">Theorem: transitive property</h4>
+<p>A relation <span class="math inline">\(R\)</span> is transitive iff there is a path of length greater than 1 from vertex <span class="math inline">\(a\)</span> to vertex <span class="math inline">\(b\)</span>. In other words:</p>
+\begin{equation*}
+R^{n} \subseteq R \quad \text{for} \; n \ge 1
+\end{equation*}
+<p><strong>End theorem.</strong></p>
+<p><br/></p>
+<ul>
+<li>relation <span class="math inline">\(R\)</span> is <strong>equivalence relation</strong> if it is:
+<ul>
+<li>reflexive</li>
+<li>symmetric</li>
+<li>transitive</li>
+</ul></li>
+<li>example:</li>
+</ul>
+<div class="figure">
+<img src="./images/reflexive%20example.png" alt="" />
+
+</div>
+<ul>
+<li>given equivalence relation, an <strong>equivalence class</strong> is:</li>
+</ul>
+\begin{equation*}
+[a] = \{x \in A \, | \, x \: R \: a\} \quad \text{for} \; a \in A
+\end{equation*}
+<ul>
+<li>equivalence class properties:
+<ul>
+<li><span class="math inline">\([a] = [b]\)</span> iff <span class="math inline">\(a \, R \, b\)</span></li>
+<li>if <span class="math inline">\([a] \neq [b]\)</span> then <span class="math inline">\([a] \cap [b] = \emptyset\)</span></li>
+</ul></li>
+</ul>
+<h4 id="theorem-equivalence-class-to-partition">Theorem: equivalence class to partition</h4>
+<p>If <span class="math inline">\(R\)</span> is an equilvance relation on set <span class="math inline">\(A\)</span>, then the collection of all equivalence classes of the elements of <span class="math inline">\(A\)</span> gives a partition of <span class="math inline">\(A\)</span>, denoted by <span class="math inline">\(A/R\)</span>.</p>
+<p><strong>End theorem.</strong></p>
+<h4 id="theorem-partition-to-equivalence-class">Theorem: partition to equivalence class</h4>
+<p>Given a partition of set <span class="math inline">\(A\)</span>, we can define an equivalence relation <span class="math inline">\(R\)</span> on <span class="math inline">\(A\)</span> so that the corresponding eequivalence classes are hte given blocks of the partition of <span class="math inline">\(A\)</span>.</p>
+<p><strong>End theorem.</strong></p>
 <hr />
 <p><a href="#table-of-contents">(back to top)</a></p>
 <hr />

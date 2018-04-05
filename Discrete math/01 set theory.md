@@ -8,8 +8,7 @@
 02. [Sequences](#sequences)
 03. [Regular expressions](#regular-expressions)
 04. [Equations](#equations)
-05. [Theorems](#theorems)
-06. [References](#references)
+05. [References](#references)
 
 ---
 
