@@ -7,7 +7,9 @@
 01. [Relations](#relations)
 02. [Digraphs](#digraphs)
 03. [Paths](#paths)
-03. [Properties of relations](#properties-of-relations)
+03. [Reflexive relations](#reflexive-relations)
+04. [Symmetric relations](#symmetric-relations)
+05. [Equivalence relations](#equivalence-relations)
 
 ---
 
@@ -145,14 +147,13 @@ a, x_{1}, \dots, x_{n - 1}, b, y_{1}, \dots, y_{m - 1}, c
 
 ![](./images/digraph example.png)
 
-
 ---
 
 [(back to top)](#table-of-contents)
 
 ---
 
-## Properties of relations
+## Reflexive relations
 
 * relation is **reflexive** if $a \, R \, a$ for all $a \in A$
 	* $(a, a) \in R$ for all $a$
@@ -190,6 +191,14 @@ a, x_{1}, \dots, x_{n - 1}, b, y_{1}, \dots, y_{m - 1}, c
 	* $\Delta \cap R = \emptyset$
 
 <br/>
+
+---
+
+[(back to top)](#table-of-contents)
+
+---
+
+## Symmetric relations
 
 * relationship is **symmetric** if $a R b$ and $b R a$ exist
 	* for relation matrix: $m_{ij} = m_{ji}$
@@ -241,7 +250,13 @@ R^{n} \subseteq R \quad \text{for} \; n \ge 1
 
 **End theorem.**
 
-<br/>
+---
+
+[(back to top)](#table-of-contents)
+
+---
+
+## Equivalence relations
 
 * relation $R$ is **equivalence relation** if it is:
 	* reflexive

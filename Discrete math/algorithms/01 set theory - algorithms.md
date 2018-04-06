@@ -2,4 +2,4 @@
 
 ## Algorithms
 
-1. [Computing a regular set](./01 set theory/Algorithm - computing a regular set.md.html)
+1. [Computing a regular set](./01 set theory/Algorithm - computing a regular set.html)

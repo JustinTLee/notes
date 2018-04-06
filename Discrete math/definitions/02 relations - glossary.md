@@ -21,6 +21,6 @@
 * **reflexive** - relation where $a \, R \, a$ for all $a \in A$
 * **relation** - subset of $A \times B$
 * **restriction of $R$ to $B$** - $R \cup B \times B$ when $B \subseteq A$
-* **symmetric** - relation where $a R b$ and $b \, R \, a$ exist
-* **transitive** - relation when if when $a \, R \, b$ and $b R c$ then $a R c$
+* **symmetric** - relation where $a \, R \, b$ and $b \, R \, a$ exist
+* **transitive** - relation when if when $a \, R \, b$ and $b \, R \, c$ then $a \, R \, c$
 * **undirected edge** - edge that depicts asymmetric relation between two vertices: $(a, b)$
