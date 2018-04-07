@@ -38,16 +38,16 @@ S = {A_{1}, \dotso, A_{n}}
 * define set by a property that all members have in common where $P(x)$ denotes true proposition concerning member $x$:
 
 \begin{equation*}
-S = \{x \: | \: P(x)\}
+S = \{x \, | \, P(x)\}
 \end{equation*}
 
 <br/>
 
 * commonly encountered sets:
-    * $Z^{+} = \{x \: | \: x \text{ is a positive integer}\}$
-    * $N = \{x \: | \: x \ge 0 \text{ and } x \text{ is an integer}\}$
-    * $Z = \{x \: | \: x \text{ is an integer}\}$
-    * $\mathbb{R} = \{x \: | \: x \text{ is real number}\}$
+    * $Z^{+} = \{x \, | \, x \text{ is a positive integer}\}$
+    * $N = \{x \, | \, x \ge 0 \text{ and } x \text{ is an integer}\}$
+    * $Z = \{x \, | \, x \text{ is an integer}\}$
+    * $\mathbb{R} = \{x \, | \, x \text{ is real number}\}$
     * $\emptyset$ has no elements ($S = \{\}$)
 
 <br/>
@@ -80,14 +80,14 @@ A \subseteq B
 * **union** between two sets:
 
 \begin{equation*}
-S_{1} \cup S_{2} = \{x \: | \: x \in S_{1} \text{ or } x \in S_{2}\}
+S_{1} \cup S_{2} = \{x \, | \, x \in S_{1} \text{ or } x \in S_{2}\}
 \end{equation*}
 
 * union between $k$ sets: $\bigcup_{i = 1}^{k} S_{i}$.
 * **intersection** between two sets:
 
 \begin{equation*}
-S_{1} \cap S_{2} = \{x \: | \: x \in S_{1} \text{ and } x \in S_{2}\}
+S_{1} \cap S_{2} = \{x \, | \, x \in S_{1} \text{ and } x \in S_{2}\}
 \end{equation*}
 
 * intersection between $k$ sets: $\bigcap_{i = 1}^{k} S_{i}$.
@@ -101,7 +101,7 @@ S_{1} \cup S_{2} = \emptyset
 * **complement** of two sets:
 
 \begin{equation*}
-S_{1} - S_{2} = \{x \: | \: x \in S_{1} \text{ and } x \notin S_{2}\}
+S_{1} - S_{2} = \{x \, | \, x \in S_{1} \text{ and } x \notin S_{2}\}
 \end{equation*}
 
 * complement of a set compared to some universal set: $\overline{S}$.
@@ -109,7 +109,7 @@ S_{1} - S_{2} = \{x \: | \: x \in S_{1} \text{ and } x \notin S_{2}\}
 * **symmetric difference** between two sets are all the elements that belong to either one of the sets but not to both:
 
 \begin{equation*}
-S_{1} \oplus S_{2} = \{x \: | \: (x \in S_{1} \text{ and } x \notin S_{2}) \text{ or } (x \notin S_{1} \text{ and } x \in S_{2})\}
+S_{1} \oplus S_{2} = \{x \, | \, (x \in S_{1} \text{ and } x \notin S_{2}) \text{ or } (x \notin S_{1} \text{ and } x \in S_{2})\}
 \end{equation*}
 
 <br/>
@@ -340,7 +340,7 @@ Computing a regular set involves the following algorithm:
 
 1. Expression $\lambda$ corresponds to the set $\{\Lambda\}$
 2. if $x \in S$, then the regular expression $x$ corresponds to set $\{x\}$
-3. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\beta$ corresponds to $A \cdot B = \{s \cdot t \: | \: s \in A \text{ and } x \in B\}$
+3. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\beta$ corresponds to $A \cdot B = \{s \cdot t \, | \, s \in A \text{ and } x \in B\}$
 4. if $\alpha$ and $\beta$ are regular expressions corresponding to subsets $A$ and $B$ of $S^{*}$, then $\alpha\vee\beta$ corresponds to $A \cup B$
 5. if $\alpha$ is a regular expression that corresponds to subset $A$ of $S^{*}$, then $(\alpha)^{*}$ corresponds to set $A^{*}$
 
