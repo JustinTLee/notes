@@ -1,0 +1,29 @@
+nav {
+    padding: 0px;
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+nav ul {
+    list-style-type: decimal-leading-zero;
+    padding-left: 0px;
+}
+
+.main {
+    padding: 0% 3%;
+    margin-left: 15%;
+}
+
+figure {
+    justify-content: center;
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+}

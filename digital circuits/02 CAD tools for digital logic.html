@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.line-block{white-space: pre-line;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <nav id="TOC">
+    <ul>
+    <li><a href="#cad-tools-for-digital-logic">CAD tools for digital logic</a><ul>
+    <li><a href="#introduction">1 Introduction</a></li>
+    <li><a href="#design-entry">2 Design entry</a></li>
+    <li><a href="#synthesis">3 Synthesis</a></li>
+    <li><a href="#simulation">4 Simulation</a></li>
+    <li><a href="#physical-design">5 Physical design</a></li>
+    </ul></li>
+    </ul>
+  </nav>
+  <div class = "main">
+    <h1 id="cad-tools-for-digital-logic">CAD tools for digital logic</h1>
+    <h2 id="introduction">1 Introduction</h2>
+    <ul>
+    <li>CAD tools packaged into CAD system composed of:
+    <ul>
+    <li>design entry</li>
+    <li>synthesis/optimization</li>
+    <li>simulation</li>
+    <li>physical design</li>
+    </ul></li>
+    </ul>
+    <p><br/> <br/></p>
+    <hr />
+    <p><br/> <br/></p>
+    <h2 id="design-entry">2 Design entry</h2>
+    <ul>
+    <li>formulates a description of circuit being designed</li>
+    <li>2 types:
+    <ul>
+    <li><strong>schematic capture</strong> - graphical representation of a circuit diagram</li>
+    <li><strong>hardware description language</strong> (<strong>HDL</strong>) - describes behavior of circuit diagram in code</li>
+    </ul></li>
+    <li>schematic capture components:
+    <ul>
+    <li>circuit elements from a <em>library</em></li>
+    <li>subcircuits with known outputs in <em>hierarchical design</em></li>
+    </ul></li>
+    <li>HDL components:
+    <ul>
+    <li>2 main types:
+    <ul>
+    <li>Verilog HDL</li>
+    <li>VHDL (<em>Very High Speed Integrated Circuit HDL</em>)</li>
+    </ul></li>
+    <li>offers portability between different digital technologies as a standard language</li>
+    <li>signals represented as variables</li>
+    <li>logic functions expressed as variable assignment</li>
+    <li>modular - supports hierarchical design</li>
+    </ul></li>
+    </ul>
+    <p><br/> <br/></p>
+    <hr />
+    <p><br/> <br/></p>
+    <h2 id="synthesis">3 Synthesis</h2>
+    <ul>
+    <li>implements efficient circuits from initial specifications</li>
+    <li>compiles Verilog code into network of logic gates</li>
+    <li>optimization of circuits depend on user constraints</li>
+    </ul>
+    <p><br/> <br/></p>
+    <hr />
+    <p><br/> <br/></p>
+    <h2 id="simulation">4 Simulation</h2>
+    <ul>
+    <li>verifies expected behavior</li>
+    <li>a <em>functional simulator</em> generates logical expressions during synthesis</li>
+    <li>user supplies input values</li>
+    <li>output is a timing diagram
+    <ul>
+    <li>in real life, there is a <em>propagation delay</em> of circuit from:
+    <ul>
+    <li>time it takes for all input signals to change</li>
+    <li>time it takes for signal to go across wire</li>
+    </ul></li>
+    </ul></li>
+    </ul>
+    <p><br/> <br/></p>
+    <hr />
+    <p><br/> <br/></p>
+    <h2 id="physical-design">5 Physical design</h2>
+    <ul>
+    <li>maps circuit specified from synthesis to resources available on target chip</li>
+    <li><strong>configuration</strong> - circuit implemented on actual chip</li>
+    </ul>
+    <hr />
+    <p><br/> <br/></p>
+      </div>
+</body>
+</html>
