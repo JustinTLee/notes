@@ -27,3 +27,7 @@ figure {
 table, th, td {
     border: 1px solid black;
 }
+
+.MathJax_Display {
+    text-align: left !important;
+}

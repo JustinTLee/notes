@@ -13,8 +13,6 @@
     * OR
     * NOT
 
----
-
 ### 1.1 AND operator
 
 $$
@@ -39,8 +37,6 @@ $1$|$1$|$1$
 #### 1.1.3 AND logic gate symbol
 
 <!-- image -->
-
----
 
 ### 1.2 OR operator
 
@@ -67,8 +63,6 @@ $1$|$1$|$1$
 
 <!-- image -->
 
----
-
 ### 1.3 NOT operator
 
 $$
@@ -92,8 +86,6 @@ $1$|$0$
 
 <!-- image -->
 
----
-
 * circuit built out of logic gates called **logic network**
 * engineers perform:
     * **analysis** - determining behavior of logic networks
@@ -112,8 +104,6 @@ $1$|$0$
 * the following logic gates can be generated as networks of the basic gates:
     * NAND
     * NOR
-
----
 
 ### 2.1 NAND operator
 
@@ -139,8 +129,6 @@ $1$|$1$|$0$
 #### 2.1.3 NAND logic gate symbol
 
 <!-- image -->
-
----
 
 ### 2.2 NOR operator
 
@@ -282,8 +270,6 @@ $$
 \bar{\bar{x}} = x
 $$
 
----
-
 ### 5.3 Multiple-value theorems
 
 #### 5.3.1 Commutative
@@ -356,8 +342,6 @@ $$
 \overline{x + y} = \bar{x} \cdot \bar{y}
 $$
 
----
-
 ### 5.4 Principle of duality
 
 * the dual of a logic expression is obtained by:
@@ -410,8 +394,6 @@ f \left( x_{1}, x_{2}, x_{3} \right) &= \underbrace{\bar{x}_{1} \cdot \bar{x}_{2
 * canonical sum-of-products can be built out of NAND gates:
 
 <!-- image -->
-
----
 
 ### 6.2 Product-of-sums
 
