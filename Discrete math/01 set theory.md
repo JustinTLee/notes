@@ -1,18 +1,6 @@
 # Set theory
 
----
-
-## Table of Contents
-
-01. [Sets](#sets)
-02. [Sequences](#sequences)
-03. [Regular expressions](#regular-expressions)
-04. [Equations](#equations)
-05. [References](#references)
-
----
-
-## Sets
+## 1 Sets
 
 * a **set** is a well-defined collection of **elements**
 * elements that exist within a set are called **members**
@@ -114,7 +102,7 @@ S_{1} \oplus S_{2} = \{x \, | \, (x \in S_{1} \text{ and } x \notin S_{2}) \text
 
 <br/>
 
-#### Theorem: algebraic properties of sets
+#### 1.1 Theorem: algebraic properties of sets
 
 **Commutative**:
 
@@ -160,7 +148,7 @@ S_{1} \oplus S_{2} = \{x \, | \, (x \in S_{1} \text{ and } x \notin S_{2}) \text
 
 <br/>
 
-#### Theorem: addition principle
+#### 1.2 Theorem: addition principle
 
 For two disjoint sets, the cardinality of their union is:
 
@@ -190,7 +178,7 @@ f_{S}(x) =
 
 <br/>
 
-#### Theorem: properties of characteristic functions
+#### 1.3 Theorem: properties of characteristic functions
 
 Characteristic functions of subsets satisfy the following properties:
 
@@ -215,7 +203,7 @@ A \times B = \{(a, b) | \, a \in A \; \text{and} \; b \in B\}
 
 <br/>
 
-#### Theorem: cardinality of Cartesian product
+#### 1.4 Theorem: cardinality of Cartesian product
 
 For any two finite, non-empty sets $A$ and $B$, $|A \times B| = |A| |B|$.
 
@@ -244,7 +232,7 @@ A_{1} \times A_{2} \times \cdots \times A_{n} = \{(a_{1}, a_{2}, \dots, a_{n}) |
 
 ---
 
-## Sequences
+## 2 Sequences
 
 * **sequence** is list of elements ordered by increasing value
     * list may be finite or infinite
@@ -270,7 +258,7 @@ s \cdot w = \underbrace{s_{1}s_{2}s_{3}}_{\text{string #1}} \underbrace{w_{1}w_{
 
 <br/>
 
-#### Theorem: multiplication principle
+#### 2.1 Theorem: multiplication principle
 
 If independent tasks $T_{i}$ for $i = 1, \dotsc, n$ are to be performed in sequence and each $T_{i}$ can be performed $N_{i}$ ways, then the sequence $T_{1}T_{2} \dotsc T_{n}$ can be performed $\prod_{i = 1}^{n} N_{i}$ ways.
 
@@ -283,7 +271,7 @@ If independent tasks $T_{i}$ for $i = 1, \dotsc, n$ are to be performed in seque
 
 <br/>
 
-#### Theorem: permutation
+#### 2.2 Theorem: permutation
 
 If $|S| = n$ and $1 \leq r \leq n$, then the number of permutations of $S$ taken $r$ at a time is:
 
@@ -297,7 +285,7 @@ This formula is also known as a **permutation**.
 
 <br/>
 
-#### Theorem: combination
+#### 2.3 Theorem: combination
 
 If $|S| = n$ and $1 \leq 0 \leq n$, then the number of $r$-element subsets of $S$ is:
 
@@ -315,7 +303,7 @@ This formula is also known as a **combination**.
 
 ---
 
-## Regular expressions
+## 3 Regular expressions
 
 * **regular expression** over set $S$ is string constructed from the elements of $S$ and/or the following symbols:
     * (
@@ -334,7 +322,7 @@ This formula is also known as a **combination**.
 
 <br/>
 
-#### Algorithm: computing a regular set
+#### 3.1 Algorithm: computing a regular set
 
 Computing a regular set involves the following algorithm:
 
@@ -352,27 +340,27 @@ Computing a regular set involves the following algorithm:
 
 ---
 
-## Equations
+## 4 Equations
 
-#### Cardinality of power set:
+#### 4.1 Cardinality of power set:
 
 \begin{equation*}
 |P(S)| = 2^{n}
 \end{equation*}
 
-#### Addition principle of disjoint sets:
+#### 4.2 Addition principle of disjoint sets:
 
 \begin{equation*}
 |S_{1} \cup S_{2}| = |S_{1}| + |S_{2}|
 \end{equation*}
 
-#### Addition principle of non-disjoint sets:
+#### 4.3 Addition principle of non-disjoint sets:
 
 \begin{equation*}
 |S_{1} \cup S_{2}| = |S_{1}| + |S_{2}| - |S_{1} \cap S_{2}|
 \end{equation*}
 
-#### Characteristic function:
+#### 4.4 Characteristic function:
 
 \begin{equation*}
 f_{S}(x) =
@@ -382,13 +370,13 @@ f_{S}(x) =
 \end{cases}
 \end{equation*}
 
-#### Permutation:
+#### 4.5 Permutation:
 
 \begin{equation*}
 P_{r}^{n} = \frac{n!}{(n - r)!}
 \end{equation*}
 
-#### Combination:
+#### 4.6 Combination:
 
 \begin{equation*}
 C_{r}^{n} = \frac{n!}{r!(n - r)!}
@@ -400,7 +388,7 @@ C_{r}^{n} = \frac{n!}{r!(n - r)!}
 
 ---
 
-## References
+## 5 References
 
 ---
 
